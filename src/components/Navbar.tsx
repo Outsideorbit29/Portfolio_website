@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -47,8 +48,13 @@ export default function Navbar() {
                 className="absolute left-6 md:left-12 pointer-events-auto"
             >
                 <Link href="/" className="flex items-center gap-2 group">
-                    <div className="w-8 h-8 rounded-lg border border-cyan-800 flex items-center justify-center bg-transparent shadow-lg group-hover:scale-110 transition-transform">
-                        <span className="text-cyan-400 font-bold text-lg">AK</span>
+                    <div className="relative w-9 h-9 rounded-lg overflow-hidden group-hover:scale-110 transition-transform">
+                        <Image
+                            src="/logo.png"
+                            alt="Anish Kumar Logo"
+                            fill
+                            className="object-contain"
+                        />
                     </div>
                     <span className="text-white font-bold tracking-tight text-xl">Anish</span>
                 </Link>
@@ -121,8 +127,13 @@ export default function Navbar() {
                     >
                         <div className="flex justify-between items-center mb-12">
                             <div className="flex items-center gap-2">
-                                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center border border-white/20">
-                                    <span className="text-white font-black text-lg">Ak</span>
+                                <div className="relative w-10 h-10 rounded-xl overflow-hidden">
+                                    <Image
+                                        src="/logo.png"
+                                        alt="Anish Kumar Logo"
+                                        fill
+                                        className="object-contain"
+                                    />
                                 </div>
                                 <span className="text-white font-bold tracking-tight text-lg">Anish</span>
                             </div>

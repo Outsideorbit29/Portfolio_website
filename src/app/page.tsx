@@ -119,7 +119,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="flex lg:w-[45%] justify-center lg:justify-end items-center self-center h-full mt-8 lg:mt-0 relative lg:-translate-x-8 xl:-translate-x-12"
+              className="hidden lg:flex lg:w-[45%] justify-center lg:justify-end items-center self-center h-full mt-8 lg:mt-0 relative lg:-translate-x-8 xl:-translate-x-12"
             >
               <div className="absolute inset-0 z-0 flex items-center justify-center">
                 <div className="w-[350px] md:w-[600px] h-[350px] md:h-[600px] border border-white/5 rounded-full animate-[spin_20s_linear_infinite] opacity-20" />

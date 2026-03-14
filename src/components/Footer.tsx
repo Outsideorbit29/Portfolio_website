@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail, ArrowRight, Heart } from "lucide-react";
+import Image from "next/image";
+import { Github, Linkedin, Twitter, Mail, ArrowRight, Heart, Instagram } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -9,8 +10,13 @@ export default function Footer() {
                     {/* Brand & Description */}
                     <div className="md:col-span-12 lg:col-span-5 flex flex-col items-start gap-6">
                         <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-lg border border-cyan-800 flex items-center justify-center bg-transparent">
-                                <span className="text-cyan-400 font-bold text-lg">AK</span>
+                            <div className="relative w-10 h-10 rounded-xl overflow-hidden">
+                                <Image
+                                    src="/logo.png"
+                                    alt="Anish Kumar Logo"
+                                    fill
+                                    className="object-contain"
+                                />
                             </div>
                             <span className="text-xl font-bold bg-clip-text text-white">
                                 Portfolio
@@ -30,6 +36,9 @@ export default function Footer() {
                             </a>
                             <a href="https://x.com/Anish_029" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
                                 <Twitter className="w-4 h-4" />
+                            </a>
+                            <a href="https://instagram.com/anish2753" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
+                                <Instagram className="w-4 h-4" />
                             </a>
                             <a href="mailto:anish.grd2004@gmail.com" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
                                 <Mail className="w-4 h-4" />

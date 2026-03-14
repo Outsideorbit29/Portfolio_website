@@ -1,9 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Send, CheckCircle, Mail, MapPin, Phone, Activity, Cpu, Sparkles, ShieldCheck, Linkedin, Github } from "lucide-react";
+import { 
+    Send, 
+    CheckCircle, 
+    Mail, 
+    MapPin, 
+    Phone, 
+    Activity, 
+    Cpu, 
+    Sparkles, 
+    ShieldCheck, 
+    Linkedin, 
+    Github, 
+    Instagram, 
+    Twitter, 
+    ExternalLink, 
+    Zap, 
+    Brain,
+    Rocket,
+    Coffee,
+    GraduationCap
+} from "lucide-react";
 import { useState, useRef } from "react";
 import emailjs from '@emailjs/browser';
+import Link from "next/link";
 
 export default function Contact() {
     const [formState, setFormState] = useState("idle"); // idle, submitting, success, error
@@ -33,46 +54,190 @@ export default function Contact() {
     return (
         <div className="min-h-screen bg-transparent pt-24 md:pt-32 pb-24 px-6 md:px-12 lg:px-20 relative overflow-x-hidden">
             
-            {/* Header HUD */}
-            <div className="flex flex-col mb-16 md:mb-24 gap-6 relative z-10 max-w-[2200px] mx-auto items-center lg:items-start text-center lg:text-left">
-                <div className="flex items-center gap-3">
-                    <div className="w-12 h-[1px] bg-cyan-500" />
-                    <span className="text-cyan-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Communication / Uplink</span>
-                </div>
-                <h1 className="text-5xl md:text-8xl lg:text-9xl font-heading font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
-                    Initiate <br />
-                    <span className="text-transparent [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Contact</span>
-                </h1>
-                <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 w-full max-w-4xl text-gray-600 font-mono text-[9px] md:text-[10px] tracking-widest leading-relaxed uppercase">
-                    <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[SIG] CHANNEL_ENCRYPTED</div>
-                    <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[PRT] SMTP_GATEWAY</div>
-                    <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[LAT] 24ms_OPTIMAL</div>
-                    <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[SEC] SSL_ACTIVE</div>
+            {/* 1. TOP HERO SECTION */}
+            <div className="flex flex-col mb-16 md:mb-20 gap-6 relative z-10 max-w-[2000px] mx-auto items-center text-center">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex flex-col items-center gap-4"
+                >
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-[1px] bg-cyan-500" />
+                        <span className="text-cyan-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">System_Entry_Uplink</span>
+                        <div className="w-8 h-[1px] bg-cyan-500" />
+                    </div>
+                    <h1 className="text-5xl md:text-8xl lg:text-9xl font-heading font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
+                        Let&apos;s Build <br />
+                        <span className="text-transparent [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Something Amazing</span>
+                    </h1>
+                    <p className="mt-8 text-gray-400 text-lg md:text-xl font-light max-w-2xl leading-relaxed italic">
+                        &quot;Turning complex ideas into high-performance digital reality.&quot;
+                    </p>
+                </motion.div>
+            </div>
+
+            {/* 2. INTERACTIVE SHORTCUTS GRID */}
+            <div className="max-w-[2000px] mx-auto mb-20 relative z-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    {/* Status: Open to Opportunities */}
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        className="glass-card bg-black/40 border border-emerald-500/20 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-emerald-500/50 transition-all cursor-default relative overflow-hidden h-40"
+                    >
+                         <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <Rocket size={60} className="text-emerald-400" />
+                         </div>
+                         <div className="flex items-center gap-2">
+                             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                             <span className="text-[10px] text-emerald-400 font-mono uppercase tracking-widest">LIVE_STATUS</span>
+                         </div>
+                         <div className="flex flex-col">
+                            <span className="text-xl font-bold text-white uppercase tracking-tight">Open to <br /> Opportunities</span>
+                         </div>
+                    </motion.div>
+
+                    {/* Status: Always Learning */}
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.1 }}
+                        className="glass-card bg-black/40 border border-blue-500/20 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-blue-500/50 transition-all cursor-default relative overflow-hidden h-40"
+                    >
+                         <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <Brain size={60} className="text-blue-400" />
+                         </div>
+                         <div className="flex items-center gap-2">
+                             <div className="w-2 h-2 rounded-full bg-blue-500 animate-[bounce_2s_infinite]" />
+                             <span className="text-[10px] text-blue-400 font-mono uppercase tracking-widest">CURRENT_MODE</span>
+                         </div>
+                         <div className="flex flex-col">
+                            <span className="text-xl font-bold text-white uppercase tracking-tight">Always <br /> Learning</span>
+                         </div>
+                    </motion.div>
+
+                    {/* Quick Connect Grid (Bento style) */}
+                    <div className="lg:col-span-2 lg:row-span-2 grid grid-cols-2 gap-4">
+                        <a 
+                            href="https://www.linkedin.com/in/anish-kumar-gupta-6a9b50251" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="glass-card bg-black/40 border border-white/5 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-blue-500/30 hover:bg-blue-500/5 transition-all h-40 overflow-hidden relative"
+                        >
+                            <Linkedin size={24} className="text-gray-500 group-hover:text-blue-400 transition-colors" />
+                            <div className="flex flex-col text-left">
+                                <span className="text-[9px] text-gray-600 font-mono uppercase tracking-widest">Connect_on</span>
+                                <span className="text-lg font-bold text-white">Linkedin</span>
+                            </div>
+                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-700 group-hover:text-white transition-colors" />
+                        </a>
+                        
+                        <a 
+                            href="https://github.com/Outsideorbit29" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="glass-card bg-black/40 border border-white/5 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-white/20 hover:bg-white/5 transition-all h-20 sm:h-auto overflow-hidden relative"
+                        >
+                            <Github size={24} className="text-gray-500 group-hover:text-white transition-colors" />
+                            <div className="flex flex-col text-left">
+                                <span className="text-[9px] text-gray-600 font-mono uppercase tracking-widest">Explore_code</span>
+                                <span className="text-lg font-bold text-white">Github</span>
+                            </div>
+                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-700 group-hover:text-white transition-colors" />
+                        </a>
+
+                        <a 
+                            href="https://x.com/Anish_029" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="glass-card bg-black/40 border border-white/5 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-cyan-500/30 hover:bg-cyan-500/5 transition-all h-20 sm:h-auto overflow-hidden relative"
+                        >
+                            <Twitter size={24} className="text-gray-500 group-hover:text-cyan-400 transition-colors" />
+                            <div className="flex flex-col text-left">
+                                <span className="text-[9px] text-gray-600 font-mono uppercase tracking-widest">Follow_X</span>
+                                <span className="text-lg font-bold text-white">Twitter</span>
+                            </div>
+                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-700 group-hover:text-white transition-colors" />
+                        </a>
+
+                        <a 
+                            href="https://instagram.com/anish2753" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="glass-card bg-black/40 border border-white/5 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-pink-500/30 hover:bg-pink-500/5 transition-all h-20 sm:h-auto overflow-hidden relative"
+                        >
+                            <Instagram size={24} className="text-gray-500 group-hover:text-pink-400 transition-colors" />
+                            <div className="flex flex-col text-left">
+                                <span className="text-[9px] text-gray-600 font-mono uppercase tracking-widest">Lifestyle</span>
+                                <span className="text-lg font-bold text-white">Instagram</span>
+                            </div>
+                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-700 group-hover:text-white transition-colors" />
+                        </a>
+                    </div>
+
+                    {/* Status: Innovation Mode */}
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="glass-card bg-black/40 border border-violet-500/20 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-violet-500/50 transition-all cursor-default relative overflow-hidden h-40"
+                    >
+                         <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <Sparkles size={60} className="text-violet-400" />
+                         </div>
+                         <div className="flex items-center gap-2">
+                             <div className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
+                             <span className="text-[10px] text-violet-400 font-mono uppercase tracking-widest">Active_Phase</span>
+                         </div>
+                         <div className="flex flex-col">
+                            <span className="text-xl font-bold text-white uppercase tracking-tight">Building <br /> The Future</span>
+                         </div>
+                    </motion.div>
+
+                    {/* Status: Coffee Drive */}
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="glass-card bg-black/40 border border-orange-500/20 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-orange-500/50 transition-all cursor-default relative overflow-hidden h-40"
+                    >
+                         <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <Coffee size={60} className="text-orange-400" />
+                         </div>
+                         <div className="flex items-center gap-2">
+                             <Activity size={12} className="text-orange-500 animate-[spin_3s_linear_infinite]" />
+                             <span className="text-[10px] text-orange-400 font-mono uppercase tracking-widest">Fuel_Status</span>
+                         </div>
+                         <div className="flex flex-col">
+                            <span className="text-xl font-bold text-white uppercase tracking-tight">Caffeine <br /> & Code</span>
+                         </div>
+                    </motion.div>
+
                 </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-16 md:gap-20 relative z-10 max-w-[2200px] mx-auto items-center lg:items-stretch">
+            {/* 3. MAIN CONTACT AREA (Form + Secondary Info) */}
+            <div className="flex flex-col lg:flex-row gap-16 md:gap-20 relative z-10 max-w-[2000px] mx-auto items-center lg:items-stretch">
                 
                 {/* Left: Communication Hub Info */}
                 <div className="w-full lg:w-1/2 flex flex-col gap-10 md:gap-12 text-center lg:text-left items-center lg:items-start">
                      <div className="flex flex-col gap-6">
                         <h2 className="text-3xl md:text-4xl font-heading font-bold text-white flex items-center justify-center lg:justify-start gap-4">
-                            <Activity className="text-cyan-400" size={32} />
-                            Signal Path.
+                            <Zap className="text-cyan-400" size={32} />
+                            Deep Uplink.
                         </h2>
                         <p className="text-gray-400 text-lg md:text-xl leading-relaxed font-light max-w-xl">
-                            The communication line is open. Whether you have a specific system requirement or just want to discuss the future of AI, initiate the sequence below.
+                            The secure terminal below is the most direct way to initiate a technical collaboration or architectural discussion.
                         </p>
                      </div>
 
                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                          {[
-                            { label: "Direct Uplink", value: "anish.grd2004@gmail.com", icon: Mail, color: "text-blue-400", href: "https://mail.google.com/mail/?view=cm&fs=1&to=anish.grd2004@gmail.com" },
-                            { label: "Geo Location", value: "Madhya Pradesh, India", icon: MapPin, color: "text-violet-400" },
-                            { label: "Github Profile", value: "github.com/anish-kumar-gupta", icon: Github, color: "text-gray-400", href: "https://github.com/anish2753" },
-                            { label: "Linkedin Network", value: "linkedin.com/in/anish-kumar-gupta", icon: Linkedin, color: "text-blue-500", href: "https://www.linkedin.com/in/anish-kumar-gupta-0382022b7/" },
-                            { label: "Voice Frequency", value: "+91 6299293388", icon: Phone, color: "text-cyan-400" },
-                            { label: "System Status", value: "Secure & Online", icon: ShieldCheck, color: "text-emerald-400" }
+                            { label: "Direct Email", value: "anish.grd2004@gmail.com", icon: Mail, color: "text-blue-400", href: "https://mail.google.com/mail/?view=cm&fs=1&to=anish.grd2004@gmail.com" },
+                            { label: "Phone Frequency", value: "+91 6299293388", icon: Phone, color: "text-cyan-400" },
+                            { label: "Base Station", value: "Madhya Pradesh, India", icon: MapPin, color: "text-violet-400" },
+                            { label: "Network Protocol", value: "Secure & Online", icon: ShieldCheck, color: "text-emerald-400" }
                          ].map((info, i) => (
                              info.href ? (
                                 <a key={i} href={info.href} target="_blank" rel="noopener noreferrer" className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 flex flex-col gap-3 group hover:border-white/20 transition-all text-left overflow-hidden">
@@ -99,7 +264,7 @@ export default function Contact() {
                             <Cpu className="text-cyan-400 animate-pulse w-5 h-5" />
                         </div>
                         <p className="text-[9px] md:text-xs text-gray-500 font-mono leading-relaxed uppercase tracking-widest text-left">
-                            Estimated Response Latency: <span className="text-cyan-400">Under 24 Hours</span>
+                            System Latency: <span className="text-cyan-400">Response in &lt; 24h</span>
                         </p>
                      </div>
                 </div>
@@ -119,7 +284,7 @@ export default function Contact() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className="flex flex-col items-center justify-center h-full gap-8 text-center py-16 md:py-20 relative z-10"
-                            >
+                             >
                                 <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
                                     <CheckCircle size={40} className="text-emerald-400" />
                                 </div>
@@ -133,7 +298,7 @@ export default function Contact() {
                                 >
                                     New Sequence [RESET]
                                 </button>
-                            </motion.div>
+                             </motion.div>
                         ) : (
                             <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-8 md:gap-10 relative z-10 h-full justify-between">
                                 <div className="flex flex-col gap-8 md:gap-10">
@@ -196,9 +361,6 @@ export default function Contact() {
                             </form>
                         )}
                     </motion.div>
-                    
-                    {/* Perspective Decals - Hidden on small screens */}
-                    <div className="absolute -bottom-4 -right-4 w-24 h-24 border-r-2 border-b-2 border-cyan-500/20 rounded-br-3xl pointer-events-none hidden sm:block" />
                 </div>
             </div>
 

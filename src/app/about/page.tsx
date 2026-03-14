@@ -2,7 +2,30 @@
 
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { GraduationCap, Briefcase, Download, Heart, Code2, Database, Brain, Target, Cpu, Sparkles } from "lucide-react";
+import {
+    GraduationCap,
+    Briefcase,
+    Download,
+    Heart,
+    Code2,
+    Database,
+    Brain,
+    Target,
+    Cpu,
+    Sparkles,
+    Rocket,
+    Zap,
+    Library,
+    Camera,
+    Swords,
+    BookOpen,
+    Wind,
+    Gamepad2,
+    Music,
+    Plane,
+    Coffee,
+    LineChart
+} from "lucide-react";
 import { HoverPhotoReveal } from "@/components/HoverPhotoReveal";
 import Link from "next/link";
 
@@ -18,6 +41,21 @@ const skills = [
 const interests = [
     "Algorithmic Trading", "Machine Learning", "WebGL / Three.js",
     "Data Visualization", "UI/UX Design", "Quantitative Finance",
+];
+
+const lifeGoals = [
+    { title: "Architect Future Ecosystems", desc: "Build a globally adopted framework that bridges AI and human creativity.", icon: Rocket, color: "text-blue-400" },
+    { title: "Sustainable Tech Innovation", desc: "Leverage technology to solve real-world sustainability and efficiency challenges.", icon: Zap, color: "text-emerald-400" },
+    { title: "Universal Knowledge Sync", desc: "Achieve mastery in high-dimensional computing and decentralized architectures.", icon: Library, color: "text-violet-400" },
+];
+
+const hobbyGrid = [
+    { label: "Trading", icon: LineChart, desc: "Analyzing global financial flows." },
+    { label: "Learning", icon: BookOpen, desc: "Continuous neural network upgrades." },
+    { label: "Gaming", icon: Gamepad2, desc: "Executing strategic simulations." },
+    { label: "Music", icon: Music, desc: "Harmonizing frequency and wavelength." },
+    { label: "Travel", icon: Plane, desc: "Exploring physical world coordinates." },
+    { label: "Coffee", icon: Coffee, desc: "Biological fuel for high-level logic." },
 ];
 
 export default function About() {
@@ -51,7 +89,7 @@ export default function About() {
                 </div>
                 <h1 className="text-5xl md:text-8xl lg:text-9xl font-heading font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
                     Anish <br />
-                    <span className="text-transparent [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Kumar Gupta</span>
+                    <span className="text-white [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Kumar Gupta</span>
                 </h1>
                 <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-4xl text-gray-600 font-mono text-[9px] md:text-[10px] tracking-widest leading-relaxed uppercase">
                     <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[UUID] 8B9CAD-0E1F20</div>
@@ -91,13 +129,13 @@ export default function About() {
                                 I am a <span className="text-white font-medium">Full Stack Engineer</span> obsessed with the intersection of scalable architecture and cognitive computing.
                             </p>
                             <p className="text-gray-400 text-lg md:text-xl lg:text-2xl leading-relaxed font-light max-w-2xl">
-                                From crafting high-fidelity neural interfaces to architecting robust backends, my methodology is rooted in <span className="text-white">Clean Code Paradigms</span>.
+                                Beyond code, I am driven by the philosophy of <span className="text-violet-400">Digital Minimalism</span> and the pursuit of <span className="text-white">Optimal Efficiency</span> in all systems—biological or digital.
                             </p>
                         </div>
 
                         <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                             <Link href="/api/resume" download="Anish_Resume.pdf" className="px-8 py-4 rounded-xl bg-white text-black font-heading font-black text-xs uppercase tracking-widest hover:scale-105 hover:bg-violet-400 transition-all shadow-2xl inline-flex items-center gap-3">
-                                <Download size={14} /> Fetch Dossier (PDF)
+                                <Download size={14} /> Get_Resume
                             </Link>
                         </div>
 
@@ -119,6 +157,32 @@ export default function About() {
                                 </div>
                             ))}
                         </div>
+                    </div>
+                </section>
+
+                {/* Section: System Directives (Life Goals) */}
+                <section className="flex flex-col gap-10 md:gap-12">
+                    <div className="flex items-center justify-center lg:justify-start gap-3">
+                        <div className="w-12 h-[1px] bg-emerald-500" />
+                        <span className="text-emerald-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">System_Directives</span>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {lifeGoals.map((goal, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.1 }}
+                                viewport={{ once: true }}
+                                className="glass-card bg-black/40 border border-white/5 p-8 rounded-3xl hover:border-emerald-500/20 transition-all group flex flex-col gap-4 text-left"
+                            >
+                                <div className={`w-12 h-12 rounded-2xl bg-white/[0.03] flex items-center justify-center border border-white/5 ${goal.color} group-hover:scale-110 transition-transform`}>
+                                    <goal.icon size={24} />
+                                </div>
+                                <h3 className="text-xl font-heading font-bold text-white uppercase tracking-tight">{goal.title}</h3>
+                                <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base">{goal.desc}</p>
+                            </motion.div>
+                        ))}
                     </div>
                 </section>
 
@@ -158,7 +222,33 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* Section 3: Specializations */}
+                {/* Section: Encoded Interests (Hobbies) */}
+                <section className="flex flex-col gap-10 md:gap-12">
+                    <div className="flex items-center justify-center lg:justify-start gap-3">
+                        <div className="w-12 h-[1px] bg-pink-500" />
+                        <span className="text-pink-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Encoded_Interests</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {hobbyGrid.map((hobby, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: i * 0.1 }}
+                                viewport={{ once: true }}
+                                className="glass-card bg-black/40 border border-white/5 p-6 rounded-[2rem] hover:border-pink-500/30 transition-all group flex flex-col gap-3 text-left"
+                            >
+                                <hobby.icon size={20} className="text-pink-400 group-hover:rotate-12 transition-transform" />
+                                <div className="flex flex-col gap-1">
+                                    <span className="text-lg font-bold text-white uppercase tracking-tight">{hobby.label}</span>
+                                    <span className="text-[10px] text-gray-500 font-mono leading-relaxed">{hobby.desc}</span>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Section 4: Specializations */}
                 <section className="flex flex-col lg:flex-row gap-12 md:gap-16">
                     <div className="w-full lg:w-1/2 flex flex-col gap-6 text-center lg:text-left items-center lg:items-start">
                         <h2 className="text-3xl md:text-4xl font-heading font-bold text-white flex items-center gap-4">
@@ -177,7 +267,7 @@ export default function About() {
                         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" />
                         <h3 className="text-xl md:text-2xl font-heading font-bold text-white uppercase tracking-widest">Philosophy</h3>
                         <p className="text-gray-500 font-light leading-relaxed italic text-lg md:text-xl lg:text-2xl max-w-xl">
-                            "I believe in systems that are not just technically sound, but inherently human."
+                            "I believe in systems that are not just technically sound, but inherently human — where the precision of machines meets the creative depth of the soul."
                         </p>
                         <div className="flex flex-col lg:flex-row lg:items-center gap-4 mt-2">
                             <div className="hidden lg:block w-10 h-[1px] bg-violet-500" />
