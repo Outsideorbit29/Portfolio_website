@@ -9,6 +9,7 @@ import { ParallaxBackground } from "@/components/ParallaxBackground";
 import { ThreeBackground } from "@/components/ThreeBackground";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { FallingStars } from "@/components/FallingStars";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -58,6 +59,7 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-1 w-full relative z-10 flex flex-col overflow-x-hidden">
               {children}
+              <Analytics />
             </main>
             <Footer />
           </ThemeProvider>
