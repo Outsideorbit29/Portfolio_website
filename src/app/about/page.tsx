@@ -67,10 +67,10 @@ export default function About() {
                 <section className="flex flex-col lg:flex-row gap-8 md:gap-16 items-center">
                     <div className="w-full lg:w-1/2 relative group">
                         <div className="relative aspect-[3/4] w-full max-w-[320px] md:max-w-md mx-auto lg:ml-0 rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
-                            <div className="absolute inset-0 z-20 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+                            <div className="absolute inset-0 z-20 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 pointer-events-none" />
                             <HoverPhotoReveal
-                                primarySrc="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=1500&auto=format&fit=crop"
-                                secondarySrc="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1500&auto=format&fit=crop"
+                                primarySrc="/anish-anime.png"
+                                secondarySrc="/anish-anime-hover.png"
                                 alt="Anish Kumar Gupta"
                                 revealSize={180}
                             />
