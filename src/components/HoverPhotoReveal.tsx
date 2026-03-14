@@ -60,6 +60,25 @@ export function HoverPhotoReveal({
             
             {/* Subtle border overlay always visible */}
             <div className="absolute inset-0 border border-white/5 rounded-2xl z-20 pointer-events-none" />
+
+            {/* Scanline Effect on Hover */}
+            <AnimatePresence>
+                {isHovered && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 z-30 pointer-events-none overflow-hidden"
+                    >
+                        <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-40 bg-[length:100%_2px,3px_100%] pointer-events-none" />
+                        <motion.div 
+                            animate={{ y: ["0%", "100%"] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                            className="w-full h-[1px] bg-blue-500/30 shadow-[0_0_10px_rgba(59,130,246,0.5)] absolute top-0"
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
