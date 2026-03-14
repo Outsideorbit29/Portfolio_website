@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://anishkumar.tech/sitemap.xml',
+    sitemap: 'https://anishkumar.online/sitemap.xml',
   }
 }

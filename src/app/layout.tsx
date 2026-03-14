@@ -31,7 +31,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://anishkumar.tech"), // Placeholder, update to actual domain
+  metadataBase: new URL("https://anishkumar.online"),
   title: {
     default: "Anish Kumar | Full Stack Engineer & AI Architect",
     template: "%s | Anish Kumar",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://anishkumar.tech",
+    url: "https://anishkumar.online",
     title: "Anish Kumar | Full Stack Engineer",
     description: "Building the future of scalable architecture and cognitive computing.",
     siteName: "Anish Kumar Portfolio",
@@ -88,7 +88,7 @@ export default function RootLayout({
               "@type": "Person",
               name: "Anish Kumar",
               alternateName: "Anish Kumar Gupta",
-              url: "https://anishkumar.tech",
+              url: "https://anishkumar.online",
               jobTitle: "Full Stack Engineer",
               knowsAbout: ["Software Engineering", "Artificial Intelligence", "Web Development", "Machine Learning"],
               description: "Full Stack Engineer obsessed with the intersection of scalable architecture and cognitive computing.",
