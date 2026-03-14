@@ -31,8 +31,43 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Anish Kumar Gupta | Portfolio & Developer",
-  description: "Modern, aesthetic personal portfolio building beautiful web experiences.",
+  metadataBase: new URL("https://anishkumar.tech"), // Placeholder, update to actual domain
+  title: {
+    default: "Anish Kumar | Full Stack Engineer & AI Architect",
+    template: "%s | Anish Kumar",
+  },
+  description:
+    "Portfolio of Anish Kumar, a Full Stack Engineer specialized in AI/ML Architecture, scalable web systems, and creative technology.",
+  keywords: [
+    "Anish Kumar",
+    "Anish Kumar Gupta",
+    "Full Stack Engineer",
+    "AI Architect",
+    "Software Developer Portfolio",
+    "India Developer",
+    "Machine Learning Engineer",
+    "Next.js Developer",
+  ],
+  authors: [{ name: "Anish Kumar" }],
+  creator: "Anish Kumar",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://anishkumar.tech",
+    title: "Anish Kumar | Full Stack Engineer",
+    description: "Building the future of scalable architecture and cognitive computing.",
+    siteName: "Anish Kumar Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Anish Kumar | Full Stack Engineer",
+    description: "Building the future of scalable architecture and cognitive computing.",
+    creator: "@anishkumar", // Placeholder
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -45,6 +80,21 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground relative min-h-screen flex flex-col transition-colors duration-300 font-sans`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Anish Kumar",
+              alternateName: "Anish Kumar Gupta",
+              url: "https://anishkumar.tech",
+              jobTitle: "Full Stack Engineer",
+              knowsAbout: ["Software Engineering", "Artificial Intelligence", "Web Development", "Machine Learning"],
+              description: "Full Stack Engineer obsessed with the intersection of scalable architecture and cognitive computing.",
+            }),
+          }}
+        />
         <SmoothScroll>
           <ThemeProvider
             attribute="class"
