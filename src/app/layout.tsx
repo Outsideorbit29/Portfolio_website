@@ -37,40 +37,70 @@ export const metadata: Metadata = {
     template: "%s | Anish Kumar",
   },
   description:
-    "Portfolio of Anish Kumar, a Full Stack Engineer specialized in AI/ML Architecture, scalable web systems, and creative technology.",
+    "Official portfolio of Anish Kumar. Full Stack Engineer specialized in building high-performance web applications, AI/ML architectures, and scalable digital ecosystems.",
   keywords: [
     "Anish Kumar",
     "Anish Kumar Gupta",
-    "Full Stack Engineer",
-    "AI Architect",
-    "Software Developer Portfolio",
-    "India Developer",
-    "Machine Learning Engineer",
-    "Next.js Developer",
+    "Anish Kumar VIT",
+    "Anish Kumar Portfolio",
+    "Full Stack Engineer India",
+    "AI/ML Architect",
+    "Next.js Developer India",
+    "Software Engineer Anish Kumar",
+    "Building Futuristic Web Apps",
+    "Portfolio anishkumar.online",
   ],
-  authors: [{ name: "Anish Kumar" }],
+  authors: [{ name: "Anish Kumar", url: "https://anishkumar.online" }],
   creator: "Anish Kumar",
+  publisher: "Anish Kumar",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://anishkumar.online",
-    title: "Anish Kumar | Full Stack Engineer",
-    description: "Building the future of scalable architecture and cognitive computing.",
+    title: "Anish Kumar | Full Stack Engineer & AI Architect",
+    description: "Architecting the future of scalable web systems and cognitive computing. Explore my latest work in Full Stack development and AI.",
     siteName: "Anish Kumar Portfolio",
+    images: [
+      {
+        url: "/logo.png", // Recommended to use a specific OG image if available
+        width: 1200,
+        height: 630,
+        alt: "Anish Kumar - Full Stack Engineer & AI Architect",
+      }
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anish Kumar | Full Stack Engineer",
-    description: "Building the future of scalable architecture and cognitive computing.",
-    creator: "@anishkumar", // Placeholder
+    title: "Anish Kumar | Full Stack Engineer & AI Architect",
+    description: "Building futuristic web experiences and scalable AI-powered solutions.",
+    images: ["/logo.png"],
+    creator: "@Anish_029",
+    site: "@Anish_029",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/logo.png" },
+      { url: "/logo.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/logo.png", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 
