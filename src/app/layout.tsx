@@ -33,26 +33,26 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://anishkumar.online"),
   title: {
-    default: "Anish Kumar | Full Stack Engineer & AI Architect",
-    template: "%s | Anish Kumar",
+    default: "Anish Kumar Gupta | Full Stack Engineer & AI Architect",
+    template: "%s | Anish Kumar Gupta",
   },
   description:
-    "Official portfolio of Anish Kumar. Full Stack Engineer specialized in building high-performance web applications, AI/ML architectures, and scalable digital ecosystems.",
+    "Official portfolio of Anish Kumar Gupta. Full Stack Engineer specialized in building high-performance web applications, AI/ML architectures, and scalable digital ecosystems.",
   keywords: [
-    "Anish Kumar",
     "Anish Kumar Gupta",
-    "Anish Kumar VIT",
-    "Anish Kumar Portfolio",
+    "Anish Kumar",
+    "Anish Kumar Gupta VIT",
+    "Anish Kumar Gupta Portfolio",
     "Full Stack Engineer India",
-    "AI/ML Architect",
-    "Next.js Developer India",
-    "Software Engineer Anish Kumar",
+    "AI/ML Architect Anish Kumar Gupta",
+    "Next.js Developer Anish Kumar Gupta",
+    "Software Engineer Anish Kumar Gupta",
     "Building Futuristic Web Apps",
     "Portfolio anishkumar.online",
   ],
-  authors: [{ name: "Anish Kumar", url: "https://anishkumar.online" }],
-  creator: "Anish Kumar",
-  publisher: "Anish Kumar",
+  authors: [{ name: "Anish Kumar Gupta", url: "https://anishkumar.online" }],
+  creator: "Anish Kumar Gupta",
+  publisher: "Anish Kumar Gupta",
   formatDetection: {
     email: false,
     address: false,
@@ -62,22 +62,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://anishkumar.online",
-    title: "Anish Kumar | Full Stack Engineer & AI Architect",
-    description: "Architecting the future of scalable web systems and cognitive computing. Explore my latest work in Full Stack development and AI.",
-    siteName: "Anish Kumar Portfolio",
+    title: "Anish Kumar Gupta | Full Stack Engineer & AI Architect",
+    description: "Architecting the future of scalable web systems and cognitive computing. Explore the latest work of Anish Kumar Gupta.",
+    siteName: "Anish Kumar Gupta Portfolio",
     images: [
       {
-        url: "/logo.png", // Recommended to use a specific OG image if available
+        url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Anish Kumar - Full Stack Engineer & AI Architect",
+        alt: "Anish Kumar Gupta - Full Stack Engineer & AI Architect",
       }
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anish Kumar | Full Stack Engineer & AI Architect",
-    description: "Building futuristic web experiences and scalable AI-powered solutions.",
+    title: "Anish Kumar Gupta | Full Stack Engineer & AI Architect",
+    description: "Building futuristic web experiences and scalable AI-powered solutions - Anish Kumar Gupta.",
     images: ["/logo.png"],
     creator: "@Anish_029",
     site: "@Anish_029",
@@ -120,12 +120,30 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Anish Kumar",
-              alternateName: "Anish Kumar Gupta",
+              name: "Anish Kumar Gupta",
+              alternateName: "Anish Kumar",
               url: "https://anishkumar.online",
-              jobTitle: "Full Stack Engineer",
-              knowsAbout: ["Software Engineering", "Artificial Intelligence", "Web Development", "Machine Learning"],
-              description: "Full Stack Engineer obsessed with the intersection of scalable architecture and cognitive computing.",
+              image: "https://anishkumar.online/logo.png",
+              sameAs: [
+                "https://github.com/Outsideorbit29",
+                "https://www.linkedin.com/in/anish-kumar-gupta-6a9b50251",
+                "https://x.com/Anish_029",
+                "https://instagram.com/anish2753"
+              ],
+              jobTitle: "Full Stack Engineer & AI Architect",
+              worksFor: {
+                "@type": "Organization",
+                "name": "Self-Employed"
+              },
+              knowsAbout: [
+                "Software Engineering",
+                "Artificial Intelligence",
+                "Full Stack Web Development",
+                "Machine Learning",
+                "React & Next.js",
+                "Cloud Architecture"
+              ],
+              description: "Anish Kumar Gupta is a Full Stack Engineer and AI Architect specializing in high-performance web systems and cognitive computing. Based in India, Anish Kumar builds scalable digital ecosystems for the future.",
             }),
           }}
         />

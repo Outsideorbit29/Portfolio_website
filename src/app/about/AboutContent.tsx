@@ -129,8 +129,9 @@ export default function AboutContent() {
 
                     <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
                         <HoverPhotoReveal 
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2540&auto=format&fit=crop" 
-                            name="ANISH KUMAR"
+                            primarySrc="/anish-anime.png" 
+                            secondarySrc="/anish-anime-hover.png"
+                            alt="Anish Kumar Gupta - Full Stack Engineer Portrait"
                         />
                     </div>
                 </section>
@@ -156,7 +157,7 @@ export default function AboutContent() {
 
                     <div className="lg:col-span-8 flex flex-col gap-10 md:gap-12 text-left">
                         <p className="text-gray-400 text-xl md:text-2xl lg:text-3xl font-light leading-relaxed max-w-4xl">
-                            I am a digital architect focused on the intersection of <span className="text-white font-medium">high-performance systems</span> and <span className="text-white font-medium">cognitive computing</span>. Every line of code I write is a step toward building a more connected, intelligent, and efficient future.
+                            As a digital architect, <span className="text-white font-medium">Anish Kumar Gupta</span> focuses on the intersection of <span className="text-white font-medium">high-performance systems</span> and <span className="text-white font-medium">cognitive computing</span>. Every line of code I write is a step toward building a more connected, intelligent, and efficient future.
                         </p>
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -62,7 +62,7 @@ export default function SkillsContent() {
                     <span className="text-pink-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Inventory / Capabilities</span>
                 </div>
                 <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8] font-sans">
-                    System <br />
+                    Anish Kumar <br />
                     <span className="text-transparent [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Arsenal</span>
                 </h1>
                 <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-4xl text-gray-600 font-mono text-[9px] md:text-[10px] tracking-widest leading-relaxed uppercase">

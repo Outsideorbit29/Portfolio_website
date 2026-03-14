@@ -77,8 +77,8 @@ export default function ProjectsContent() {
                     <span className="text-cyan-500 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Operations / Work</span>
                 </div>
                 <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8] font-sans">
-                    Selected <br />
-                    <span className="text-transparent [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Archive</span>
+                    Anish Kumar <br />
+                    <span className="text-transparent [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Gupta Archive</span>
                 </h1>
                 <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-4xl text-gray-600 font-mono text-[9px] md:text-[10px] tracking-widest leading-relaxed uppercase">
                     <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[01] SEAMLESS_UIs</div>

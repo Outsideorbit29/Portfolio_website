@@ -56,7 +56,7 @@ export default function Navbar() {
                             className="object-contain"
                         />
                     </div>
-                    <span className="text-white font-bold tracking-tight text-xl">Anish</span>
+                    <span className="text-white font-bold tracking-tight text-xl">Anish Kumar</span>
                 </Link>
             </motion.div>
 
