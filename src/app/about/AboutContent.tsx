@@ -139,10 +139,9 @@ export default function AboutContent() {
                             </div>
                             
                             {/* 3. Resume download link below photo */}
-                            <Link 
-                                href="/api/resume" 
-                                download="Anish_Resume.pdf"
-                                className="w-full flex items-center justify-center gap-4 bg-white text-black px-8 py-5 rounded-2xl font-heading font-black text-[11px] uppercase tracking-widest hover:bg-pink-500 hover:text-white transition-all duration-500 shadow-2xl group"
+                             <Link 
+                                href="/resume" 
+                                className="w-full flex items-center justify-center gap-4 bg-white text-black px-8 py-5 rounded-2xl font-heading font-black text-[11px] uppercase tracking-widest hover:bg-pink-500 hover:text-white transition-all duration-500 shadow-2xl group cursor-pointer"
                             >
                                 Get_Resume 
                                 <motion.div

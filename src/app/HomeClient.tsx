@@ -107,10 +107,10 @@ export default function HomeContent() {
                   Execute Project_Fetch
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <a href="/api/resume" download="Anish_Kumar_Gupta_Resume.pdf" className="group flex items-center gap-3 glass-card bg-white/[0.03] px-8 md:px-10 py-4 md:py-5 rounded-2xl text-white font-heading font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 border border-white/10">
+                <Link href="/resume" className="group flex items-center gap-3 glass-card bg-white/[0.03] px-8 md:px-10 py-4 md:py-5 rounded-2xl text-white font-heading font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 border border-white/10">
                   <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
                   Get_Resume
-                </a>
+                </Link>
               </motion.div>
             </motion.div>
 

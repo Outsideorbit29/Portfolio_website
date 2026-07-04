@@ -143,8 +143,7 @@ export default function ExperienceContent() {
                         </div>
 
                         <Link
-                            href="/api/resume"
-                            download="Anish_Resume.pdf"
+                            href="/resume"
                             className="mt-2 px-6 py-4 rounded-xl md:rounded-2xl bg-white text-black font-black text-[10px] md:text-xs uppercase tracking-[0.2em] text-center hover:bg-emerald-400 transition-all shadow-2xl"
                         >
                             Pull Full CV
