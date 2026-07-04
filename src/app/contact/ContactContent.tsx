@@ -162,7 +162,7 @@ export default function ContactContent() {
                         </a>
 
                         <a 
-                            href="https://instagram.com/anish2753" 
+                            href="https://instagram.com/k_anish_29" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className="glass-card bg-black/40 border border-white/5 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-pink-500/30 hover:bg-pink-500/5 transition-all h-20 sm:h-auto overflow-hidden relative"

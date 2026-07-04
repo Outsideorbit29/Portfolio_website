@@ -129,7 +129,7 @@ export default function RootLayout({
                 "https://github.com/Outsideorbit29",
                 "https://www.linkedin.com/in/anish-kumar-gupta-6a9b50251",
                 "https://x.com/Anish_029",
-                "https://instagram.com/anish2753"
+                "https://instagram.com/k_anish_29"
               ],
               jobTitle: "Full Stack Engineer & AI Architect",
               worksFor: {

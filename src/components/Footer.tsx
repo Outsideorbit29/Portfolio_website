@@ -37,7 +37,7 @@ export default function Footer() {
                             <a href="https://x.com/Anish_029" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
                                 <Twitter className="w-4 h-4" />
                             </a>
-                            <a href="https://instagram.com/anish2753" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
+                            <a href="https://instagram.com/k_anish_29" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
                                 <Instagram className="w-4 h-4" />
                             </a>
                             <a href="mailto:anish.grd2004@gmail.com" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
