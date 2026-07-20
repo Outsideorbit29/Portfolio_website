@@ -42,7 +42,7 @@ export default function ResumeContent() {
               Return
             </button>
             <a
-              href="https://drive.google.com/file/d/1zDAR4YAHg3FGSX-f-MyKW-sDdjJjGyh9/view?usp=sharing"
+              href="https://drive.google.com/file/d/1sQum4GVLRUq-wTjFAmY3eKEkajrCWIbc/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-3 rounded-xl border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all text-xs font-mono uppercase tracking-wider cursor-pointer"
@@ -92,7 +92,7 @@ export default function ResumeContent() {
             </p>
             <div className="flex gap-4 mt-2">
               <a
-                href="https://drive.google.com/file/d/1zDAR4YAHg3FGSX-f-MyKW-sDdjJjGyh9/view?usp=sharing"
+                href="https://drive.google.com/file/d/1sQum4GVLRUq-wTjFAmY3eKEkajrCWIbc/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 border border-white/10 rounded-lg hover:bg-white/5 transition-colors font-mono text-xs text-white"
@@ -110,7 +110,7 @@ export default function ResumeContent() {
           </div>
 
           <iframe
-            src="https://drive.google.com/file/d/1zDAR4YAHg3FGSX-f-MyKW-sDdjJjGyh9/preview"
+            src="https://drive.google.com/file/d/1sQum4GVLRUq-wTjFAmY3eKEkajrCWIbc/preview"
             className="w-full h-full border-0 rounded-2xl bg-white/[0.01] relative z-20"
             allow="autoplay"
             onLoad={() => setIsLoading(false)}
