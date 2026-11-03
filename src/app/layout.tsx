@@ -11,6 +11,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { FallingStars } from "@/components/FallingStars";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { DEFAULT_TITLE, OG_IMAGE, SITE_URL, X_HANDLE } from "@/lib/metadata";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -32,9 +33,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://anishkumar.online"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Anish Kumar Gupta | Full Stack Software Engineer",
+    default: DEFAULT_TITLE,
     template: "%s | Anish Kumar Gupta",
   },
   description:
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     "Building Futuristic Web Apps",
     "Portfolio anishkumar.online",
   ],
-  authors: [{ name: "Anish Kumar Gupta", url: "https://anishkumar.online" }],
+  authors: [{ name: "Anish Kumar Gupta", url: SITE_URL }],
   creator: "Anish Kumar Gupta",
   publisher: "Anish Kumar Gupta",
   formatDetection: {
@@ -62,26 +63,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://anishkumar.online",
-    title: "Anish Kumar Gupta | Full Stack Software Engineer",
+    url: "/",
+    title: DEFAULT_TITLE,
     description: "Architecting the future of scalable web systems and cognitive computing. Explore the latest work of Anish Kumar Gupta.",
     siteName: "Anish Kumar Gupta Portfolio",
-    images: [
-      {
-        url: "/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Anish Kumar Gupta - Full Stack Software Engineer",
-      }
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anish Kumar Gupta | Full Stack Software Engineer",
+    title: DEFAULT_TITLE,
     description: "Building futuristic web experiences and scalable AI-powered solutions - Anish Kumar Gupta.",
-    images: ["/logo.png"],
-    creator: "@Anish_029",
-    site: "@Anish_029",
+    images: [OG_IMAGE.url],
+    creator: X_HANDLE,
+    site: X_HANDLE,
   },
   robots: {
     index: true,
@@ -93,15 +87,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  icons: {
-    icon: [
-      { url: "/logo.png" },
-      { url: "/logo.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [
-      { url: "/logo.png", sizes: "180x180", type: "image/png" },
-    ],
   },
 };
 
@@ -123,8 +108,8 @@ export default function RootLayout({
               "@type": "Person",
               name: "Anish Kumar Gupta",
               alternateName: "Anish Kumar",
-              url: "https://anishkumar.online",
-              image: "https://anishkumar.online/logo.png",
+              url: SITE_URL,
+              image: `${SITE_URL}/logo.png`,
               sameAs: [
                 "https://github.com/Outsideorbit29",
                 "https://www.linkedin.com/in/anish-kumar-gupta-6a9b50251",
