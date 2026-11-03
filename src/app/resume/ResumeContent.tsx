@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Download, ExternalLink, Loader2, FileText, ShieldAlert } from "lucide-react";
 
+const RESUME_PATH = "/resume.pdf";
+const RESUME_FILENAME = "Anish_Kumar_Gupta_Resume.pdf";
+
 export default function ResumeContent() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
@@ -42,7 +45,7 @@ export default function ResumeContent() {
               Return
             </button>
             <a
-              href="https://drive.google.com/file/d/1ErZDiBsC6mixD5PZf58YA3QBzZxfADf3/view?usp=sharing"
+              href={RESUME_PATH}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-3 rounded-xl border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all text-xs font-mono uppercase tracking-wider cursor-pointer"
@@ -51,8 +54,8 @@ export default function ResumeContent() {
               External_View
             </a>
             <a
-              href="/api/resume"
-              download="Anish_Resume.pdf"
+              href={RESUME_PATH}
+              download={RESUME_FILENAME}
               className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black hover:bg-blue-500 hover:text-white transition-all text-xs font-heading font-black uppercase tracking-widest shadow-lg cursor-pointer"
             >
               <Download className="w-4 h-4" />
@@ -83,25 +86,25 @@ export default function ResumeContent() {
             )}
           </AnimatePresence>
 
-          {/* Fallback info when iframe doesn't load or cookies are blocked */}
+          {/* Fallback info when the browser can't preview PDFs in an iframe */}
           <div className="absolute inset-4 -z-10 flex flex-col items-center justify-center gap-4 text-center p-8">
             <ShieldAlert className="w-12 h-12 text-gray-600" />
             <h3 className="font-heading font-black text-white text-lg uppercase tracking-tight">Viewing Issue?</h3>
             <p className="text-gray-500 text-sm max-w-sm">
-              If the document fails to preview, third-party cookies or browser extensions might be blocking Google Drive integration.
+              Your browser may not support PDF previews here. You can still open or download the file.
             </p>
             <div className="flex gap-4 mt-2">
               <a
-                href="https://drive.google.com/file/d/1ErZDiBsC6mixD5PZf58YA3QBzZxfADf3/view?usp=sharing"
+                href={RESUME_PATH}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 border border-white/10 rounded-lg hover:bg-white/5 transition-colors font-mono text-xs text-white"
               >
-                Open in Drive
+                Open PDF
               </a>
               <a
-                href="/api/resume"
-                download="Anish_Resume.pdf"
+                href={RESUME_PATH}
+                download={RESUME_FILENAME}
                 className="px-4 py-2 bg-white text-black rounded-lg hover:bg-blue-500 hover:text-white transition-all font-heading font-bold text-xs"
               >
                 Download PDF
@@ -110,9 +113,9 @@ export default function ResumeContent() {
           </div>
 
           <iframe
-            src="https://drive.google.com/file/d/1ErZDiBsC6mixD5PZf58YA3QBzZxfADf3/preview"
+            src={RESUME_PATH}
+            title="Anish Kumar Gupta resume"
             className="w-full h-full border-0 rounded-2xl bg-white/[0.01] relative z-20"
-            allow="autoplay"
             onLoad={() => setIsLoading(false)}
           />
         </motion.div>
