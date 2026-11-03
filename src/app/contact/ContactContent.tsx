@@ -343,9 +343,19 @@ export default function ContactContent() {
                                     </div>
                                 </div>
 
+                                {formState === "error" && (
+                                    <p role="alert" className="rounded-xl border border-red-500/40 bg-red-500/10 px-5 py-4 text-sm md:text-base text-red-200 leading-relaxed">
+                                        Your message couldn&apos;t be sent. Please try again, or email me at{" "}
+                                        <a href="mailto:anish.grd2004@gmail.com" className="font-semibold text-white underline underline-offset-2">
+                                            anish.grd2004@gmail.com
+                                        </a>.
+                                    </p>
+                                )}
+
                                 <button
+                                    type="submit"
                                     disabled={formState === "submitting"}
-                                    className="w-full bg-white text-black font-heading font-black py-5 md:py-6 rounded-xl md:rounded-2xl flex items-center justify-center gap-4 hover:bg-cyan-400 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-2xl group"
+                                    className="w-full bg-white text-black font-heading font-black py-5 md:py-6 rounded-xl md:rounded-2xl flex items-center justify-center gap-4 hover:bg-cyan-400 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-2xl group disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:scale-100"
                                 >
                                     {formState === "submitting" ? (
                                         <span className="flex items-center gap-3 font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em]">
