@@ -28,7 +28,60 @@ interface Project {
 
 const projects: Project[] = [
     {
-        id: "01", 
+        id: "01",
+        title: "EdgeBook",
+        description: "Trading journal for Delta Exchange that rebuilds every trade from your account history and shows what each habit costs you, with AI reviews and a Telegram bot for journaling.",
+        year: "2026",
+        featured: true,
+        tech: ["Next.js", "TypeScript", "Turso", "Clerk", "AI SDK"],
+        image: "/projects/edgebook.png",
+        links: {
+            demo: "https://delta-journal-three.vercel.app",
+        },
+        details: {
+            role: "Full Stack Developer",
+            context: "Helps traders find the behaviours that lose them money, such as moving stops or trading on a losing streak.",
+            outcome: "Live with a public demo account and an open waitlist."
+        }
+    },
+    {
+        id: "02",
+        title: "BullAI",
+        description: "Generates equity research report PDFs from company financial documents. Upload a PDF, CSV or TXT file and AI extracts the key data into a report with tables, charts and written analysis.",
+        year: "2026",
+        featured: true,
+        tech: ["FastAPI", "Python", "Gemini", "ReportLab", "Matplotlib"],
+        image: "/projects/bullai.png",
+        links: {
+            github: "https://github.com/Outsideorbit29/Bullai",
+            demo: "https://bullai-9she.onrender.com",
+        },
+        details: {
+            role: "Full Stack Developer",
+            context: "Automates brokerage-style research reports from raw financial filings.",
+            outcome: "Live tool that turns an uploaded document into a downloadable PDF report."
+        }
+    },
+    {
+        id: "03",
+        title: "CartShare",
+        description: "Collaborative shopping cart for dorm rooms, office teams and travel groups. Create a room, share its code, and add items to one cart with an activity log and printable receipt.",
+        year: "2026",
+        featured: true,
+        tech: ["JavaScript", "HTML5", "CSS3", "Bootstrap 5", "BroadcastChannel API"],
+        image: "/projects/cartshare.png",
+        links: {
+            github: "https://github.com/Outsideorbit29/Cartshare",
+            demo: "https://cartshare-delta.vercel.app",
+        },
+        details: {
+            role: "Frontend Developer",
+            context: "Makes shared group purchases transparent, with no backend or framework.",
+            outcome: "57-product catalog with instant cart sync across browser tabs."
+        }
+    },
+    {
+        id: "04", 
         title: "Trading Hand", 
         description: "AI-powered algorithmic trading assistant supporting automated workflows and detailed strategy execution analysis.",
         year: "2024",
@@ -42,7 +95,7 @@ const projects: Project[] = [
         }
     },
     {
-        id: "02", 
+        id: "05", 
         title: "Dhruv Tara", 
         description: "AI-driven e-learning platform integrating automated notes generation, video summarization, and an intelligent tutor.",
         year: "2023",
@@ -53,20 +106,6 @@ const projects: Project[] = [
             role: "Backend Architect",
             context: "Educational tool for personalized student learning paths.",
             outcome: "Scaled to support 500+ concurrent students."
-        }
-    },
-    {
-        id: "03", 
-        title: "AI Risk Analyzer", 
-        description: "Machine learning-based financial analytics system to evaluate multi-asset portfolio risk across equities and crypto.",
-        year: "2022",
-        featured: true,
-        tech: ["Scikit-learn", "Pandas", "D3.js", "TensorFlow"],
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2560&auto=format&fit=crop",
-        details: {
-            role: "ML Engineer",
-            context: "Cross-platform asset risk evaluation tool.",
-            outcome: "94% accuracy in volatility forecasting models."
         }
     }
 ];
