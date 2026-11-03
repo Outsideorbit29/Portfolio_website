@@ -14,6 +14,11 @@ interface Project {
     featured: boolean;
     tech: string[];
     image: string;
+    // Each button only appears when its URL is set.
+    links?: {
+        github?: string;
+        demo?: string;
+    };
     details: {
         role: string;
         context: string;
@@ -165,19 +170,32 @@ function ProjectSection({ project, index }: { project: Project; index: number })
                     ))}
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-2 w-full">
-                    <Link href={`/projects/${project.id.replace('0','')}`} className="px-8 py-4 rounded-xl bg-white text-black font-black text-xs uppercase tracking-widest hover:scale-105 hover:bg-cyan-400 transition-all shadow-2xl flex-1 sm:flex-none text-center">
-                        Explore Deck
-                    </Link>
-                    <div className="flex gap-2">
-                        <button className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center hover:bg-white/10 text-white transition-all">
-                            <Github size={18} />
-                        </button>
-                        <button className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center hover:bg-white/10 text-white transition-all">
-                            <ExternalLink size={18} />
-                        </button>
+                {(project.links?.github || project.links?.demo) && (
+                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-2 w-full">
+                        {project.links.github && (
+                            <a
+                                href={project.links.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white text-black font-black text-xs uppercase tracking-widest hover:scale-105 hover:bg-cyan-400 transition-all shadow-2xl flex-1 sm:flex-none"
+                            >
+                                <Github size={16} />
+                                View Code
+                            </a>
+                        )}
+                        {project.links.demo && (
+                            <a
+                                href={project.links.demo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-white/10 text-white font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all flex-1 sm:flex-none"
+                            >
+                                <ExternalLink size={16} />
+                                Live Demo
+                            </a>
+                        )}
                     </div>
-                </div>
+                )}
             </div>
 
             {/* Right: Immersive Img Preview */}
