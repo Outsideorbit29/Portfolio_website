@@ -48,9 +48,10 @@ const interests = [
 ];
 
 const experienceItems = [
-    { year: "2024", role: "Full Stack Engineer", company: "Stock Overflow | VIT Bhopal", desc: "Built predictive high-frequency DL models." },
-    { year: "2024", role: "Solution Architect", company: "EY Techathon 6.0 | Unstop", desc: "Engineered scalable enterprise modules." },
-    { year: "2023", role: "Backend Developer", company: "Open Source Collective", desc: "Optimizing high-throughput API endpoints." }
+    { year: "2024 - Present", role: "Full Stack Developer", company: "Trading Hand", desc: "Built an AI-powered trading analytics platform with an ML-based trade journal." },
+    { year: "2024", role: "Full Stack Developer", company: "Dhruv Tara", desc: "Launched an AI-powered EdTech platform used by 200+ students." },
+    { year: "2024", role: "Winner", company: "Stock Overflow Hackathon | VIT Bhopal", desc: "Won 1st place against 50+ teams with ML/DL stock prediction models." },
+    { year: "2024", role: "Full Stack Developer", company: "EY Techathon 6.0 | Unstop", desc: "Selected as Full Stack Developer for the techathon." }
 ];
 
 const lifeGoals = [
@@ -156,7 +157,7 @@ export default function AboutContent() {
                         {/* 4. Written text beside photo (Right side) */}
                         <div className="lg:col-span-8 flex flex-col gap-10">
                             <p className="text-gray-400 text-xl md:text-2xl lg:text-3xl font-light leading-[1.5] text-left">
-                                As a digital architect, <span className="text-white font-medium">Anish Kumar Gupta</span> focuses on the intersection of <span className="text-blue-400 font-medium">high-performance systems</span> and <span className="text-violet-400 font-medium font-heading italic">cognitive computing</span>. Every line of code I write is a step toward building a more connected, intelligent, and efficient future.
+                                As a Full Stack Software Engineer, <span className="text-white font-medium">Anish Kumar Gupta</span> focuses on the intersection of <span className="text-blue-400 font-medium">high-performance systems</span> and <span className="text-violet-400 font-medium font-heading italic">cognitive computing</span>. Every line of code I write is a step toward building a more connected, intelligent, and efficient future.
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -188,11 +189,11 @@ export default function AboutContent() {
                                 </div>
                                 <div className="bg-white/[0.03] p-4 rounded-xl border border-white/5 flex flex-col gap-1">
                                     <span className="text-gray-600 text-[7px]">LOC</span>
-                                    IN_MP
+                                    IN_DHANBAD
                                 </div>
                                 <div className="bg-white/[0.03] p-4 rounded-xl border border-white/5 flex flex-col gap-1">
                                     <span className="text-gray-600 text-[7px]">CLASS</span>
-                                    ARCHITECT
+                                    ENGINEER
                                 </div>
                                 <div className="bg-white/[0.03] p-4 rounded-xl border border-white/5 flex flex-col gap-1">
                                     <span className="text-gray-600 text-[7px]">AUTH</span>

@@ -6,28 +6,46 @@ import Link from "next/link";
 
 const experienceData = [
     {
-        id: "ARCH_01",
-        role: "Winner - Stock Overflow",
-        company: "Data Science Club, VIT Bhopal",
-        date: "2024",
-        description: "Engineered high-frequency ML/DL-based stock price prediction models. Analyzed multi-source financial noise and synthesized into predictive visualizations.",
-        tech: ["Python", "TensorFlow", "Pandas", "Matplotlib"],
-        type: "ACHIEVEMENT"
+        id: "DEV_01",
+        role: "Full Stack Developer",
+        company: "Trading Hand - AI-Powered Algorithmic Trading Platform",
+        date: "Jun 2024 - Present",
+        description: "Built a trading analytics platform for real-time multi-asset portfolio tracking, with an ML-based journal that surfaces profitable patterns and recurring mistakes, cutting trade analysis time by 65%.",
+        tech: ["React.js", "Node.js", "Express.js", "MongoDB", "MetaTrader5 API"],
+        type: "LOG_ENTRY"
     },
     {
         id: "DEV_02",
         role: "Full Stack Developer",
+        company: "Dhruv Tara - AI-Powered EdTech Platform",
+        date: "Jan 2024 - May 2024",
+        description: "Launched an EdTech platform with lecture transcription, NLP-based summarization, note generation and AI Q&A for 200+ students. Built a modular FastAPI backend that lowered average request latency by 50%.",
+        tech: ["React.js", "Python", "FastAPI", "LangChain", "PostgreSQL"],
+        type: "LOG_ENTRY"
+    },
+    {
+        id: "ARCH_03",
+        role: "Winner - Stock Overflow Hackathon",
+        company: "Data Science Club, VIT Bhopal",
+        date: "2024",
+        description: "Won 1st place, outperforming 50+ competing teams, with ML/DL-based stock price prediction models and predictive visualizations.",
+        tech: ["Python", "TensorFlow", "Pandas", "Matplotlib"],
+        type: "ACHIEVEMENT"
+    },
+    {
+        id: "DEV_04",
+        role: "Full Stack Developer",
         company: "EY Techathon 6.0 | Unstop",
         date: "2024",
-        description: "Architected enterprise-grade solution delivery during the techathon. Managed full-cycle React-Node integration under high-pressure system environments.",
+        description: "Selected as Full Stack Developer for the techathon, working across a React and Node.js solution from frontend to backend.",
         tech: ["React.js", "Node.js", "Express", "MongoDB"],
         type: "LOG_ENTRY"
     }
 ];
 
 const certifications = [
-    { title: "Generative AI Foundations", issuer: "IBM", year: "2024", status: "VERIFIED" },
-    { title: "Full Stack Software Engineering", issuer: "Udemy Professional", year: "2024", status: "VERIFIED" }
+    { title: "Generative AI Certification", issuer: "IBM", year: "2025", status: "VERIFIED" },
+    { title: "Full Stack Web Development Certification", issuer: "Udemy Professional", year: "2024", status: "VERIFIED" }
 ];
 
 export default function ExperienceContent() {

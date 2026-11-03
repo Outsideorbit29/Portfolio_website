@@ -81,31 +81,31 @@ const projects: Project[] = [
         }
     },
     {
-        id: "04", 
-        title: "Trading Hand", 
-        description: "AI-powered algorithmic trading assistant supporting automated workflows and detailed strategy execution analysis.",
+        id: "04",
+        title: "Trading Hand",
+        description: "AI-powered algorithmic trading platform for real-time multi-asset portfolio tracking, with an ML-based trade journal that surfaces profitable patterns and recurring mistakes.",
         year: "2024",
         featured: true,
-        tech: ["React", "MetaTrader5", "Python", "WebSockets"],
+        tech: ["React.js", "Node.js", "Express.js", "MongoDB", "MetaTrader5 API"],
         image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2560&auto=format&fit=crop",
         details: {
-            role: "Full Stack Lead",
-            context: "A fintech solution for high-frequency trading visualization.",
-            outcome: "Reduced manual strategy monitoring time by 60%."
+            role: "Full Stack Developer",
+            context: "Dashboards for win rate, drawdown, Sharpe ratio and portfolio performance.",
+            outcome: "Cut trade analysis time by 65%."
         }
     },
     {
-        id: "05", 
-        title: "Dhruv Tara", 
-        description: "AI-driven e-learning platform integrating automated notes generation, video summarization, and an intelligent tutor.",
-        year: "2023",
+        id: "05",
+        title: "Dhruv Tara",
+        description: "AI-powered EdTech platform with lecture transcription, NLP-based summarization, structured note generation and context-aware AI Q&A.",
+        year: "2024",
         featured: true,
-        tech: ["Next.js", "GPT-4", "FastAPI", "PostgreSQL"],
+        tech: ["React.js", "Python", "FastAPI", "LangChain", "PostgreSQL"],
         image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2560&auto=format&fit=crop",
         details: {
-            role: "Backend Architect",
-            context: "Educational tool for personalized student learning paths.",
-            outcome: "Scaled to support 500+ concurrent students."
+            role: "Full Stack Developer",
+            context: "Helps students prepare faster from their lecture content.",
+            outcome: "Used by 200+ students, cutting preparation time to about one-third."
         }
     }
 ];

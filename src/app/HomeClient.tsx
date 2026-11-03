@@ -253,7 +253,7 @@ export default function HomeContent() {
 
             <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
               {[
-                { label: "Execution_Nodes", value: "10+", icon: Target, color: "text-blue-400" },
+                { label: "Execution_Nodes", value: "5", icon: Target, color: "text-blue-400" },
                 { label: "Loaded_Tech", value: "20+", icon: Cpu, color: "text-violet-400" },
                 { label: "Real_Time_Input", value: "WORK", icon: Send, color: "text-emerald-400" },
               ].map((stat, idx) => (

@@ -236,7 +236,7 @@ export default function ContactContent() {
                          {[
                             { label: "Direct Email", value: "anish.grd2004@gmail.com", icon: Mail, color: "text-blue-400", href: "https://mail.google.com/mail/?view=cm&fs=1&to=anish.grd2004@gmail.com" },
                             { label: "Phone Frequency", value: "+91 6299293388", icon: Phone, color: "text-cyan-400" },
-                            { label: "Base Station", value: "Madhya Pradesh, India", icon: MapPin, color: "text-violet-400" },
+                            { label: "Base Station", value: "Dhanbad, India", icon: MapPin, color: "text-violet-400" },
                             { label: "Network Protocol", value: "Secure & Online", icon: ShieldCheck, color: "text-emerald-400" }
                          ].map((info, i) => (
                              info.href ? (

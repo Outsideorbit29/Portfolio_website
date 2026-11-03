@@ -12,7 +12,7 @@ const skillsData = [
         items: [
             { name: "TypeScript / ES6+", level: 90, spec: "Strong Typing / Async Control" },
             { name: "Python / 3.x", level: 88, spec: "Algorithmic Efficiency" },
-            { name: "C++ / Fundamentals", level: 75, spec: "Low-level Concepts" },
+            { name: "Java / Bash", level: 75, spec: "Core Programming & Scripting" },
             { name: "PostgreSQL / SQL", level: 82, spec: "Structured Query Logic" }
         ]
     },
@@ -24,7 +24,7 @@ const skillsData = [
             { name: "React / Next.js", level: 92, spec: "Scalable SSR Architecture" },
             { name: "Tailwind / Framer", level: 90, spec: "Advanced Motion Systems" },
             { name: "Three.js / WebGL", level: 75, spec: "Immersive 3D Rendering" },
-            { name: "Figma / Interaction", level: 78, spec: "Rapid Visual Prototyping" }
+            { name: "Redux / Responsive UI", level: 78, spec: "State Management & Layout" }
         ]
     },
     {
@@ -34,8 +34,8 @@ const skillsData = [
         items: [
             { name: "Node.js / Express", level: 88, spec: "High-throughput Runtime" },
             { name: "FastAPI / Python", level: 85, spec: "Typed API Acceleration" },
-            { name: "Docker / Deploy", level: 78, spec: "Containerized Orchestration" },
-            { name: "Prisma / TypeORM", level: 82, spec: "Data Object Management" }
+            { name: "Docker / GitHub Actions", level: 78, spec: "CI/CD & Deployment" },
+            { name: "MongoDB / MySQL", level: 82, spec: "Query Optimization & Data Modeling" }
         ]
     },
     {
@@ -43,9 +43,9 @@ const skillsData = [
         id: "AI_ML",
         icon: <Lightbulb className="w-8 h-8 text-violet-500" />,
         items: [
-            { name: "TensorFlow / PT", level: 84, spec: "Deep Learning Frameworks" },
+            { name: "TensorFlow / Scikit-learn", level: 84, spec: "Deep Learning Frameworks" },
             { name: "LangChain / RAG", level: 82, spec: "LLM Orchestration Systems" },
-            { name: "Ollama / LocalAI", level: 80, spec: "Edge Inference Deployments" },
+            { name: "NLP / Generative AI", level: 80, spec: "Foundation Models & Prompt Engineering" },
             { name: "DataViz / Pandas", level: 88, spec: "Statistical Synthesis" }
         ]
     }
@@ -66,7 +66,7 @@ export default function SkillsContent() {
                     <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Arsenal</span>
                 </h1>
                 <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-4xl text-gray-600 font-mono text-[9px] md:text-[10px] tracking-widest leading-relaxed uppercase">
-                    <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[MOD] 12_LOADED</div>
+                    <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[MOD] 16_LOADED</div>
                     <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[SYS] CAP_ALLOCATED</div>
                     <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[OPT] HIGH_PRECISION</div>
                     <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[INT] NEURAL_CONNECTED</div>
