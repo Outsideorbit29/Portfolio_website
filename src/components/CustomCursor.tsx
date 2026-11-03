@@ -16,15 +16,8 @@ export default function CustomCursor() {
 
         const handleMouseOver = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
-            if (
-                window.getComputedStyle(target).cursor === "pointer" ||
-                target.tagName.toLowerCase() === "a" ||
-                target.tagName.toLowerCase() === "button"
-            ) {
-                setIsHovering(true);
-            } else {
-                setIsHovering(false);
-            }
+            const interactive = target.closest("a, button, [role='button'], input, select, textarea, [data-cursor-hover]");
+            setIsHovering(interactive !== null);
         };
 
         window.addEventListener("mousemove", mouseMove);

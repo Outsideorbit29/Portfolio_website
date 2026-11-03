@@ -93,7 +93,7 @@ export default function HomeContent() {
                 className="text-5xl md:text-8xl lg:text-9xl font-heading font-black tracking-tighter leading-[0.85] md:leading-[0.8] relative z-10 uppercase"
               >
                 Anish <br />
-                <span className="text-white [ -webkit-text-stroke:1px_rgba(255,255,255,0.25)]">
+                <span className="text-white [-webkit-text-stroke:1px_rgba(255,255,255,0.25)]">
                   Kumar Gupta
                 </span>
               </motion.h1>
@@ -166,7 +166,7 @@ export default function HomeContent() {
                 className="text-4xl md:text-7xl font-heading font-black uppercase tracking-tighter leading-none"
               >
                 Engineering <br />
-                <span className="text-transparent [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">with Purpose</span>
+                <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">with Purpose</span>
               </motion.h2>
             </div>
 
@@ -396,7 +396,7 @@ export default function HomeContent() {
                     <Brain className="w-10 h-10 md:w-12 md:h-12 text-violet-400" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <span className="text-[9px] md:text-[10px] text-violet-400 font-mono tracking-widest uppercase font-bold text-transparent [ -webkit-text-stroke:1px_rgba(167,139,250,0.5)]">Sub_System / AI_ENGINE</span>
+                    <span className="text-[9px] md:text-[10px] text-violet-400 font-mono tracking-widest uppercase font-bold text-transparent [-webkit-text-stroke:1px_rgba(167,139,250,0.5)]">Sub_System / AI_ENGINE</span>
                     <h3 className="text-3xl md:text-5xl font-heading font-black text-white tracking-tighter uppercase leading-none">Machine Learning</h3>
                   </div>
                 </div>
@@ -427,7 +427,7 @@ export default function HomeContent() {
               </div>
               <h2 className="text-3xl md:text-7xl lg:text-8xl font-heading font-black text-white leading-[0.95] md:leading-[0.9] tracking-tighter uppercase">
                 Build Something <br />
-                <span className="text-white [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Extraordinary</span>
+                <span className="text-white [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Extraordinary</span>
               </h2>
               <div className="pt-2 md:pt-4 w-full sm:w-auto">
                 <Link href="/contact" className="group relative inline-flex items-center justify-center p-0.5 w-full sm:w-auto overflow-hidden text-sm font-medium rounded-2xl group border border-white/10 hover:border-white/30 transition-all">

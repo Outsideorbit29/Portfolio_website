@@ -80,8 +80,8 @@ export function FloatingTechCircle() {
                             }}
                         >
                             {/* Counter-rotate the icon so it stays strictly upright during the orbit */}
-                            <motion.div 
-                                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/80 p-4 rounded-full border border-white/10 shadow-[0_0_20px_rgba(56,189,248,0.15)] glass-card flex items-center justify-center"
+                            <motion.div
+                                className="group absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/80 p-4 rounded-full border border-white/10 shadow-[0_0_20px_rgba(56,189,248,0.15)] glass-card flex items-center justify-center"
                                 animate={{ rotate: -360 }}
                                 transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
                             >

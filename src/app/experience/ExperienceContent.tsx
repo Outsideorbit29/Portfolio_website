@@ -42,7 +42,7 @@ export default function ExperienceContent() {
                 </div>
                 <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8] font-sans">
                     Anish Kumar <br />
-                    <span className="text-transparent [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Gupta Log</span>
+                    <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Gupta Log</span>
                 </h1>
                 <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-4xl text-gray-600 font-mono text-[9px] md:text-[10px] tracking-widest leading-relaxed uppercase">
                     <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[VER] 4.0.2</div>
@@ -157,7 +157,7 @@ export default function ExperienceContent() {
             <div className="mt-20 md:mt-28 text-center relative z-10 pb-8">
                 <Link href="/skills" className="group text-4xl md:text-7xl lg:text-9xl font-black text-white hover:text-emerald-400 transition-colors duration-500 tracking-tighter uppercase leading-none md:leading-[0.8] block font-sans">
                     ACCESS SYSTEM <br />
-                    <span className="text-white [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">CAPABILITIES </span>
+                    <span className="text-white [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">CAPABILITIES </span>
                     <span className="text-emerald-400">→</span>
                 </Link>
             </div>

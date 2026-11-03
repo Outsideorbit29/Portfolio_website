@@ -123,7 +123,7 @@ export default function AboutContent() {
                         </div>
                         <h1 className="text-5xl md:text-8xl lg:text-9xl font-heading font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
                             Anish <br />
-                            <span className="text-white [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Kumar Gupta</span>
+                            <span className="text-white [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Kumar Gupta</span>
                         </h1>
                     </div>
 
@@ -365,7 +365,7 @@ export default function AboutContent() {
                         <span className="text-gray-500 font-mono text-xs tracking-[0.5em] uppercase mb-4">UPLINK_TO_CHRONICLES</span>
                         <div className="text-5xl md:text-8xl lg:text-9xl font-heading font-black text-white hover:text-violet-400 transition-colors duration-700 tracking-tighter uppercase leading-[0.85] text-center">
                             View History <br />
-                            <span className="text-white [ -webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Timeline </span>
+                            <span className="text-white [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Timeline </span>
                             <motion.span 
                                 animate={{ x: [0, 20, 0] }}
                                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
