@@ -74,7 +74,7 @@ export default function HomeContent() {
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
 
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24 w-full relative z-10 pt-16 lg:pt-0 max-w-[2000px] mx-auto">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24 w-full relative z-10 pt-16 lg:pt-24 max-w-[2000px] mx-auto">
 
             {/* Left Column: Text Content */}
             <motion.div
