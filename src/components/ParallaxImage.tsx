@@ -29,7 +29,7 @@ export function ParallaxImage({ src, alt, className = "", containerClassName = "
                     alt={alt}
                     fill
                     className={`object-cover ${className}`}
-                    quality={80}
+                    sizes="(max-width: 1024px) 100vw, 60vw"
                 />
             </motion.div>
         </div>

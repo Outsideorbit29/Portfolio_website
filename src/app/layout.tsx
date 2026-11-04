@@ -1,24 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Orbitron, Rajdhani, JetBrains_Mono } from "next/font/google";
+import { Orbitron, Rajdhani, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ParallaxBackground } from "@/components/ParallaxBackground";
-import { ThreeBackground } from "@/components/ThreeBackground";
 import { SmoothScroll } from "@/components/SmoothScroll";
-import { FallingStars } from "@/components/FallingStars";
+import { BackgroundCanvas } from "@/components/BackgroundCanvas";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { DEFAULT_TITLE, OG_IMAGE, SITE_URL, X_HANDLE } from "@/lib/metadata";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-
 const orbitron = Orbitron({
   subsets: ["latin"],
   variable: "--font-orbitron",
-  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 const rajdhani = Rajdhani({
@@ -98,7 +94,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground relative min-h-screen flex flex-col transition-colors duration-300 font-sans`}
+        className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground relative min-h-screen flex flex-col transition-colors duration-300 font-sans`}
       >
         <script
           type="application/ld+json"
@@ -140,8 +136,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange={false}
           >
-            <FallingStars />
-            <ThreeBackground />
+            <BackgroundCanvas />
             <ParallaxBackground />
 
             <Navbar />
