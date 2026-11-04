@@ -166,7 +166,7 @@ export default function HomeContent() {
                 className="text-4xl md:text-7xl font-heading font-black uppercase tracking-tighter leading-none"
               >
                 Engineering <br />
-                <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">with Purpose</span>
+                <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">with Purpose</span>
               </motion.h2>
             </div>
 
@@ -396,7 +396,7 @@ export default function HomeContent() {
                     <Brain className="w-10 h-10 md:w-12 md:h-12 text-violet-400" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <span className="text-[9px] md:text-[10px] text-violet-400 font-mono tracking-widest uppercase font-bold text-transparent [-webkit-text-stroke:1px_rgba(167,139,250,0.5)]">Sub_System / AI_ENGINE</span>
+                    <span className="text-[9px] md:text-[10px] text-violet-400 font-mono tracking-widest uppercase font-bold">Sub_System / AI_ENGINE</span>
                     <h3 className="text-3xl md:text-5xl font-heading font-black text-white tracking-tighter uppercase leading-none">Machine Learning</h3>
                   </div>
                 </div>

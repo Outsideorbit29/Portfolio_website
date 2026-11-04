@@ -68,7 +68,7 @@ export default function ContactContent() {
                     </div>
                     <h1 className="text-5xl md:text-8xl lg:text-9xl font-heading font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
                         Let&apos;s Build <br />
-                        <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Something Amazing</span>
+                        <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">Something Amazing</span>
                     </h1>
                     <p className="mt-8 text-gray-400 text-lg md:text-xl font-light max-w-2xl leading-relaxed italic">
                         &quot;Turning complex ideas into high-performance digital reality.&quot;
