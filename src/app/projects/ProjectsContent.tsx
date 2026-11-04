@@ -118,18 +118,12 @@ export default function ProjectsContent() {
             <div className="flex flex-col mb-12 md:mb-16 gap-4 relative z-10 max-w-[2200px] mx-auto items-center lg:items-start text-center lg:text-left">
                 <div className="flex items-center gap-3">
                     <div className="w-12 h-[1px] bg-cyan-500" />
-                    <span className="text-cyan-500 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Operations / Work</span>
+                    <span className="text-cyan-500 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Projects</span>
                 </div>
                 <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
                     Anish Kumar <br />
                     <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">Gupta Archive</span>
                 </h1>
-                <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-4xl text-gray-600 font-mono text-[9px] md:text-[10px] tracking-widest leading-relaxed uppercase">
-                    <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[01] SEAMLESS_UIs</div>
-                    <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[02] SCALABLE_BACKENDS</div>
-                    <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[03] AI_INTEGRATIONS</div>
-                    <div className="bg-white/[0.02] p-2 rounded-lg border border-white/5">[04] REAL_TIME_SYSTEMS</div>
-                </div>
             </div>
 
             {/* Immersive Reel */}
@@ -176,7 +170,7 @@ function ProjectSection({ project, index }: { project: Project; index: number })
                     <div className="flex items-center justify-center lg:justify-start gap-3 text-left w-full">
                         <span className="text-cyan-400 font-mono text-xs md:text-sm tracking-widest">{project.year}</span>
                         <div className="w-8 h-[1px] bg-white/20" />
-                        <span className="text-gray-500 font-mono text-[10px] md:text-xs tracking-widest uppercase">{project.details.role}</span>
+                        <span className="text-gray-400 font-mono text-xs tracking-widest uppercase">{project.details.role}</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight group-hover:text-cyan-400 transition-colors duration-500 uppercase">
                         {project.title}
@@ -188,14 +182,14 @@ function ProjectSection({ project, index }: { project: Project; index: number })
                         {project.description}
                     </p>
                     
-                    <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 flex flex-col gap-4 font-mono text-[10px] md:text-[11px] uppercase tracking-widest text-gray-500 backdrop-blur-sm text-left">
+                    <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 flex flex-col gap-4 font-mono text-xs uppercase tracking-widest text-gray-400 backdrop-blur-sm text-left">
                         <div className="flex flex-col md:flex-row md:justify-between gap-2">
-                            <span className="flex items-center gap-2 text-cyan-500/80"><Cpu size={12} /> System_Context</span>
+                            <span className="flex items-center gap-2 text-cyan-500/80"><Cpu size={12} /> Context</span>
                             <span className="text-gray-300 normal-case tracking-normal">{project.details.context}</span>
                         </div>
                         <div className="h-[1px] bg-white/5 w-full" />
                         <div className="flex flex-col md:flex-row md:justify-between gap-2">
-                            <span className="flex items-center gap-2 text-cyan-500/80"><Target size={12} /> Model_Outcome</span>
+                            <span className="flex items-center gap-2 text-cyan-500/80"><Target size={12} /> Outcome</span>
                             <span className="text-gray-300 normal-case tracking-normal italic">{project.details.outcome}</span>
                         </div>
                     </div>
@@ -203,7 +197,7 @@ function ProjectSection({ project, index }: { project: Project; index: number })
 
                 <div className="flex flex-wrap justify-center lg:justify-start gap-2">
                     {project.tech.map((t) => (
-                        <span key={t} className="px-3 py-1 rounded-lg border border-white/10 bg-white/[0.05] text-[8px] md:text-[10px] font-mono text-gray-300 tracking-wider uppercase">
+                        <span key={t} className="px-3 py-1 rounded-lg border border-white/10 bg-white/[0.05] text-xs font-mono text-gray-300 tracking-wider uppercase">
                             {t}
                         </span>
                     ))}
@@ -244,7 +238,7 @@ function ProjectSection({ project, index }: { project: Project; index: number })
                     <motion.div 
                         animate={{ top: ["-10%", "110%"] }}
                         transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                        className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_rgba(34,211,238,1)]"
+                        className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_rgba(34,211,238,1)] motion-reduce:hidden"
                     />
                 </div>
                 <div className="w-full h-full transform group-hover/img:scale-[1.05] transition-transform duration-[2000ms] ease-out">

@@ -30,12 +30,12 @@ import { HoverPhotoReveal } from "@/components/HoverPhotoReveal";
 import Link from "next/link";
 
 const skills = [
-    { name: "React / Next.js", level: 92, color: "from-blue-500 to-cyan-400" },
-    { name: "TypeScript / JavaScript", level: 90, color: "from-blue-400 to-indigo-400" },
-    { name: "Node.js / Express", level: 88, color: "from-violet-500 to-purple-400" },
-    { name: "AI / Machine Learning", level: 85, color: "from-emerald-500 to-teal-400" },
-    { name: "UI/UX / Interaction", level: 88, color: "from-pink-500 to-rose-400" },
-    { name: "System Architecture", level: 82, color: "from-orange-500 to-amber-400" }
+    { name: "React / Next.js", usedIn: "EdgeBook, Trading Hand, Dhruv Tara" },
+    { name: "TypeScript / JavaScript", usedIn: "EdgeBook, CartShare, this site" },
+    { name: "Node.js / Express", usedIn: "Trading Hand, EY Techathon" },
+    { name: "Python / FastAPI", usedIn: "BullAI, Dhruv Tara" },
+    { name: "AI / Machine Learning", usedIn: "BullAI, Dhruv Tara, Stock Overflow" },
+    { name: "UI / Interaction", usedIn: "CartShare, this site" }
 ];
 
 const interests = [
@@ -115,7 +115,7 @@ export default function AboutContent() {
                     <div className="flex flex-col gap-6 text-center lg:text-left">
                         <div className="flex items-center justify-center lg:justify-start gap-4">
                             <div className="w-16 h-[1px] bg-blue-500" />
-                            <span className="text-blue-400 font-mono text-xs md:text-sm tracking-[0.3em] uppercase">Identity_Module / Profile</span>
+                            <span className="text-blue-400 font-mono text-xs md:text-sm tracking-[0.3em] uppercase">About Me</span>
                         </div>
                         <h1 className="text-5xl md:text-8xl lg:text-9xl font-heading font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
                             Anish <br />
@@ -137,9 +137,9 @@ export default function AboutContent() {
                             {/* 3. Resume download link below photo */}
                              <Link 
                                 href="/resume" 
-                                className="w-full flex items-center justify-center gap-4 bg-white text-black px-8 py-5 rounded-2xl font-heading font-black text-[11px] uppercase tracking-widest hover:bg-pink-500 hover:text-white transition-all duration-500 shadow-2xl group cursor-pointer"
+                                className="w-full flex items-center justify-center gap-4 bg-white text-black px-8 py-5 rounded-2xl font-heading font-black text-xs uppercase tracking-widest hover:bg-pink-500 hover:text-white transition-all duration-500 shadow-2xl group cursor-pointer"
                             >
-                                Get_Resume 
+                                View Resume 
                                 <motion.div
                                     animate={{ y: [0, 3, 0] }}
                                     transition={{ duration: 1.5, repeat: Infinity }}
@@ -169,32 +169,25 @@ export default function AboutContent() {
                                             <Briefcase size={48} />
                                         </div>
                                         <span className="text-blue-500 font-mono text-xs tracking-widest">{item.year}</span>
-                                        <h4 className="text-xl font-bold text-white uppercase tracking-tight group-hover:text-blue-300 transition-colors">{item.role}</h4>
-                                        <span className="text-gray-500 font-mono text-[10px] uppercase tracking-widest italic">{item.company}</span>
+                                        <h2 className="text-xl font-bold text-white uppercase tracking-tight group-hover:text-blue-300 transition-colors">{item.role}</h2>
+                                        <span className="text-gray-400 font-mono text-xs uppercase tracking-widest italic">{item.company}</span>
                                         <p className="text-gray-400 font-light text-sm md:text-base leading-relaxed">{item.desc}</p>
                                     </motion.div>
                                 ))}
                             </div>
 
-                            {/* System Registry - Grouped Stats inside hero flow */}
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-gray-400 font-mono text-[9px] tracking-widest uppercase mt-4">
-                                <div className="bg-white/[0.03] p-4 rounded-xl border border-white/5 flex flex-col gap-1">
-                                    <span className="text-gray-600 text-[7px]">UUID</span>
-                                    8B9CAD
-                                </div>
-                                <div className="bg-white/[0.03] p-4 rounded-xl border border-white/5 flex flex-col gap-1">
-                                    <span className="text-gray-600 text-[7px]">LOC</span>
-                                    IN_DHANBAD
-                                </div>
-                                <div className="bg-white/[0.03] p-4 rounded-xl border border-white/5 flex flex-col gap-1">
-                                    <span className="text-gray-600 text-[7px]">CLASS</span>
-                                    ENGINEER
-                                </div>
-                                <div className="bg-white/[0.03] p-4 rounded-xl border border-white/5 flex flex-col gap-1">
-                                    <span className="text-gray-600 text-[7px]">AUTH</span>
-                                    LEVEL_9
-                                </div>
-                            </div>
+                            <dl className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                                {[
+                                    { label: "Location", value: "Dhanbad, India" },
+                                    { label: "Education", value: "B.Tech CSE, VIT Bhopal (2022 - 2026)" },
+                                    { label: "Role", value: "Full Stack Software Engineer" },
+                                ].map((fact) => (
+                                    <div key={fact.label} className="bg-white/[0.03] p-4 rounded-xl border border-white/5 flex flex-col gap-1">
+                                        <dt className="font-mono text-xs tracking-widest uppercase text-gray-400">{fact.label}</dt>
+                                        <dd className="text-white font-medium">{fact.value}</dd>
+                                    </div>
+                                ))}
+                            </dl>
                         </div>
                     </div>
                 </section>
@@ -210,7 +203,7 @@ export default function AboutContent() {
                 >
                     <div className="flex items-center justify-center lg:justify-start gap-4">
                         <div className="w-16 h-[1px] bg-emerald-500" />
-                        <span className="text-emerald-400 font-mono text-xs md:text-sm tracking-[0.3em] uppercase">System_Directives</span>
+                        <span className="text-emerald-400 font-mono text-xs md:text-sm tracking-[0.3em] uppercase">Goals</span>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {lifeGoals.map((goal, i) => (
@@ -244,7 +237,7 @@ export default function AboutContent() {
                 >
                     <div className="flex items-center justify-center lg:justify-start gap-4">
                         <div className="w-16 h-[1px] bg-blue-500" />
-                        <span className="text-blue-400 font-mono text-xs md:text-sm tracking-[0.3em] uppercase">Core_Modules</span>
+                        <span className="text-blue-400 font-mono text-xs md:text-sm tracking-[0.3em] uppercase">Core Skills</span>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -257,20 +250,9 @@ export default function AboutContent() {
                                 viewport={{ once: true }}
                                 className="group relative bg-white/[0.02] border border-white/5 p-8 rounded-3xl hover:border-violet-500/20 hover:bg-white/[0.04] transition-all duration-500"
                             >
-                                <div className="flex flex-col gap-6 text-left">
-                                    <div className="flex justify-between items-end">
-                                        <h3 className="text-xl font-heading font-bold text-white group-hover:text-violet-300 transition-colors uppercase tracking-tight">{skill.name}</h3>
-                                        <span className="text-gray-500 font-mono text-[10px] tracking-widest">{skill.level}%_LOADED</span>
-                                    </div>
-                                    <div className="w-full bg-white/5 h-[3px] rounded-full overflow-hidden">
-                                        <motion.div
-                                            initial={{ width: 0 }}
-                                            whileInView={{ width: `${skill.level}%` }}
-                                            transition={{ duration: 1.5, ease: "circOut", delay: 0.2 }}
-                                            viewport={{ once: true }}
-                                            className={`h-full bg-gradient-to-r ${skill.color} shadow-[0_0_15px_rgba(139,92,246,0.3)]`}
-                                        />
-                                    </div>
+                                <div className="flex flex-col gap-2 text-left">
+                                    <h3 className="text-xl font-heading font-bold text-white group-hover:text-violet-300 transition-colors uppercase tracking-tight">{skill.name}</h3>
+                                    <p className="text-gray-400 text-base">Used in {skill.usedIn}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -286,7 +268,7 @@ export default function AboutContent() {
                 >
                     <div className="flex items-center justify-center lg:justify-start gap-4">
                         <div className="w-16 h-[1px] bg-pink-500" />
-                        <span className="text-pink-400 font-mono text-xs md:text-sm tracking-[0.3em] uppercase">Encoded_Interests</span>
+                        <span className="text-pink-400 font-mono text-xs md:text-sm tracking-[0.3em] uppercase">Interests</span>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
                         {hobbyGrid.map((hobby, i) => (
@@ -301,7 +283,7 @@ export default function AboutContent() {
                                 <hobby.icon size={24} className="text-pink-400 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500" />
                                 <div className="flex flex-col gap-2">
                                     <span className="text-xl font-bold text-white uppercase tracking-tight group-hover:text-pink-300 transition-colors">{hobby.label}</span>
-                                    <span className="text-[10px] text-gray-500 font-mono leading-relaxed uppercase tracking-tighter opacity-70">{hobby.desc}</span>
+                                    <span className="text-xs text-gray-400 font-mono leading-relaxed uppercase tracking-tighter">{hobby.desc}</span>
                                 </div>
                             </motion.div>
                         ))}
@@ -339,11 +321,11 @@ export default function AboutContent() {
                             <div className="w-20 h-[1px] bg-violet-500/50" />
                         </div>
                         <p className="text-gray-400 font-light leading-[1.6] italic text-2xl md:text-3xl lg:text-4xl max-w-2xl">
-                            "I believe in systems that are not just technically sound, but <span className="text-white font-medium">inherently human</span> — where the precision of machines meets the creative depth of the soul."
+                            &quot;I believe in systems that are not just technically sound, but <span className="text-white font-medium">inherently human</span> — where the precision of machines meets the creative depth of the soul.&quot;
                         </p>
                         <div className="flex flex-col lg:flex-row lg:items-center gap-6 mt-4">
                             <div className="hidden lg:block w-16 h-[1px] bg-violet-500" />
-                            <span className="text-[10px] md:text-xs text-violet-400 font-mono uppercase tracking-[0.4em] leading-relaxed">Code is Poetry. <br className="md:hidden" /> Efficiency is Art.</span>
+                            <span className="text-xs text-violet-400 font-mono uppercase tracking-[0.4em] leading-relaxed">Code is Poetry. <br className="md:hidden" /> Efficiency is Art.</span>
                         </div>
                     </div>
                 </motion.section>
@@ -358,7 +340,7 @@ export default function AboutContent() {
                     className="mt-20 md:mt-32 text-center relative z-10"
                 >
                     <Link href="/experience" className="group flex flex-col items-center gap-6">
-                        <span className="text-gray-500 font-mono text-xs tracking-[0.5em] uppercase mb-4">UPLINK_TO_CHRONICLES</span>
+                        <span className="text-gray-400 font-mono text-xs tracking-[0.5em] uppercase mb-4">Next: Experience</span>
                         <div className="text-5xl md:text-8xl lg:text-9xl font-heading font-black text-white hover:text-violet-400 transition-colors duration-700 tracking-tighter uppercase leading-[0.85] text-center">
                             View History <br />
                             <span className="text-white [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Timeline </span>

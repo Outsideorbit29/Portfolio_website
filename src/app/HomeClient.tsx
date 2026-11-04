@@ -1,10 +1,10 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Download, MonitorPlay, Code2, Sparkles, Send, Cpu, Activity, ShieldCheck, Target, Zap, Brain } from "lucide-react";
+import { ArrowRight, Download, MonitorPlay, Code2, Sparkles, Cpu, Activity, Target, Trophy, Brain } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useBrowserIdle, useIsDesktop } from "@/hooks/useSceneLoading";
+import { useSceneEnabled } from "@/hooks/useSceneLoading";
 import { MouseTilt } from "@/components/MouseTilt";
 import { ThreeImage } from "@/components/ThreeImage";
 import { FloatingTechCircle } from "@/components/FloatingTechCircle";
@@ -15,45 +15,18 @@ const Scrollable3DObject = dynamic(
 );
 
 export default function HomeContent() {
-  const isDesktop = useIsDesktop();
-  const idle = useBrowserIdle();
-
-  const { scrollYProgress } = useScroll();
-  const systemCoreScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
-  const systemCoreOpacity = useTransform(scrollYProgress, [0, 0.2, 0.5], [0, 0.15, 0.05]);
-  const identityOpacity = useTransform(scrollYProgress, [0.1, 0.4], [0, 0.1]);
-  const identityScale = useTransform(scrollYProgress, [0.1, 0.4], [0.8, 1]);
+  const sceneEnabled = useSceneEnabled();
 
   return (
     <div className="w-full relative min-h-screen overflow-x-hidden">
       {/* Fixed 3D Background */}
-      {isDesktop && idle && <Scrollable3DObject />}
-
-      {/* Massive Background Title - Responsive Font Size */}
-      <motion.div
-        style={{ scale: systemCoreScale, opacity: systemCoreOpacity }}
-        className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[6vw] lg:text-[10vw] font-heading font-black text-white select-none pointer-events-none z-0 tracking-tighter uppercase whitespace-nowrap"
-      >
-        SYSTEM_CORE
-      </motion.div>
+      {sceneEnabled && <Scrollable3DObject />}
 
       {/* Main Content Layer - Reduced Gaps */}
       <div className="w-full flex flex-col gap-16 md:gap-24 lg:gap-32 pb-12 relative z-10 px-0">
 
         {/* Hero Section */}
         <section className="min-h-[90vh] flex flex-col justify-center relative pt-16 px-4 md:px-8 lg:px-12 w-full">
-
-          {/* Header HUD Metadata - Responsive Display */}
-          <div className="absolute top-20 lg:top-24 left-4 md:left-8 lg:left-12 flex flex-col gap-2 z-20">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-[1px] bg-blue-500" />
-              <span className="text-blue-400 font-mono text-[9px] lg:text-[10px] tracking-[0.3em] uppercase">Uplink_Established</span>
-            </div>
-            <div className="font-mono text-[7px] lg:text-[8px] text-gray-600 tracking-widest leading-relaxed">
-              [ID] ANISH_SYSTEM_001 <br />
-              [AUTH] LEVEL_9_CLEARANCE
-            </div>
-          </div>
 
           {/* Animated Background Blob */}
           <motion.div
@@ -66,7 +39,7 @@ export default function HomeContent() {
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
 
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24 w-full relative z-10 pt-16 lg:pt-24 max-w-[2000px] mx-auto">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24 w-full relative z-10 pt-16 lg:pt-16 max-w-[2000px] mx-auto">
 
             {/* Left Column: Text Content */}
             <div
@@ -74,7 +47,7 @@ export default function HomeContent() {
             >
               <div style={{ animationDelay: "0.2s" }} className="reveal inline-flex items-center gap-3 px-4 py-2 rounded-xl glass bg-white/[0.03] border border-white/10 w-fit">
                 <Activity className="w-3 h-3 text-emerald-400 animate-pulse" />
-                <span className="text-[10px] text-gray-400 font-mono tracking-widest uppercase">System Status: Optimal</span>
+                <span className="text-xs text-gray-400 font-mono tracking-widest uppercase">Open to Opportunities</span>
               </div>
 
               <h1
@@ -93,12 +66,12 @@ export default function HomeContent() {
 
               <div style={{ animationDelay: "0.65s" }} className="reveal flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 mt-2">
                 <Link href="/projects" className="group flex items-center gap-3 bg-white text-black px-8 md:px-10 py-4 md:py-5 rounded-2xl font-heading font-black text-xs uppercase tracking-widest hover:bg-blue-400 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
-                  Execute Project_Fetch
+                  View Projects
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link href="/resume" className="group flex items-center gap-3 glass-card bg-white/[0.03] px-8 md:px-10 py-4 md:py-5 rounded-2xl text-white font-heading font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all duration-300 border border-white/10">
                   <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
-                  Get_Resume
+                  View Resume
                 </Link>
               </div>
             </div>
@@ -120,24 +93,6 @@ export default function HomeContent() {
             </motion.div>
 
           </div>
-
-          {/* Bottom HUD Metadata */}
-          <div className="absolute bottom-12 right-4 md:right-8 lg:right-12 hidden sm:flex flex-col items-end gap-2 z-20">
-            <div className="flex items-center gap-3">
-              <span className="text-gray-500 font-mono text-[8px] lg:text-[9px] tracking-[0.2em] uppercase">Core_Instruction / Execute</span>
-              <div className="w-8 h-[1px] bg-violet-500" />
-            </div>
-            <div className="flex gap-4">
-              <div className="flex items-center gap-2">
-                <ShieldCheck size={12} className="text-emerald-500" />
-                <span className="text-[7px] lg:text-[8px] text-gray-700 font-mono tracking-widest uppercase">Secure_Node</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Zap size={12} className="text-orange-500" />
-                <span className="text-[7px] lg:text-[8px] text-gray-700 font-mono tracking-widest uppercase">Real_Time_Sync</span>
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* Featured About Preview */}
@@ -148,7 +103,7 @@ export default function HomeContent() {
             <div className="flex flex-col gap-4">
               <div className="flex items-center justify-center lg:justify-start gap-3">
                 <div className="w-10 h-[1px] bg-blue-500" />
-                <span className="text-blue-500 font-mono text-xs tracking-widest uppercase">Process_Overview</span>
+                <span className="text-blue-500 font-mono text-xs tracking-widest uppercase">What I Do</span>
               </div>
               <motion.h2
                 initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}
@@ -167,8 +122,8 @@ export default function HomeContent() {
             </motion.p>
 
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.3 }} viewport={{ once: true }}>
-              <Link href="/about" className="group text-[10px] md:text-xs font-heading font-black uppercase tracking-[0.3em] flex items-center gap-3 text-white hover:text-blue-400 transition-all">
-                Access Entity Profile <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+              <Link href="/about" className="group text-xs font-heading font-black uppercase tracking-[0.3em] flex items-center gap-3 text-white hover:text-blue-400 transition-all">
+                More About Me <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
               </Link>
             </motion.div>
           </div>
@@ -187,7 +142,7 @@ export default function HomeContent() {
                   <motion.div
                     animate={{ top: ["-100%", "100%"] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                    className="absolute left-0 w-full h-[2px] bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,1)] z-20 pointer-events-none opacity-40"
+                    className="absolute left-0 w-full h-[2px] bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,1)] z-20 pointer-events-none opacity-40 motion-reduce:hidden"
                   />
                 </div>
               </motion.div>
@@ -206,7 +161,7 @@ export default function HomeContent() {
           >
             <div className="flex items-center gap-3">
               <div className="w-10 h-[1px] bg-violet-500" />
-              <span className="text-violet-500 font-mono text-[10px] md:text-xs tracking-widest uppercase">System_Entity_Data</span>
+              <span className="text-violet-500 font-mono text-xs tracking-widest uppercase">Who I Am</span>
             </div>
             <h2 className="text-4xl md:text-7xl font-heading font-black uppercase tracking-tighter text-center lg:text-left">About Me</h2>
           </motion.div>
@@ -234,7 +189,7 @@ export default function HomeContent() {
 
               <div className="flex items-center justify-center lg:justify-start gap-6 mt-2">
                 <Link href="/about" className="flex items-center gap-3 text-xs font-heading font-black uppercase tracking-[0.2em] text-violet-400 hover:text-white transition-all group-hover:gap-5">
-                  INITIATE_FULL_READOUT <ArrowRight size={14} />
+                  Read More <ArrowRight size={14} />
                 </Link>
                 <div className="hidden lg:block h-[1px] flex-1 bg-white/5" />
               </div>
@@ -242,9 +197,9 @@ export default function HomeContent() {
 
             <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
               {[
-                { label: "Execution_Nodes", value: "5", icon: Target, color: "text-blue-400" },
-                { label: "Loaded_Tech", value: "20+", icon: Cpu, color: "text-violet-400" },
-                { label: "Real_Time_Input", value: "WORK", icon: Send, color: "text-emerald-400" },
+                { label: "Projects", value: "5", icon: Target, color: "text-blue-400" },
+                { label: "Technologies", value: "20+", icon: Cpu, color: "text-violet-400" },
+                { label: "Hackathon Win", value: "1st", icon: Trophy, color: "text-emerald-400" },
               ].map((stat, idx) => (
                 <motion.div
                   key={idx}
@@ -258,7 +213,7 @@ export default function HomeContent() {
                     <stat.icon className={`w-5 h-5 md:w-6 md:h-6 ${stat.color} opacity-70 group-hover:opacity-100`} />
                   </div>
                   <div className="flex flex-col text-left">
-                    <p className="text-[9px] md:text-[10px] text-gray-500 font-mono tracking-widest uppercase">{stat.label}</p>
+                    <p className="text-xs text-gray-400 font-mono tracking-widest uppercase">{stat.label}</p>
                     <p className="text-xl md:text-2xl font-heading font-black text-white tracking-tighter">{stat.value}</p>
                   </div>
                 </motion.div>
@@ -273,12 +228,12 @@ export default function HomeContent() {
             <div className="flex flex-col gap-3 items-center md:items-start text-center md:text-left">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-[1px] bg-pink-500" />
-                <span className="text-pink-500 font-mono text-xs tracking-widest uppercase">System_Inventory</span>
+                <span className="text-pink-500 font-mono text-xs tracking-widest uppercase">What I Work With</span>
               </div>
-              <h2 className="text-4xl md:text-7xl font-heading font-black uppercase tracking-tighter leading-none">Arsenal</h2>
+              <h2 className="text-4xl md:text-7xl font-heading font-black uppercase tracking-tighter leading-none">Skills</h2>
             </div>
-            <Link href="/skills" className="group text-[10px] md:text-xs font-heading font-black uppercase tracking-[0.3em] flex items-center gap-3 text-gray-500 hover:text-white transition-all pb-1">
-              FULL_MANIFEST <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            <Link href="/skills" className="group text-xs font-heading font-black uppercase tracking-[0.3em] flex items-center gap-3 text-gray-400 hover:text-white transition-all pb-1">
+              All Skills <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
@@ -289,8 +244,7 @@ export default function HomeContent() {
             viewport={{ once: true }}
             className="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-3xl text-center md:text-left relative z-10"
           >
-            A specialized collection of technical protocols and engineering standards used to architect robust digital ecosystems.
-            From high-fidelity interfaces to neural-inspired architectures, this is the core engine drive.
+            The tools I use to build full-stack products, from interfaces and APIs to databases and AI features.
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:auto-rows-[220px] lg:auto-rows-[250px] w-full relative z-10">
@@ -306,18 +260,18 @@ export default function HomeContent() {
                     <MonitorPlay className="w-8 h-8 md:w-10 md:h-10 text-blue-400" />
                   </div>
                   <div className="text-left">
-                    <span className="text-[8px] md:text-[10px] text-blue-500 font-mono tracking-widest uppercase mb-1 block">Sub_System / CORE_STACK</span>
+                    <span className="text-xs text-blue-500 font-mono tracking-widest uppercase mb-1 block">Core Stack</span>
                     <h3 className="text-2xl md:text-3xl font-heading font-black text-white tracking-tighter uppercase leading-none">Full-Cycle <br /> Engineering</h3>
                   </div>
                 </div>
 
                 <div className="z-10 max-w-lg mt-4">
                   <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed text-left">
-                    Architecting seamless digital ecosystems using React, Next.js, and FastAPI.
+                    Building web applications with React, Next.js, Node.js, and FastAPI.
                   </p>
                   <div className="flex flex-wrap gap-2 md:gap-3 mt-6">
                     {["React", "NextJS", "FastAPI", "NodeJS"].map(t => (
-                      <span key={t} className="px-3 md:px-4 py-1.5 rounded-xl bg-white/[0.03] border border-white/5 text-[8px] md:text-[10px] font-mono text-gray-500 tracking-widest uppercase">
+                      <span key={t} className="px-3 md:px-4 py-1.5 rounded-xl bg-white/[0.03] border border-white/5 text-xs font-mono text-gray-400 tracking-widest uppercase">
                         #{t}
                       </span>
                     ))}
@@ -340,12 +294,7 @@ export default function HomeContent() {
                   </div>
                   <h3 className="text-xl md:text-2xl font-heading font-bold text-white uppercase tracking-tight leading-none italic">Interface <br /> Motion</h3>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
-                    <motion.div whileInView={{ width: "90%" }} className="h-full bg-pink-500" />
-                  </div>
-                  <span className="text-[9px] text-gray-600 font-mono tracking-widest uppercase">Fidelity: 0.90_SYNC</span>
-                </div>
+                <p className="text-gray-400 text-base leading-relaxed">Framer Motion, Three.js, and Tailwind CSS</p>
               </motion.div>
             </MouseTilt>
 
@@ -363,12 +312,7 @@ export default function HomeContent() {
                   </div>
                   <h3 className="text-xl md:text-2xl font-heading font-bold text-white uppercase tracking-tight leading-none italic">Data <br /> Storage</h3>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
-                    <motion.div whileInView={{ width: "82%" }} className="h-full bg-emerald-500" />
-                  </div>
-                  <span className="text-[9px] text-gray-600 font-mono tracking-widest uppercase">IOPS: 4400_READ</span>
-                </div>
+                <p className="text-gray-400 text-base leading-relaxed">PostgreSQL, MongoDB, and MySQL</p>
               </motion.div>
             </MouseTilt>
 
@@ -385,13 +329,13 @@ export default function HomeContent() {
                     <Brain className="w-10 h-10 md:w-12 md:h-12 text-violet-400" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <span className="text-[9px] md:text-[10px] text-violet-400 font-mono tracking-widest uppercase font-bold">Sub_System / AI_ENGINE</span>
+                    <span className="text-xs text-violet-400 font-mono tracking-widest uppercase font-bold">AI / ML</span>
                     <h3 className="text-3xl md:text-5xl font-heading font-black text-white tracking-tighter uppercase leading-none">Machine Learning</h3>
                   </div>
                 </div>
                 <div className="flex-1 max-w-md md:text-right z-10">
                   <p className="text-gray-400 font-light italic text-base md:text-lg leading-relaxed text-center md:text-right">
-                    Compiling intelligence into production systems using TensorFlow and LangChain.
+                    Building AI features into real products with LangChain, TensorFlow, and Gemini.
                   </p>
                 </div>
               </motion.div>
@@ -412,7 +356,7 @@ export default function HomeContent() {
             <div className="flex flex-col gap-6 md:gap-8 relative z-10 items-center">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                <span className="text-[9px] md:text-[10px] text-blue-500 font-mono tracking-[0.4em] md:tracking-[0.5em] uppercase">Ready for Uplink</span>
+                <span className="text-xs text-blue-500 font-mono tracking-[0.4em] md:tracking-[0.5em] uppercase">Open to Opportunities</span>
               </div>
               <h2 className="text-3xl md:text-7xl lg:text-8xl font-heading font-black text-white leading-[0.95] md:leading-[0.9] tracking-tighter uppercase">
                 Build Something <br />
@@ -421,7 +365,7 @@ export default function HomeContent() {
               <div className="pt-2 md:pt-4 w-full sm:w-auto">
                 <Link href="/contact" className="group relative inline-flex items-center justify-center p-0.5 w-full sm:w-auto overflow-hidden text-sm font-medium rounded-2xl group border border-white/10 hover:border-white/30 transition-all">
                   <span className="relative px-8 md:px-16 py-4 md:py-6 transition-all ease-in duration-75 bg-white text-black font-heading font-black uppercase tracking-[0.2em] md:tracking-[0.3em] rounded-2xl group-hover:bg-transparent group-hover:text-white group-hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] w-full block">
-                    SEND_SIGNAL
+                    Contact Me
                   </span>
                 </Link>
               </div>

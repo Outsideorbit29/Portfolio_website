@@ -59,7 +59,7 @@ export default function ContactContent() {
                 <div className="flex flex-col items-center gap-4">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-[1px] bg-cyan-500" />
-                        <span className="text-cyan-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">System_Entry_Uplink</span>
+                        <span className="text-cyan-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Contact</span>
                         <div className="w-8 h-[1px] bg-cyan-500" />
                     </div>
                     <h1 className="text-5xl md:text-8xl lg:text-9xl font-heading font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
@@ -87,7 +87,7 @@ export default function ContactContent() {
                          </div>
                          <div className="flex items-center gap-2">
                              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                             <span className="text-[10px] text-emerald-400 font-mono uppercase tracking-widest">LIVE_STATUS</span>
+                             <span className="text-xs text-emerald-400 font-mono uppercase tracking-widest">Status</span>
                          </div>
                          <div className="flex flex-col">
                             <span className="text-xl font-bold text-white uppercase tracking-tight">Open to <br /> Opportunities</span>
@@ -106,7 +106,7 @@ export default function ContactContent() {
                          </div>
                          <div className="flex items-center gap-2">
                              <div className="w-2 h-2 rounded-full bg-blue-500 animate-[bounce_2s_infinite]" />
-                             <span className="text-[10px] text-blue-400 font-mono uppercase tracking-widest">CURRENT_MODE</span>
+                             <span className="text-xs text-blue-400 font-mono uppercase tracking-widest">Currently</span>
                          </div>
                          <div className="flex flex-col">
                             <span className="text-xl font-bold text-white uppercase tracking-tight">Always <br /> Learning</span>
@@ -121,12 +121,12 @@ export default function ContactContent() {
                             rel="noopener noreferrer"
                             className="glass-card bg-black/40 border border-white/5 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-blue-500/30 hover:bg-blue-500/5 transition-all h-40 overflow-hidden relative"
                         >
-                            <Linkedin size={24} className="text-gray-500 group-hover:text-blue-400 transition-colors" />
+                            <Linkedin size={24} className="text-gray-400 group-hover:text-blue-400 transition-colors" />
                             <div className="flex flex-col text-left">
-                                <span className="text-[9px] text-gray-600 font-mono uppercase tracking-widest">Connect_on</span>
+                                <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">Connect on</span>
                                 <span className="text-lg font-bold text-white">Linkedin</span>
                             </div>
-                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-700 group-hover:text-white transition-colors" />
+                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-400 group-hover:text-white transition-colors" />
                         </a>
                         
                         <a 
@@ -135,12 +135,12 @@ export default function ContactContent() {
                             rel="noopener noreferrer"
                             className="glass-card bg-black/40 border border-white/5 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-white/20 hover:bg-white/5 transition-all h-20 sm:h-auto overflow-hidden relative"
                         >
-                            <Github size={24} className="text-gray-500 group-hover:text-white transition-colors" />
+                            <Github size={24} className="text-gray-400 group-hover:text-white transition-colors" />
                             <div className="flex flex-col text-left">
-                                <span className="text-[9px] text-gray-600 font-mono uppercase tracking-widest">Explore_code</span>
+                                <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">See my code on</span>
                                 <span className="text-lg font-bold text-white">Github</span>
                             </div>
-                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-700 group-hover:text-white transition-colors" />
+                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-400 group-hover:text-white transition-colors" />
                         </a>
 
                         <a 
@@ -149,12 +149,12 @@ export default function ContactContent() {
                             rel="noopener noreferrer"
                             className="glass-card bg-black/40 border border-white/5 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-cyan-500/30 hover:bg-cyan-500/5 transition-all h-20 sm:h-auto overflow-hidden relative"
                         >
-                            <Twitter size={24} className="text-gray-500 group-hover:text-cyan-400 transition-colors" />
+                            <Twitter size={24} className="text-gray-400 group-hover:text-cyan-400 transition-colors" />
                             <div className="flex flex-col text-left">
-                                <span className="text-[9px] text-gray-600 font-mono uppercase tracking-widest">Follow_X</span>
+                                <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">Follow on</span>
                                 <span className="text-lg font-bold text-white">Twitter</span>
                             </div>
-                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-700 group-hover:text-white transition-colors" />
+                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-400 group-hover:text-white transition-colors" />
                         </a>
 
                         <a 
@@ -163,12 +163,12 @@ export default function ContactContent() {
                             rel="noopener noreferrer"
                             className="glass-card bg-black/40 border border-white/5 p-6 rounded-[2rem] flex flex-col justify-between group hover:border-pink-500/30 hover:bg-pink-500/5 transition-all h-20 sm:h-auto overflow-hidden relative"
                         >
-                            <Instagram size={24} className="text-gray-500 group-hover:text-pink-400 transition-colors" />
+                            <Instagram size={24} className="text-gray-400 group-hover:text-pink-400 transition-colors" />
                             <div className="flex flex-col text-left">
-                                <span className="text-[9px] text-gray-600 font-mono uppercase tracking-widest">Lifestyle</span>
+                                <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">Follow on</span>
                                 <span className="text-lg font-bold text-white">Instagram</span>
                             </div>
-                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-700 group-hover:text-white transition-colors" />
+                            <ExternalLink size={14} className="absolute bottom-6 right-6 text-gray-400 group-hover:text-white transition-colors" />
                         </a>
                     </div>
 
@@ -184,7 +184,7 @@ export default function ContactContent() {
                          </div>
                          <div className="flex items-center gap-2">
                              <div className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
-                             <span className="text-[10px] text-violet-400 font-mono uppercase tracking-widest">Active_Phase</span>
+                             <span className="text-xs text-violet-400 font-mono uppercase tracking-widest">Currently</span>
                          </div>
                          <div className="flex flex-col">
                             <span className="text-xl font-bold text-white uppercase tracking-tight">Building <br /> The Future</span>
@@ -203,7 +203,7 @@ export default function ContactContent() {
                          </div>
                          <div className="flex items-center gap-2">
                              <Activity size={12} className="text-orange-500 animate-[spin_3s_linear_infinite]" />
-                             <span className="text-[10px] text-orange-400 font-mono uppercase tracking-widest">Fuel_Status</span>
+                             <span className="text-xs text-orange-400 font-mono uppercase tracking-widest">Powered by</span>
                          </div>
                          <div className="flex flex-col">
                             <span className="text-xl font-bold text-white uppercase tracking-tight">Caffeine <br /> & Code</span>
@@ -221,25 +221,24 @@ export default function ContactContent() {
                      <div className="flex flex-col gap-6">
                         <h2 className="text-3xl md:text-4xl font-heading font-bold text-white flex items-center justify-center lg:justify-start gap-4">
                             <Zap className="text-cyan-400" size={32} />
-                            Deep Uplink.
+                            Get in Touch.
                         </h2>
                         <p className="text-gray-400 text-lg md:text-xl leading-relaxed font-light max-w-xl">
-                            The secure terminal below is the most direct way to initiate a technical collaboration or architectural discussion.
+                            This form is the quickest way to reach me about a job, a project, or a collaboration.
                         </p>
                      </div>
 
                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                          {[
-                            { label: "Direct Email", value: "anish.grd2004@gmail.com", icon: Mail, color: "text-blue-400", href: "https://mail.google.com/mail/?view=cm&fs=1&to=anish.grd2004@gmail.com" },
-                            { label: "Phone Frequency", value: "+91 6299293388", icon: Phone, color: "text-cyan-400" },
-                            { label: "Base Station", value: "Dhanbad, India", icon: MapPin, color: "text-violet-400" },
-                            { label: "Network Protocol", value: "Secure & Online", icon: ShieldCheck, color: "text-emerald-400" }
+                            { label: "Email", value: "anish.grd2004@gmail.com", icon: Mail, color: "text-blue-400", href: "mailto:anish.grd2004@gmail.com" },
+                            { label: "Phone", value: "+91 6299293388", icon: Phone, color: "text-cyan-400", href: "tel:+916299293388" },
+                            { label: "Location", value: "Dhanbad, India", icon: MapPin, color: "text-violet-400" }
                          ].map((info, i) => (
                              info.href ? (
-                                <a key={i} href={info.href} target="_blank" rel="noopener noreferrer" className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 flex flex-col gap-3 group hover:border-white/20 transition-all text-left overflow-hidden">
+                                <a key={i} href={info.href} className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 flex flex-col gap-3 group hover:border-white/20 transition-all text-left overflow-hidden">
                                     <info.icon size={18} className={`${info.color} opacity-60 group-hover:opacity-100 transition-opacity`} />
                                     <div className="flex flex-col">
-                                       <span className="text-[8px] md:text-[9px] text-gray-600 font-mono uppercase tracking-widest">{info.label}</span>
+                                       <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">{info.label}</span>
                                        <span className="text-gray-300 font-medium tracking-tight text-sm md:text-base truncate">{info.value}</span>
                                     </div>
                                 </a>
@@ -247,7 +246,7 @@ export default function ContactContent() {
                                 <div key={i} className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 flex flex-col gap-3 group hover:border-white/20 transition-all text-left overflow-hidden">
                                      <info.icon size={18} className={`${info.color} opacity-60 group-hover:opacity-100 transition-opacity`} />
                                      <div className="flex flex-col">
-                                        <span className="text-[8px] md:text-[9px] text-gray-600 font-mono uppercase tracking-widest">{info.label}</span>
+                                        <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">{info.label}</span>
                                         <span className="text-gray-300 font-medium tracking-tight text-sm md:text-base truncate">{info.value}</span>
                                      </div>
                                 </div>
@@ -257,10 +256,10 @@ export default function ContactContent() {
 
                      <div className="bg-cyan-500/5 border border-cyan-500/10 rounded-2xl md:rounded-[2rem] p-6 md:p-8 flex items-center gap-6 w-full">
                         <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-cyan-500/10 flex items-center justify-center border border-cyan-500/30 flex-shrink-0">
-                            <Cpu className="text-cyan-400 animate-pulse w-5 h-5" />
+                            <Cpu className="text-cyan-400 w-5 h-5" />
                         </div>
-                        <p className="text-[9px] md:text-xs text-gray-500 font-mono leading-relaxed uppercase tracking-widest text-left">
-                            System Latency: <span className="text-cyan-400">Response in &lt; 24h</span>
+                        <p className="text-xs text-gray-400 font-mono leading-relaxed uppercase tracking-widest text-left">
+                            I usually reply <span className="text-cyan-400">within 24 hours</span>
                         </p>
                      </div>
                 </div>
@@ -277,6 +276,7 @@ export default function ContactContent() {
                         
                         {formState === "success" ? (
                              <motion.div
+                                role="status"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className="flex flex-col items-center justify-center h-full gap-8 text-center py-16 md:py-20 relative z-10"
@@ -285,14 +285,14 @@ export default function ContactContent() {
                                     <CheckCircle size={40} className="text-emerald-400" />
                                 </div>
                                 <div className="flex flex-col gap-2">
-                                    <h2 className="text-2xl md:text-3xl font-heading font-black text-white uppercase tracking-tighter">Transmission Successful</h2>
-                                    <p className="text-gray-500 font-mono text-[10px] md:text-xs uppercase tracking-widest">Digital Packet Cached in Gateway</p>
+                                    <h2 className="text-2xl md:text-3xl font-heading font-black text-white uppercase tracking-tighter">Message Sent</h2>
+                                    <p className="text-gray-400 font-mono text-xs uppercase tracking-widest">Thanks! I&apos;ll get back to you soon.</p>
                                 </div>
                                 <button
                                     onClick={() => setFormState("idle")}
-                                    className="px-8 py-3 rounded-full border border-white/10 text-[10px] md:text-xs font-mono text-gray-400 hover:text-white uppercase tracking-widest transition-all"
+                                    className="px-8 py-3 rounded-full border border-white/10 text-xs font-mono text-gray-400 hover:text-white uppercase tracking-widest transition-all"
                                 >
-                                    New Sequence [RESET]
+                                    Send Another Message
                                 </button>
                              </motion.div>
                         ) : (
@@ -300,41 +300,40 @@ export default function ContactContent() {
                                 <div className="flex flex-col gap-8 md:gap-10">
                                     {/* Command Inputs */}
                                     <div className="flex flex-col gap-3 md:gap-4">
-                                        <div className="flex items-center gap-2 mb-1 md:mb-2">
-                                            <span className="text-[9px] md:text-[10px] text-cyan-500 font-mono">1.0 / ENTITY_ID</span>
-                                        </div>
+                                        <label htmlFor="contact-name" className="text-sm text-cyan-400 font-mono">Your Name</label>
                                         <input
                                             type="text"
+                                            id="contact-name"
                                             name="user_name"
+                                            autoComplete="name"
                                             required
-                                            className="w-full bg-transparent border-b border-white/10 px-0 py-3 md:py-4 text-white text-lg md:text-xl font-bold focus:outline-none focus:border-cyan-400 placeholder:text-gray-800 transition-colors uppercase font-heading"
-                                            placeholder="ENTER NAME..."
+                                            className="w-full bg-transparent border-b border-white/10 px-0 py-3 md:py-4 text-white text-lg md:text-xl font-medium focus:outline-none focus:border-cyan-400 placeholder:text-gray-400 transition-colors"
+                                            placeholder="Your name"
                                         />
                                     </div>
 
                                     <div className="flex flex-col gap-3 md:gap-4">
-                                        <div className="flex items-center gap-2 mb-1 md:mb-2">
-                                            <span className="text-[9px] md:text-[10px] text-cyan-500 font-mono">2.0 / RETURN_FREQ</span>
-                                        </div>
+                                        <label htmlFor="contact-email" className="text-sm text-cyan-400 font-mono">Your Email</label>
                                         <input
                                             type="email"
+                                            id="contact-email"
                                             name="user_email"
+                                            autoComplete="email"
                                             required
-                                            className="w-full bg-transparent border-b border-white/10 px-0 py-3 md:py-4 text-white text-lg md:text-xl font-bold focus:outline-none focus:border-cyan-400 placeholder:text-gray-800 transition-colors uppercase font-heading"
-                                            placeholder="ENTER EMAIL..."
+                                            className="w-full bg-transparent border-b border-white/10 px-0 py-3 md:py-4 text-white text-lg md:text-xl font-medium focus:outline-none focus:border-cyan-400 placeholder:text-gray-400 transition-colors"
+                                            placeholder="you@example.com"
                                         />
                                     </div>
 
                                     <div className="flex flex-col gap-3 md:gap-4">
-                                        <div className="flex items-center gap-2 mb-1 md:mb-2">
-                                            <span className="text-[9px] md:text-[10px] text-cyan-500 font-mono">3.0 / PAYLOAD</span>
-                                        </div>
+                                        <label htmlFor="contact-message" className="text-sm text-cyan-400 font-mono">Your Message</label>
                                         <textarea
+                                            id="contact-message"
                                             name="message"
                                             required
                                             rows={4}
-                                            className="w-full bg-transparent border-b border-white/10 px-0 py-3 md:py-4 text-white text-lg md:text-xl font-bold focus:outline-none focus:border-cyan-400 placeholder:text-gray-800 transition-colors resize-none mb-2 md:mb-4 uppercase font-heading"
-                                            placeholder="WRITE MESSAGE..."
+                                            className="w-full bg-transparent border-b border-white/10 px-0 py-3 md:py-4 text-white text-lg md:text-xl font-medium focus:outline-none focus:border-cyan-400 placeholder:text-gray-400 transition-colors resize-none mb-2 md:mb-4"
+                                            placeholder="How can I help?"
                                         />
                                     </div>
                                 </div>
@@ -354,12 +353,12 @@ export default function ContactContent() {
                                     className="w-full bg-white text-black font-heading font-black py-5 md:py-6 rounded-xl md:rounded-2xl flex items-center justify-center gap-4 hover:bg-cyan-400 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-2xl group disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:scale-100"
                                 >
                                     {formState === "submitting" ? (
-                                        <span className="flex items-center gap-3 font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em]">
-                                            Processing...
+                                        <span className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] md:tracking-[0.3em]">
+                                            Sending...
                                         </span>
                                     ) : (
                                         <>
-                                            <span className="font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em]">Execute Transmission</span>
+                                            <span className="font-mono text-xs uppercase tracking-[0.2em] md:tracking-[0.3em]">Send Message</span>
                                             <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                         </>
                                     )}

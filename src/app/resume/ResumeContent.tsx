@@ -29,7 +29,7 @@ export default function ResumeContent() {
           <div className="flex flex-col gap-1 items-center sm:items-start text-center sm:text-left">
             <div className="flex items-center gap-3">
               <FileText className="w-4 h-4 text-blue-400" />
-              <span className="text-blue-400 font-mono text-[10px] tracking-widest uppercase">System_CV / Console</span>
+              <span className="text-blue-400 font-mono text-xs tracking-widest uppercase">Resume</span>
             </div>
             <h1 className="text-2xl md:text-3xl font-heading font-black text-white uppercase tracking-tight leading-none">
               Anish Kumar Gupta
@@ -42,7 +42,7 @@ export default function ResumeContent() {
               className="flex items-center gap-2 px-5 py-3 rounded-xl border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all text-xs font-mono uppercase tracking-wider cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
-              Return
+              Back
             </button>
             <a
               href={RESUME_PATH}
@@ -51,7 +51,7 @@ export default function ResumeContent() {
               className="flex items-center gap-2 px-5 py-3 rounded-xl border border-white/5 bg-white/[0.02] text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all text-xs font-mono uppercase tracking-wider cursor-pointer"
             >
               <ExternalLink className="w-4 h-4" />
-              External_View
+              Open PDF
             </a>
             <a
               href={RESUME_PATH}
@@ -59,7 +59,7 @@ export default function ResumeContent() {
               className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black hover:bg-blue-500 hover:text-white transition-all text-xs font-heading font-black uppercase tracking-widest shadow-lg cursor-pointer"
             >
               <Download className="w-4 h-4" />
-              Download_PDF
+              Download PDF
             </a>
           </div>
         </motion.div>
@@ -81,16 +81,16 @@ export default function ResumeContent() {
                 className="absolute inset-0 bg-black/80 backdrop-blur-sm z-30 flex flex-col items-center justify-center gap-4"
               >
                 <Loader2 className="w-10 h-10 text-blue-400 animate-spin" />
-                <p className="font-mono text-xs text-gray-500 tracking-widest uppercase animate-pulse">Initializing Document Viewer...</p>
+                <p className="font-mono text-xs text-gray-400 tracking-widest uppercase animate-pulse">Loading resume...</p>
               </motion.div>
             )}
           </AnimatePresence>
 
           {/* Fallback info when the browser can't preview PDFs in an iframe */}
           <div className="absolute inset-4 -z-10 flex flex-col items-center justify-center gap-4 text-center p-8">
-            <ShieldAlert className="w-12 h-12 text-gray-600" />
-            <h3 className="font-heading font-black text-white text-lg uppercase tracking-tight">Viewing Issue?</h3>
-            <p className="text-gray-500 text-sm max-w-sm">
+            <ShieldAlert className="w-12 h-12 text-gray-400" />
+            <h2 className="font-heading font-black text-white text-lg uppercase tracking-tight">Can&apos;t see the resume?</h2>
+            <p className="text-gray-400 text-sm max-w-sm">
               Your browser may not support PDF previews here. You can still open or download the file.
             </p>
             <div className="flex gap-4 mt-2">
