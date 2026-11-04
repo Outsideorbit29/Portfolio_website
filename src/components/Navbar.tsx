@@ -45,9 +45,9 @@ export default function Navbar() {
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                className="absolute left-6 md:left-12 pointer-events-auto"
+                className="absolute left-4 md:left-10 pointer-events-auto"
             >
-                <Link href="/" className="flex items-center gap-2 group">
+                <Link href="/" className={`flex items-center gap-2 group rounded-full pl-1.5 pr-4 py-1.5 backdrop-blur-md border border-white/10 transition-colors duration-300 ${scrolled ? "bg-black/80" : "bg-black/50"}`}>
                     <div className="relative w-9 h-9 rounded-lg overflow-hidden group-hover:scale-110 transition-transform">
                         <Image
                             src="/logo.png"
@@ -64,7 +64,7 @@ export default function Navbar() {
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`hidden md:flex pointer-events-auto rounded-full transition-all duration-300 backdrop-blur-md border border-white/10 shadow-xl ${scrolled ? "bg-black/80 scale-95" : "bg-black/50 scale-100"
+                className={`hidden lg:flex pointer-events-auto rounded-full transition-all duration-300 backdrop-blur-md border border-white/10 shadow-xl ${scrolled ? "bg-black/80 scale-95" : "bg-black/50 scale-100"
                     }`}
             >
                 {/* Desktop Menu */}
@@ -102,7 +102,7 @@ export default function Navbar() {
                 {/* Desktop Let's Talk */}
                 <Link
                     href="/contact"
-                    className="hidden md:flex bg-white text-black text-xs font-bold px-6 py-3 rounded-full hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] items-center gap-2"
+                    className="hidden lg:flex bg-white text-black text-xs font-bold px-6 py-3 rounded-full hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] items-center gap-2"
                 >
                     Let's Talk
                 </Link>
@@ -110,7 +110,7 @@ export default function Navbar() {
                 {/* Mobile Menu Toggle (Replacing button on mobile) */}
                 <button 
                     onClick={() => setMobileMenuOpen(true)}
-                    className="md:hidden w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all active:scale-95"
+                    className="lg:hidden w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all active:scale-95"
                 >
                     <Menu className="w-6 h-6" />
                 </button>
