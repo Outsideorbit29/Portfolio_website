@@ -56,7 +56,7 @@ function Stars(props: any) {
 
 export function ThreeBackground() {
     return (
-        <div className="fixed top-0 left-0 w-full h-full -z-30 pointer-events-none bg-black">
+        <div className="fixed top-0 left-0 w-full h-full -z-30 pointer-events-none">
             <Canvas camera={{ position: [0, 0, 1] }}>
                 <Stars />
             </Canvas>
