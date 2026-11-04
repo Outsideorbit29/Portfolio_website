@@ -61,7 +61,7 @@ export default function SkillsContent() {
                     <div className="w-12 h-[1px] bg-pink-500" />
                     <span className="text-pink-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Inventory / Capabilities</span>
                 </div>
-                <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8] font-sans">
+                <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
                     Anish Kumar <br />
                     <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">Arsenal</span>
                 </h1>
@@ -88,9 +88,9 @@ export default function SkillsContent() {
                                 <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10 group-hover:scale-110 transition-all">
                                     {category.icon}
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col min-w-0">
                                     <span className="text-[8px] md:text-[10px] text-pink-500 font-mono tracking-widest uppercase">Sub_System / {category.id}</span>
-                                    <h2 className="text-xl md:text-2xl font-black text-white tracking-tighter uppercase font-sans">{category.category}</h2>
+                                    <h2 className="text-lg lg:text-2xl font-black text-white tracking-tighter uppercase">{category.category.replace("_", "_​")}</h2>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@ export default function SkillsContent() {
 
             {/* Footer Project Link */}
             <div className="mt-16 md:mt-24 text-center relative z-10 mb-12">
-                <Link href="/projects" className="group text-4xl md:text-7xl lg:text-9xl font-black text-white hover:text-pink-400 transition-colors duration-500 tracking-tighter uppercase leading-none md:leading-[0.8] block font-sans">
+                <Link href="/projects" className="group text-4xl md:text-7xl lg:text-9xl font-black text-white hover:text-pink-400 transition-colors duration-500 tracking-tighter uppercase leading-none md:leading-[0.8] block font-heading">
                     Deploy <br />
                     <span className="text-white [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">Execution </span>
                     <span className="text-pink-400">→</span>

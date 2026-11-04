@@ -120,7 +120,7 @@ export default function ProjectsContent() {
                     <div className="w-12 h-[1px] bg-cyan-500" />
                     <span className="text-cyan-500 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Operations / Work</span>
                 </div>
-                <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8] font-sans">
+                <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
                     Anish Kumar <br />
                     <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">Gupta Archive</span>
                 </h1>
@@ -141,7 +141,7 @@ export default function ProjectsContent() {
 
             {/* CTA Footer */}
             <div className="mt-20 md:mt-28 text-center relative z-10 mb-12">
-                <Link href="/contact" className="group text-4xl md:text-7xl lg:text-8xl font-black text-white hover:text-cyan-400 transition-colors duration-500 tracking-tighter uppercase leading-none md:leading-[0.8] block font-sans">
+                <Link href="/contact" className="group text-4xl md:text-7xl lg:text-8xl font-black text-white hover:text-cyan-400 transition-colors duration-500 tracking-tighter uppercase leading-none md:leading-[0.8] block font-heading">
                    LET&apos;S CO-CREATE <br />
                    <span className="text-cyan-500 inline-flex items-center gap-4">THE FUTURE <ArrowRight className="w-8 h-8 md:w-16 md:h-16" /></span>
                 </Link>
@@ -178,7 +178,7 @@ function ProjectSection({ project, index }: { project: Project; index: number })
                         <div className="w-8 h-[1px] bg-white/20" />
                         <span className="text-gray-500 font-mono text-[10px] md:text-xs tracking-widest uppercase">{project.details.role}</span>
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight group-hover:text-cyan-400 transition-colors duration-500 font-sans uppercase">
+                    <h2 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight group-hover:text-cyan-400 transition-colors duration-500 uppercase">
                         {project.title}
                     </h2>
                 </div>

@@ -58,7 +58,7 @@ export default function ExperienceContent() {
                     <div className="w-12 h-[1px] bg-emerald-500" />
                     <span className="text-emerald-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Chronology / Dev_Log</span>
                 </div>
-                <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8] font-sans">
+                <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
                     Anish Kumar <br />
                     <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">Gupta Log</span>
                 </h1>
@@ -101,7 +101,7 @@ export default function ExperienceContent() {
                                     <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-2">
                                         <div className="flex flex-col">
                                             <span className="text-[8px] md:text-[9px] text-emerald-500 font-mono tracking-widest uppercase">{exp.type} // {exp.id}</span>
-                                            <h3 className="text-2xl md:text-3xl font-black text-white group-hover:text-emerald-400 transition-colors duration-500 tracking-tight font-sans uppercase">{exp.role}</h3>
+                                            <h3 className="text-2xl md:text-3xl font-black text-white group-hover:text-emerald-400 transition-colors duration-500 tracking-tight uppercase">{exp.role}</h3>
                                         </div>
                                         <div className="flex items-center gap-2 text-gray-500 font-mono text-[10px] md:text-xs">
                                             <Calendar size={12} /> {exp.date}
@@ -173,7 +173,7 @@ export default function ExperienceContent() {
 
             {/* Footer Link */}
             <div className="mt-20 md:mt-28 text-center relative z-10 pb-8">
-                <Link href="/skills" className="group text-4xl md:text-7xl lg:text-9xl font-black text-white hover:text-emerald-400 transition-colors duration-500 tracking-tighter uppercase leading-none md:leading-[0.8] block font-sans">
+                <Link href="/skills" className="group text-4xl md:text-7xl lg:text-9xl font-black text-white hover:text-emerald-400 transition-colors duration-500 tracking-tighter uppercase leading-none md:leading-[0.8] block font-heading">
                     ACCESS SYSTEM <br />
                     <span className="text-white [-webkit-text-stroke:1px_rgba(255,255,255,0.2)]">CAPABILITIES </span>
                     <span className="text-emerald-400">→</span>
