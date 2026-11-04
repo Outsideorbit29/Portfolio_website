@@ -17,7 +17,7 @@ export function ParallaxBackground() {
     // Subtle scaling for depth
     const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
     // Subtle opacity change for atmospheric feel
-    const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 0.7, 0.6]);
+    const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 0.38, 0.3]);
 
     if (!mounted) return null;
 
