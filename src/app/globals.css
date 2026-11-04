@@ -24,17 +24,20 @@
   --font-mono: var(--font-mono), monospace;
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-  letter-spacing: 0.02em;
-}
+/* In the base layer so Tailwind utilities on an element can override these. */
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    overflow-x: hidden;
+    letter-spacing: 0.02em;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  letter-spacing: -0.02em;
+  /* --font-orbitron is set on <body> by next/font, so it isn't available on :root. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-orbitron), sans-serif;
+    letter-spacing: -0.02em;
+  }
 }
 
 /* Glassmorphism utility */

@@ -24,7 +24,7 @@ const orbitron = Orbitron({
 const rajdhani = Rajdhani({
   subsets: ["latin"],
   variable: "--font-rajdhani",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
