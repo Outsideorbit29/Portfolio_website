@@ -30,6 +30,7 @@ export function HoverPhotoReveal({
                     src={primarySrc}
                     alt={alt}
                     fill
+                    priority
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
                 />

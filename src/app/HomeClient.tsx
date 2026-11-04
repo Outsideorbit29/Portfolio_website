@@ -3,28 +3,20 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Download, MonitorPlay, Code2, Sparkles, Send, Cpu, Activity, ShieldCheck, Target, Zap, Brain } from "lucide-react";
-import { ParallaxImage } from "@/components/ParallaxImage";
-import { Scrollable3DObject } from "@/components/Scrollable3DObject";
+import dynamic from "next/dynamic";
+import { useBrowserIdle, useIsDesktop } from "@/hooks/useSceneLoading";
 import { MouseTilt } from "@/components/MouseTilt";
 import { ThreeImage } from "@/components/ThreeImage";
 import { FloatingTechCircle } from "@/components/FloatingTechCircle";
 
-export default function HomeContent() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
-      }
-    }
-  };
+const Scrollable3DObject = dynamic(
+  () => import("@/components/Scrollable3DObject").then((mod) => mod.Scrollable3DObject),
+  { ssr: false },
+);
 
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100 } }
-  };
+export default function HomeContent() {
+  const isDesktop = useIsDesktop();
+  const idle = useBrowserIdle();
 
   const { scrollYProgress } = useScroll();
   const systemCoreScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.2]);
@@ -35,7 +27,7 @@ export default function HomeContent() {
   return (
     <div className="w-full relative min-h-screen overflow-x-hidden">
       {/* Fixed 3D Background */}
-      <Scrollable3DObject />
+      {isDesktop && idle && <Scrollable3DObject />}
 
       {/* Massive Background Title - Responsive Font Size */}
       <motion.div
@@ -77,32 +69,29 @@ export default function HomeContent() {
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-24 w-full relative z-10 pt-16 lg:pt-24 max-w-[2000px] mx-auto">
 
             {/* Left Column: Text Content */}
-            <motion.div
-              variants={container}
-              initial="hidden"
-              animate="show"
+            <div
               className="w-full lg:w-[55%] flex flex-col gap-6 text-center lg:text-left items-center lg:items-start"
             >
-              <motion.div variants={item} className="inline-flex items-center gap-3 px-4 py-2 rounded-xl glass bg-white/[0.03] border border-white/10 w-fit">
+              <div style={{ animationDelay: "0.2s" }} className="reveal inline-flex items-center gap-3 px-4 py-2 rounded-xl glass bg-white/[0.03] border border-white/10 w-fit">
                 <Activity className="w-3 h-3 text-emerald-400 animate-pulse" />
                 <span className="text-[10px] text-gray-400 font-mono tracking-widest uppercase">System Status: Optimal</span>
-              </motion.div>
+              </div>
 
-              <motion.h1
-                variants={item}
-                className="text-5xl md:text-8xl lg:text-9xl font-heading font-black tracking-tighter leading-[0.85] md:leading-[0.8] relative z-10 uppercase"
+              <h1
+                style={{ animationDelay: "0.35s" }}
+                className="reveal text-5xl md:text-8xl lg:text-9xl font-heading font-black tracking-tighter leading-[0.85] md:leading-[0.8] relative z-10 uppercase"
               >
                 Anish <br />
                 <span className="text-white [-webkit-text-stroke:1px_rgba(255,255,255,0.25)]">
                   Kumar Gupta
                 </span>
-              </motion.h1>
+              </h1>
 
-              <motion.p variants={item} className="text-lg md:text-xl lg:text-2xl text-gray-400 max-w-4xl font-light leading-relaxed">
+              <p style={{ animationDelay: "0.5s" }} className="reveal text-lg md:text-xl lg:text-2xl text-gray-400 max-w-4xl font-light leading-relaxed">
                 Full Stack Engineer crafting end-to-end web applications — from pixel-perfect UIs to robust APIs, databases, and AI-powered features.
-              </motion.p>
+              </p>
 
-              <motion.div variants={item} className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 mt-2">
+              <div style={{ animationDelay: "0.65s" }} className="reveal flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 mt-2">
                 <Link href="/projects" className="group flex items-center gap-3 bg-white text-black px-8 md:px-10 py-4 md:py-5 rounded-2xl font-heading font-black text-xs uppercase tracking-widest hover:bg-blue-400 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
                   Execute Project_Fetch
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -111,8 +100,8 @@ export default function HomeContent() {
                   <Download className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
                   Get_Resume
                 </Link>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
             {/* Right Column: Floating Tech Circle */}
             <motion.div
@@ -192,7 +181,7 @@ export default function HomeContent() {
               >
                 <div className="w-full h-full rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center relative inner-shadow overflow-hidden">
                   <ThreeImage
-                    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2560&auto=format&fit=crop"
+                    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop"
                     alt="Programming Workspace Setup"
                   />
                   <motion.div

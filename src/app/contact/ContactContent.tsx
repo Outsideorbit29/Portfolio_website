@@ -56,11 +56,7 @@ export default function ContactContent() {
             
             {/* 1. TOP HERO SECTION */}
             <div className="flex flex-col mb-16 md:mb-20 gap-6 relative z-10 max-w-[2000px] mx-auto items-center text-center">
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex flex-col items-center gap-4"
-                >
+                <div className="flex flex-col items-center gap-4">
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-[1px] bg-cyan-500" />
                         <span className="text-cyan-400 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">System_Entry_Uplink</span>
@@ -73,7 +69,7 @@ export default function ContactContent() {
                     <p className="mt-8 text-gray-400 text-lg md:text-xl font-light max-w-2xl leading-relaxed italic">
                         &quot;Turning complex ideas into high-performance digital reality.&quot;
                     </p>
-                </motion.div>
+                </div>
             </div>
 
             {/* 2. INTERACTIVE SHORTCUTS GRID */}

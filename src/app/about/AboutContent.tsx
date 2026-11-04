@@ -110,12 +110,7 @@ export default function AboutContent() {
             <div className="max-w-[2200px] mx-auto px-4 md:px-8 lg:px-12 pt-28 md:pt-36 pb-20 relative z-10">
                 
                 {/* Hero Section: The Entity Restructured */}
-                <motion.section 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="flex flex-col gap-12 mb-16 md:mb-24"
-                >
+                <section className="flex flex-col gap-12 mb-16 md:mb-24">
                     {/* 1. My Name at the top */}
                     <div className="flex flex-col gap-6 text-center lg:text-left">
                         <div className="flex items-center justify-center lg:justify-start gap-4">
@@ -202,7 +197,7 @@ export default function AboutContent() {
                             </div>
                         </div>
                     </div>
-                </motion.section>
+                </section>
 
                 <div className="flex flex-col gap-20 md:gap-32">
 

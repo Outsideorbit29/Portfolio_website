@@ -19,7 +19,7 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-accent: var(--accent);
-  --font-sans: var(--font-rajdhani), var(--font-inter), sans-serif;
+  --font-sans: var(--font-rajdhani), sans-serif;
   --font-heading: var(--font-orbitron), sans-serif;
   --font-mono: var(--font-mono), monospace;
 }
@@ -65,6 +65,23 @@
   .glow-accent {
     filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
   }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* A CSS animation, so content appears without waiting for JavaScript to load. */
+.reveal {
+  animation: reveal 0.6s ease-out both;
 }
 
 @keyframes ripple {
