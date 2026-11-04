@@ -89,6 +89,8 @@ export default function ThreeImageCanvas({ src, active }: { src: string; active:
             camera={{ position: [0, 0, 1] }}
             dpr={[1, 1.5]}
             frameloop={active ? "always" : "never"}
+            // Measure layout size, so the card's scale-in animation doesn't shrink the canvas.
+            resize={{ offsetSize: true }}
             style={{ position: "absolute", inset: 0 }}
         >
             <Suspense fallback={null}>
