@@ -58,7 +58,7 @@ function InnerTorus() {
 
 export function Scrollable3DObject() {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none opacity-80">
+    <div aria-hidden="true" className="fixed inset-0 z-0 pointer-events-none opacity-80">
       <Canvas camera={{ position: [0, 0, 8], fov: 45 }} dpr={[1, 1.5]}>
         <IcosahedronGeometry />
         <InnerTorus />

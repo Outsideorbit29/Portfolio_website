@@ -28,19 +28,19 @@ export default function Footer() {
 
                         {/* Socials */}
                         <div className="flex items-center gap-3 mt-2">
-                            <a href="https://github.com/Outsideorbit29" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
+                            <a href="https://github.com/Outsideorbit29" aria-label="GitHub" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
                                 <Github className="w-4 h-4" />
                             </a>
-                            <a href="https://www.linkedin.com/in/anish-kumar-gupta-6a9b50251" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
+                            <a href="https://www.linkedin.com/in/anish-kumar-gupta-6a9b50251" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
                                 <Linkedin className="w-4 h-4" />
                             </a>
-                            <a href="https://x.com/Anish_029" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
+                            <a href="https://x.com/Anish_029" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
                                 <Twitter className="w-4 h-4" />
                             </a>
-                            <a href="https://instagram.com/k_anish_29" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
+                            <a href="https://instagram.com/k_anish_29" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
                                 <Instagram className="w-4 h-4" />
                             </a>
-                            <a href="mailto:anish.grd2004@gmail.com" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
+                            <a href="mailto:anish.grd2004@gmail.com" aria-label="Email" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
                                 <Mail className="w-4 h-4" />
                             </a>
                         </div>
@@ -48,10 +48,12 @@ export default function Footer() {
 
                     {/* Navigation */}
                     <div className="md:col-span-6 lg:col-span-3 flex flex-col gap-6">
-                        <h4 className="text-xs font-bold text-white uppercase tracking-wider">Navigation</h4>
+                        <h2 className="text-xs font-bold text-white uppercase tracking-wider">Navigation</h2>
                         <ul className="flex flex-col gap-4 text-sm">
                             <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
                             <li><Link href="/projects" className="hover:text-white transition-colors">Projects</Link></li>
+                            <li><Link href="/skills" className="hover:text-white transition-colors">Skills</Link></li>
+                            <li><Link href="/experience" className="hover:text-white transition-colors">Experience</Link></li>
                             <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
                             <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                         </ul>
@@ -59,10 +61,10 @@ export default function Footer() {
 
                     {/* Contact details */}
                     <div className="md:col-span-6 lg:col-span-4 flex flex-col gap-6">
-                        <h4 className="text-xs font-bold text-white uppercase tracking-wider">Get in Touch</h4>
+                        <h2 className="text-xs font-bold text-white uppercase tracking-wider">Get in Touch</h2>
                         <ul className="flex flex-col gap-4 text-sm">
-                            <li className="text-gray-400">anish.grd2004@gmail.com</li>
-                            <li className="text-gray-400">Vellore Institute of Technology</li>
+                            <li><a href="mailto:anish.grd2004@gmail.com" className="hover:text-white transition-colors">anish.grd2004@gmail.com</a></li>
+                            <li className="text-gray-400">Dhanbad, India</li>
                             <li>
                                 <Link href="/contact" className="text-cyan-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-1 group font-medium overflow-hidden">
                                     Send a message <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -72,7 +74,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="mt-16 pt-8 border-t border-white/5 flex flex-col lg:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <div className="mt-16 pt-8 border-t border-white/5 flex flex-col lg:flex-row justify-between items-center gap-4 text-xs text-gray-400">
                     <p className="flex items-center gap-1">
                         &copy; {new Date().getFullYear()} Portfolio. Built by Anish
                     </p>

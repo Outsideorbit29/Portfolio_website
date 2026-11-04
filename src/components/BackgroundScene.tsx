@@ -129,6 +129,7 @@ function FallingStars({ count }: { count: number }) {
 export default function BackgroundScene() {
     return (
         <motion.div
+            aria-hidden="true"
             className="fixed inset-0 -z-30 pointer-events-none overflow-hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

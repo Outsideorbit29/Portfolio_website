@@ -129,6 +129,12 @@ export default function RootLayout({
             }),
           }}
         />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-black"
+        >
+          Skip to content
+        </a>
         <SmoothScroll>
           <ThemeProvider
             attribute="class"
@@ -140,7 +146,7 @@ export default function RootLayout({
             <ParallaxBackground />
 
             <Navbar />
-            <main className="flex-1 w-full relative z-10 flex flex-col overflow-x-hidden">
+            <main id="main" className="flex-1 w-full relative z-10 flex flex-col overflow-x-hidden">
               {children}
               <Analytics />
               <SpeedInsights />

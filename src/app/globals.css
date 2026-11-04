@@ -84,6 +84,19 @@
   animation: reveal 0.6s ease-out both;
 }
 
+/* Stop looping and entrance animations for people who ask for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: 0s !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @keyframes ripple {
   0% {
     width: 0px;

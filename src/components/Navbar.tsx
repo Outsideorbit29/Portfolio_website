@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useLenis } from "lenis/react";
 
 
 const navLinks = [
@@ -21,6 +22,10 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
+    const lenis = useLenis();
+    const menuRef = useRef<HTMLDivElement>(null);
+    const menuButtonRef = useRef<HTMLButtonElement>(null);
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,14 +35,43 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Prevent scroll when mobile menu is open
+    // While the mobile menu is open: stop page scrolling, keep keyboard focus inside it, close on Escape.
     useEffect(() => {
-        if (mobileMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-    }, [mobileMenuOpen]);
+        if (!mobileMenuOpen) return;
+
+        const opener = menuButtonRef.current;
+        const menu = menuRef.current;
+        document.body.style.overflow = "hidden";
+        lenis?.stop();
+        closeButtonRef.current?.focus();
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                setMobileMenuOpen(false);
+                return;
+            }
+            if (e.key !== "Tab" || !menu) return;
+
+            const focusable = menu.querySelectorAll<HTMLElement>("a, button");
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        };
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+            document.body.style.overflow = "";
+            lenis?.start();
+            opener?.focus();
+        };
+    }, [mobileMenuOpen, lenis]);
 
     return (
         <header className="fixed top-6 w-full z-50 flex justify-center pointer-events-none">
@@ -61,6 +95,8 @@ export default function Navbar() {
             </motion.div>
 
             <motion.nav
+                aria-label="Main"
+
                 initial={{ y: -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -75,6 +111,7 @@ export default function Navbar() {
                             <li key={link.name}>
                                 <Link
                                     href={link.href}
+                                    aria-current={isActive ? "page" : undefined}
                                     className={`relative px-3 py-2 text-sm font-medium transition-colors ${isActive ? "text-white" : "text-gray-400 hover:text-white"
                                         }`}
                                 >
@@ -99,16 +136,19 @@ export default function Navbar() {
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                 className="absolute right-6 md:right-12 pointer-events-auto flex items-center"
             >
-                {/* Desktop Let's Talk */}
+                {/* Desktop Let&apos;s Talk */}
                 <Link
                     href="/contact"
                     className="hidden lg:flex bg-white text-black text-xs font-bold px-6 py-3 rounded-full hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] items-center gap-2"
                 >
-                    Let's Talk
+                    Let&apos;s Talk
                 </Link>
 
                 {/* Mobile Menu Toggle (Replacing button on mobile) */}
-                <button 
+                <button
+                    ref={menuButtonRef}
+                    aria-label="Open menu"
+                    aria-expanded={mobileMenuOpen}
                     onClick={() => setMobileMenuOpen(true)}
                     className="lg:hidden w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all active:scale-95"
                 >
@@ -120,6 +160,10 @@ export default function Navbar() {
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
+                        ref={menuRef}
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Site menu"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -137,7 +181,9 @@ export default function Navbar() {
                                 </div>
                                 <span className="text-white font-bold tracking-tight text-lg">Anish</span>
                             </div>
-                            <button 
+                            <button
+                                ref={closeButtonRef}
+                                aria-label="Close menu"
                                 onClick={() => setMobileMenuOpen(false)}
                                 className="text-white p-2 hover:bg-white/10 rounded-full transition-colors"
                             >
@@ -157,6 +203,7 @@ export default function Navbar() {
                                     >
                                         <Link
                                             href={link.href}
+                                            aria-current={isActive ? "page" : undefined}
                                             onClick={() => setMobileMenuOpen(false)}
                                             className={`text-4xl font-bold transition-colors ${isActive ? "text-blue-400" : "text-white/60 hover:text-white"}`}
                                         >
@@ -178,7 +225,7 @@ export default function Navbar() {
                                 onClick={() => setMobileMenuOpen(false)}
                                 className="w-full bg-white text-black text-xl font-bold py-5 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-transform"
                             >
-                                Let's Talk
+                                Let&apos;s Talk
                             </Link>
                         </motion.div>
                     </motion.div>

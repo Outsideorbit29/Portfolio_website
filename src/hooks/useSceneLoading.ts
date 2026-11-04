@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { useReducedMotion } from "framer-motion";
 
 // Heavier 3D scenes only run from this width up.
 const DESKTOP_QUERY = "(min-width: 1024px)";
@@ -37,4 +38,13 @@ export function useBrowserIdle() {
     }, []);
 
     return idle;
+}
+
+// Whether 3D should run: desktop only, after load, and not for people who prefer reduced motion.
+export function useSceneEnabled() {
+    const isDesktop = useIsDesktop();
+    const idle = useBrowserIdle();
+    const reducedMotion = useReducedMotion();
+
+    return isDesktop && idle && !reducedMotion;
 }

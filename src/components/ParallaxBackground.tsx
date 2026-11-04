@@ -14,7 +14,7 @@ export function ParallaxBackground() {
     const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 0.38, 0.3]);
 
     return (
-        <div className="fixed inset-0 -z-50 w-full h-full overflow-hidden bg-black">
+        <div aria-hidden="true" className="fixed inset-0 -z-50 w-full h-full overflow-hidden bg-black">
             {/* Primary universe background image */}
             <motion.div 
                 style={{ y, scale, opacity }}

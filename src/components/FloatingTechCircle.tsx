@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import {
     Code2,
@@ -25,6 +25,7 @@ const icons = [
 ];
 
 export function FloatingTechCircle() {
+        const reducedMotion = useReducedMotion();
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -40,8 +41,8 @@ export function FloatingTechCircle() {
             {/* Center Core (Free-Flowing Blob with Parallax) */}
             <motion.div
                 className="absolute z-20 w-44 h-44 md:w-60 md:h-60 lg:w-72 lg:h-72 border border-white/10 bg-black/50 glass-card flex items-center justify-center shadow-[0_0_30px_rgba(139,92,246,0.3)] backdrop-blur-md"
-                style={{ y: coreY }}
-                animate={{
+                style={{ y: coreY, borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%" }}
+                animate={reducedMotion ? undefined : {
                     boxShadow: [
                         "0 0 30px rgba(139,92,246,0.3)",
                         "0 0 60px rgba(56,189,248,0.4)",
