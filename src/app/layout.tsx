@@ -1,31 +1,31 @@
 import type { Metadata } from "next";
-import { Orbitron, Rajdhani, JetBrains_Mono } from "next/font/google";
+import { Inter, Instrument_Serif, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { ParallaxBackground } from "@/components/ParallaxBackground";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { BackgroundCanvas } from "@/components/BackgroundCanvas";
+import { MotionProvider } from "@/components/MotionProvider";
+import { SoundProvider } from "@/components/SoundProvider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { DEFAULT_TITLE, OG_IMAGE, SITE_URL, X_HANDLE } from "@/lib/metadata";
 
-const orbitron = Orbitron({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-orbitron",
+  variable: "--font-inter",
 });
 
-const rajdhani = Rajdhani({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-rajdhani",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-instrument",
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const dancingScript = Dancing_Script({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-dancing",
+  weight: ["600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -92,9 +92,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth">
       <body
-        className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground relative min-h-screen flex flex-col transition-colors duration-300 font-sans`}
+        className={`${inter.variable} ${instrumentSerif.variable} ${dancingScript.variable} antialiased bg-paper text-ink relative min-h-screen flex flex-col font-sans`}
       >
         <script
           type="application/ld+json"
@@ -131,29 +131,20 @@ export default function RootLayout({
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-black"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
         >
           Skip to content
         </a>
-        <SmoothScroll>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange={false}
-          >
-            <BackgroundCanvas />
-            <ParallaxBackground />
-
-            <Navbar />
-            <main id="main" className="flex-1 w-full relative z-10 flex flex-col overflow-x-hidden">
-              {children}
-              <Analytics />
-              <SpeedInsights />
-            </main>
-            <Footer />
-          </ThemeProvider>
-        </SmoothScroll>
+        <MotionProvider>
+          <SoundProvider />
+          <Navbar />
+          <main id="main" className="flex-1 w-full relative flex flex-col overflow-x-clip">
+            {children}
+            <Analytics />
+            <SpeedInsights />
+          </main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

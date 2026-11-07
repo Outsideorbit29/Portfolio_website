@@ -1,251 +1,93 @@
-"use client";
-
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ExternalLink, Github, Cpu, Target, Sparkles } from "lucide-react";
-import { ParallaxImage } from "@/components/ParallaxImage";
+import Image from "next/image";
 import Link from "next/link";
-
-interface Project {
-    id: string;
-    title: string;
-    description: string;
-    year: string;
-    featured: boolean;
-    tech: string[];
-    image: string;
-    // Each button only appears when its URL is set.
-    links?: {
-        github?: string;
-        demo?: string;
-    };
-    details: {
-        role: string;
-        context: string;
-        outcome: string;
-    };
-}
-
-const projects: Project[] = [
-    {
-        id: "01",
-        title: "EdgeBook",
-        description: "Trading journal for Delta Exchange that rebuilds every trade from your account history and shows what each habit costs you, with AI reviews and a Telegram bot for journaling.",
-        year: "2026",
-        featured: true,
-        tech: ["Next.js", "TypeScript", "Turso", "Clerk", "AI SDK"],
-        image: "/projects/edgebook.png",
-        links: {
-            demo: "https://delta-journal-three.vercel.app",
-        },
-        details: {
-            role: "Full Stack Developer",
-            context: "Helps traders find the behaviours that lose them money, such as moving stops or trading on a losing streak.",
-            outcome: "Live with a public demo account and an open waitlist."
-        }
-    },
-    {
-        id: "02",
-        title: "BullAI",
-        description: "Generates equity research report PDFs from company financial documents. Upload a PDF, CSV or TXT file and AI extracts the key data into a report with tables, charts and written analysis.",
-        year: "2026",
-        featured: true,
-        tech: ["FastAPI", "Python", "Gemini", "ReportLab", "Matplotlib"],
-        image: "/projects/bullai.png",
-        links: {
-            github: "https://github.com/Outsideorbit29/Bullai",
-            demo: "https://bullai-9she.onrender.com",
-        },
-        details: {
-            role: "Full Stack Developer",
-            context: "Automates brokerage-style research reports from raw financial filings.",
-            outcome: "Live tool that turns an uploaded document into a downloadable PDF report."
-        }
-    },
-    {
-        id: "03",
-        title: "CartShare",
-        description: "Collaborative shopping cart for dorm rooms, office teams and travel groups. Create a room, share its code, and add items to one cart with an activity log and printable receipt.",
-        year: "2026",
-        featured: true,
-        tech: ["JavaScript", "HTML5", "CSS3", "Bootstrap 5", "BroadcastChannel API"],
-        image: "/projects/cartshare.png",
-        links: {
-            github: "https://github.com/Outsideorbit29/Cartshare",
-            demo: "https://cartshare-delta.vercel.app",
-        },
-        details: {
-            role: "Frontend Developer",
-            context: "Makes shared group purchases transparent, with no backend or framework.",
-            outcome: "57-product catalog with instant cart sync across browser tabs."
-        }
-    },
-    {
-        id: "04",
-        title: "Trading Hand",
-        description: "AI-powered algorithmic trading platform for real-time multi-asset portfolio tracking, with an ML-based trade journal that surfaces profitable patterns and recurring mistakes.",
-        year: "2024",
-        featured: true,
-        tech: ["React.js", "Node.js", "Express.js", "MongoDB", "MetaTrader5 API"],
-        image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2560&auto=format&fit=crop",
-        details: {
-            role: "Full Stack Developer",
-            context: "Dashboards for win rate, drawdown, Sharpe ratio and portfolio performance.",
-            outcome: "Cut trade analysis time by 65%."
-        }
-    },
-    {
-        id: "05",
-        title: "Dhruv Tara",
-        description: "AI-powered EdTech platform with lecture transcription, NLP-based summarization, structured note generation and context-aware AI Q&A.",
-        year: "2024",
-        featured: true,
-        tech: ["React.js", "Python", "FastAPI", "LangChain", "PostgreSQL"],
-        image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2560&auto=format&fit=crop",
-        details: {
-            role: "Full Stack Developer",
-            context: "Helps students prepare faster from their lecture content.",
-            outcome: "Used by 200+ students, cutting preparation time to about one-third."
-        }
-    }
-];
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { Column, PageHeader, SectionHeader, TornEdge } from "@/components/ui";
+import { TINTS } from "@/components/ProjectCard";
+import { projectSlug, projects, type Project } from "@/data/content";
 
 export default function ProjectsContent() {
     return (
-        <div className="min-h-screen bg-transparent pt-20 md:pt-28 pb-16 px-4 md:px-8 lg:px-12 relative overflow-x-hidden">
-            
-            {/* Header HUD */}
-            <div className="flex flex-col mb-12 md:mb-16 gap-4 relative z-10 max-w-[2200px] mx-auto items-center lg:items-start text-center lg:text-left">
-                <div className="flex items-center gap-3">
-                    <div className="w-12 h-[1px] bg-cyan-500" />
-                    <span className="text-cyan-500 font-mono text-xs md:text-sm tracking-[0.2em] uppercase">Projects</span>
-                </div>
-                <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.9] md:leading-[0.8]">
-                    Anish Kumar <br />
-                    <span className="text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.5)]">Gupta Archive</span>
-                </h1>
-            </div>
+        <div className="w-full">
+            <PageHeader script="work" title="Things I've built" italic="Five projects, from trading tools to classroom AI" />
 
-            {/* Immersive Reel */}
-            <div className="flex flex-col gap-12 md:gap-20 w-full relative z-10 max-w-[2200px] mx-auto">
-                {projects.map((project, index) => (
-                    <ProjectSection key={project.id} project={project} index={index} />
-                ))}
-            </div>
+            <div className="bg-sheet">
+                <TornEdge flip />
+                <Column className="py-16 md:py-24 flex flex-col gap-20 md:gap-28">
+                    {projects.map((project, i) => (
+                        <ProjectRow key={project.id} project={project} index={i} />
+                    ))}
+                </Column>
 
-            {/* CTA Footer */}
-            <div className="mt-20 md:mt-28 text-center relative z-10 mb-12">
-                <Link href="/contact" className="group text-4xl md:text-7xl lg:text-8xl font-black text-white hover:text-cyan-400 transition-colors duration-500 tracking-tighter uppercase leading-none md:leading-[0.8] block font-heading">
-                   LET&apos;S CO-CREATE <br />
-                   <span className="text-cyan-500 inline-flex items-center gap-4">THE FUTURE <ArrowRight className="w-8 h-8 md:w-16 md:h-16" /></span>
-                </Link>
+                <Column className="pb-24 md:pb-32 flex flex-col items-center text-center">
+                    <SectionHeader center kicker="Next" title="Want to build something together?" italic="I'm always happy to talk about a new idea." />
+                    <Link href="/contact" className="btn btn-dark mt-8">
+                        Get in touch <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </Link>
+                </Column>
             </div>
         </div>
     );
 }
 
-function ProjectSection({ project, index }: { project: Project; index: number }) {
+function ProjectRow({ project, index }: { project: Project; index: number }) {
+    const isScreenshot = project.image.startsWith("/");
+    const reverse = index % 2 === 1;
+
     return (
-        <motion.section 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: "-10%" }}
-            className={`group flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 md:gap-12 relative py-6 md:py-8`}
-        >
-            {/* Massive Background Number */}
-            <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 0.1, scale: 1 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                viewport={{ once: false, margin: "-20%" }}
-                className={`absolute -top-8 ${index % 2 === 0 ? '-left-6' : '-right-6'} text-[18rem] font-black text-white leading-none select-none pointer-events-none z-0 hidden lg:block`}
-            >
-                {project.id}
-            </motion.div>
-
-            {/* Left: Metadata & Tech HUD */}
-            <div className="w-full lg:w-2/5 flex flex-col gap-6 md:gap-8 relative z-10 justify-center text-center lg:text-left items-center lg:items-start text-left">
-                <div className="flex flex-col gap-3">
-                    <div className="flex items-center justify-center lg:justify-start gap-3 text-left w-full">
-                        <span className="text-cyan-400 font-mono text-xs md:text-sm tracking-widest">{project.year}</span>
-                        <div className="w-8 h-[1px] bg-white/20" />
-                        <span className="text-gray-400 font-mono text-xs tracking-widest uppercase">{project.details.role}</span>
-                    </div>
-                    <h2 className="text-3xl md:text-5xl font-black text-white leading-tight tracking-tight group-hover:text-cyan-400 transition-colors duration-500 uppercase">
-                        {project.title}
-                    </h2>
-                </div>
-
-                <div className="flex flex-col gap-5 w-full">
-                    <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light max-w-xl text-left">
-                        {project.description}
-                    </p>
-                    
-                    <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-6 flex flex-col gap-4 font-mono text-xs uppercase tracking-widest text-gray-400 backdrop-blur-sm text-left">
-                        <div className="flex flex-col md:flex-row md:justify-between gap-2">
-                            <span className="flex items-center gap-2 text-cyan-500/80"><Cpu size={12} /> Context</span>
-                            <span className="text-gray-300 normal-case tracking-normal">{project.details.context}</span>
+        <section id={projectSlug(project)} aria-labelledby={`${projectSlug(project)}-title`} className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className={`lg:col-span-7 ${reverse ? "lg:order-2 scroll-right" : "scroll-left"}`}>
+                <div className="relative aspect-[16/11] rounded-2xl overflow-hidden" style={{ background: TINTS[index % TINTS.length] }}>
+                    {isScreenshot ? (
+                        <div className="absolute left-[8%] right-[8%] top-[10%] bottom-[-6%] rounded-lg overflow-hidden shadow-[0_14px_30px_rgba(40,30,10,0.16)]">
+                            <Image src={project.image} alt={`Screenshot of ${project.title}`} fill sizes="(max-width: 1024px) 90vw, 600px" className="object-cover object-top" />
                         </div>
-                        <div className="h-[1px] bg-white/5 w-full" />
-                        <div className="flex flex-col md:flex-row md:justify-between gap-2">
-                            <span className="flex items-center gap-2 text-cyan-500/80"><Target size={12} /> Outcome</span>
-                            <span className="text-gray-300 normal-case tracking-normal italic">{project.details.outcome}</span>
-                        </div>
-                    </div>
+                    ) : (
+                        <Image src={project.image} alt="" fill sizes="(max-width: 1024px) 100vw, 640px" className="object-cover" />
+                    )}
                 </div>
+            </div>
 
-                <div className="flex flex-wrap justify-center lg:justify-start gap-2">
+            <div className={`lg:col-span-5 flex flex-col gap-4 scroll-3d ${reverse ? "lg:order-1" : ""}`}>
+                <p className="kicker">
+                    {project.id} · {project.year} · {project.details.role}
+                </p>
+                <h2 id={`${projectSlug(project)}-title`} className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">
+                    {project.title}
+                </h2>
+                <p className="text-ink-soft leading-relaxed">{project.description}</p>
+
+                <dl className="sheet p-5 flex flex-col gap-3 text-sm">
+                    <div>
+                        <dt className="font-serif italic text-base text-ink-soft">Why it exists</dt>
+                        <dd className="mt-0.5">{project.details.context}</dd>
+                    </div>
+                    <div className="border-t border-rule pt-3">
+                        <dt className="font-serif italic text-base text-ink-soft">Where it is now</dt>
+                        <dd className="mt-0.5 font-medium">{project.details.outcome}</dd>
+                    </div>
+                </dl>
+
+                <ul className="flex flex-wrap gap-2" aria-label="Built with">
                     {project.tech.map((t) => (
-                        <span key={t} className="px-3 py-1 rounded-lg border border-white/10 bg-white/[0.05] text-xs font-mono text-gray-300 tracking-wider uppercase">
-                            {t}
-                        </span>
+                        <li key={t} className="tag">{t}</li>
                     ))}
-                </div>
+                </ul>
 
-                {(project.links?.github || project.links?.demo) && (
-                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-2 w-full">
-                        {project.links.github && (
-                            <a
-                                href={project.links.github}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white text-black font-black text-xs uppercase tracking-widest hover:scale-105 hover:bg-cyan-400 transition-all shadow-2xl flex-1 sm:flex-none"
-                            >
-                                <Github size={16} />
-                                View Code
+                {(project.links?.demo || project.links?.github) && (
+                    <div className="flex flex-wrap gap-3 pt-2">
+                        {project.links.demo && (
+                            <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
+                                <ExternalLink className="w-4 h-4" aria-hidden="true" /> Live demo
                             </a>
                         )}
-                        {project.links.demo && (
-                            <a
-                                href={project.links.demo}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-white/10 text-white font-black text-xs uppercase tracking-widest hover:bg-white/10 transition-all flex-1 sm:flex-none"
-                            >
-                                <ExternalLink size={16} />
-                                Live Demo
+                        {project.links.github && (
+                            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="btn">
+                                <Github className="w-4 h-4" aria-hidden="true" /> View code
                             </a>
                         )}
                     </div>
                 )}
             </div>
-
-            {/* Right: Immersive Img Preview */}
-            <div className="w-full lg:w-3/5 relative h-[300px] md:h-[450px] lg:h-[550px] rounded-[2rem] overflow-hidden group/img cursor-crosshair">
-                <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5" />
-                <div className="absolute inset-0 z-20 overflow-hidden pointer-events-none opacity-40">
-                    <motion.div 
-                        animate={{ top: ["-10%", "110%"] }}
-                        transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                        className="absolute left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_rgba(34,211,238,1)] motion-reduce:hidden"
-                    />
-                </div>
-                <div className="w-full h-full transform group-hover/img:scale-[1.05] transition-transform duration-[2000ms] ease-out">
-                    <ParallaxImage src={project.image} alt={project.title} />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-10" />
-            </div>
-        </motion.section>
+        </section>
     );
 }

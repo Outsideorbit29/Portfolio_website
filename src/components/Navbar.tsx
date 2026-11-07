@@ -1,236 +1,59 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { useLenis } from "lenis/react";
+import { Briefcase, FileText, FolderOpen, Mail, Smile, Wrench } from "lucide-react";
+import { SoundToggle } from "./SoundToggle";
 
-
-const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Projects", href: "/projects" },
-    { name: "Skills", href: "/skills" },
-    { name: "Experience", href: "/experience" },
-    { name: "Contact", href: "/contact" },
+const links = [
+    { name: "Work", href: "/projects", icon: FolderOpen },
+    { name: "About", href: "/about", icon: Smile },
+    { name: "Skills", href: "/skills", icon: Wrench },
+    { name: "Experience", href: "/experience", icon: Briefcase },
+    { name: "Contact", href: "/contact", icon: Mail },
+    { name: "Resume", href: "/resume", icon: FileText },
 ];
 
+// Floating pill menu at the top centre, with a round monogram that links home.
 export default function Navbar() {
-    const [scrolled, setScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
-    const lenis = useLenis();
-    const menuRef = useRef<HTMLDivElement>(null);
-    const menuButtonRef = useRef<HTMLButtonElement>(null);
-    const closeButtonRef = useRef<HTMLButtonElement>(null);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    // While the mobile menu is open: stop page scrolling, keep keyboard focus inside it, close on Escape.
-    useEffect(() => {
-        if (!mobileMenuOpen) return;
-
-        const opener = menuButtonRef.current;
-        const menu = menuRef.current;
-        document.body.style.overflow = "hidden";
-        lenis?.stop();
-        closeButtonRef.current?.focus();
-
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === "Escape") {
-                setMobileMenuOpen(false);
-                return;
-            }
-            if (e.key !== "Tab" || !menu) return;
-
-            const focusable = menu.querySelectorAll<HTMLElement>("a, button");
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-            if (e.shiftKey && document.activeElement === first) {
-                e.preventDefault();
-                last.focus();
-            } else if (!e.shiftKey && document.activeElement === last) {
-                e.preventDefault();
-                first.focus();
-            }
-        };
-        document.addEventListener("keydown", handleKeyDown);
-
-        return () => {
-            document.removeEventListener("keydown", handleKeyDown);
-            document.body.style.overflow = "";
-            lenis?.start();
-            opener?.focus();
-        };
-    }, [mobileMenuOpen, lenis]);
 
     return (
-        <header className="fixed top-6 w-full z-50 flex justify-center pointer-events-none">
-            <motion.div
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                className="absolute left-4 md:left-10 pointer-events-auto"
-            >
-                <Link href="/" className={`flex items-center gap-2 group rounded-full pl-1.5 pr-4 py-1.5 backdrop-blur-md border border-white/10 transition-colors duration-300 ${scrolled ? "bg-black/80" : "bg-black/50"}`}>
-                    <div className="relative w-9 h-9 rounded-lg overflow-hidden group-hover:scale-110 transition-transform">
-                        <Image
-                            src="/logo.png"
-                            alt="Anish Kumar Logo"
-                            fill
-                            className="object-contain"
-                        />
-                    </div>
-                    <span className="text-white font-bold tracking-tight text-xl">Anish Kumar</span>
-                </Link>
-            </motion.div>
-
-            <motion.nav
-                aria-label="Main"
-
-                initial={{ y: -50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`hidden lg:flex pointer-events-auto rounded-full transition-all duration-300 backdrop-blur-md border border-white/10 shadow-xl ${scrolled ? "bg-black/80 scale-95" : "bg-black/50 scale-100"
-                    }`}
-            >
-                {/* Desktop Menu */}
-                <ul className="flex items-center gap-1 sm:gap-2 px-4 py-2">
-                    {navLinks.map((link) => {
-                        const isActive = pathname === link.href;
-                        return (
-                            <li key={link.name}>
-                                <Link
-                                    href={link.href}
-                                    aria-current={isActive ? "page" : undefined}
-                                    className={`relative px-3 py-2 text-sm font-medium transition-colors ${isActive ? "text-white" : "text-gray-400 hover:text-white"
-                                        }`}
-                                >
-                                    {link.name}
-                                    {isActive && (
-                                        <motion.div
-                                            layoutId="nav-indicator"
-                                            className="absolute inset-0 bg-white/10 rounded-full -z-10"
-                                            transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
-                                        />
-                                    )}
-                                </Link>
-                            </li>
-                        );
-                    })}
-                </ul>
-            </motion.nav>
-
-            <motion.div
-                initial={{ x: 50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                className="absolute right-6 md:right-12 pointer-events-auto flex items-center"
-            >
-                {/* Desktop Let&apos;s Talk */}
+        <header className="fixed top-3 inset-x-0 z-50 flex justify-center px-2 pointer-events-none">
+            <div className="flex items-center gap-1.5 pointer-events-auto">
                 <Link
-                    href="/contact"
-                    className="hidden lg:flex bg-white text-black text-xs font-bold px-6 py-3 rounded-full hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] items-center gap-2"
+                    href="/"
+                    aria-label="Anish Kumar Gupta, home"
+                    aria-current={pathname === "/" ? "page" : undefined}
+                    className="w-10 h-10 shrink-0 rounded-full bg-sheet border border-rule shadow-[0_2px_10px_rgba(60,40,10,0.08)] flex items-center justify-center text-xs font-semibold hover:bg-paper transition-colors"
                 >
-                    Let&apos;s Talk
+                    AK
                 </Link>
-
-                {/* Mobile Menu Toggle (Replacing button on mobile) */}
-                <button
-                    ref={menuButtonRef}
-                    aria-label="Open menu"
-                    aria-expanded={mobileMenuOpen}
-                    onClick={() => setMobileMenuOpen(true)}
-                    className="lg:hidden w-11 h-11 flex items-center justify-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all active:scale-95"
+                <nav
+                    aria-label="Main"
+                    className="rounded-full bg-sheet/90 backdrop-blur border border-rule shadow-[0_2px_10px_rgba(60,40,10,0.08)] px-1.5 py-1"
                 >
-                    <Menu className="w-6 h-6" />
-                </button>
-            </motion.div>
-
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {mobileMenuOpen && (
-                    <motion.div
-                        ref={menuRef}
-                        role="dialog"
-                        aria-modal="true"
-                        aria-label="Site menu"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl pointer-events-auto flex flex-col p-8"
-                    >
-                        <div className="flex justify-between items-center mb-12">
-                            <div className="flex items-center gap-2">
-                                <div className="relative w-10 h-10 rounded-xl overflow-hidden">
-                                    <Image
-                                        src="/logo.png"
-                                        alt="Anish Kumar Logo"
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </div>
-                                <span className="text-white font-bold tracking-tight text-lg">Anish</span>
-                            </div>
-                            <button
-                                ref={closeButtonRef}
-                                aria-label="Close menu"
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="text-white p-2 hover:bg-white/10 rounded-full transition-colors"
-                            >
-                                <X className="w-8 h-8" />
-                            </button>
-                        </div>
-
-                        <ul className="flex flex-col gap-6">
-                            {navLinks.map((link, idx) => {
-                                const isActive = pathname === link.href;
-                                return (
-                                    <motion.li 
-                                        key={link.name}
-                                        initial={{ x: -20, opacity: 0 }}
-                                        animate={{ x: 0, opacity: 1 }}
-                                        transition={{ delay: idx * 0.1 }}
+                    <ul className="flex items-center">
+                        {links.map(({ name, href, icon: Icon }) => {
+                            const isActive = pathname === href;
+                            return (
+                                <li key={href}>
+                                    <Link
+                                        href={href}
+                                        aria-current={isActive ? "page" : undefined}
+                                        className={`flex items-center gap-1.5 rounded-full px-2 sm:px-3 py-1.5 text-sm transition-colors ${isActive ? "bg-paper text-ink font-semibold" : "text-ink-soft hover:text-ink"}`}
                                     >
-                                        <Link
-                                            href={link.href}
-                                            aria-current={isActive ? "page" : undefined}
-                                            onClick={() => setMobileMenuOpen(false)}
-                                            className={`text-4xl font-bold transition-colors ${isActive ? "text-blue-400" : "text-white/60 hover:text-white"}`}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    </motion.li>
-                                );
-                            })}
-                        </ul>
-
-                        <motion.div 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.6 }}
-                            className="mt-auto"
-                        >
-                            <Link
-                                href="/contact"
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="w-full bg-white text-black text-xl font-bold py-5 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-transform"
-                            >
-                                Let&apos;s Talk
-                            </Link>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                                        <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
+                                        {/* Small phones show icons only; the name is still read out. */}
+                                        <span className="sr-only md:not-sr-only">{name}</span>
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </nav>
+                <SoundToggle />
+            </div>
         </header>
     );
 }

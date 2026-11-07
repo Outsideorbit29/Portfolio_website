@@ -1,85 +1,36 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Github, Linkedin, Twitter, Mail, ArrowRight, Heart, Instagram } from "lucide-react";
+import { person, socials } from "@/data/content";
+import { TornEdge } from "./ui";
 
 export default function Footer() {
+    const links = [
+        ...socials.filter((s) => s.name === "LinkedIn" || s.name === "GitHub"),
+        { name: "Email", href: `mailto:${person.email}` },
+        { name: "Resume", href: "/resume.pdf" },
+    ];
+
     return (
-        <footer className="w-full border-t border-white/5 mt-32 bg-black/50 backdrop-blur-xl relative z-20">
-            <div className="max-w-[1800px] mx-auto px-6 md:px-12 lg:px-16 xl:px-20 py-16 text-gray-400">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8">
-                    {/* Brand & Description */}
-                    <div className="md:col-span-12 lg:col-span-5 flex flex-col items-start gap-6">
-                        <div className="flex items-center gap-3">
-                            <div className="relative w-10 h-10 rounded-xl overflow-hidden">
-                                <Image
-                                    src="/logo.png"
-                                    alt="Anish Kumar Logo"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </div>
-                            <span className="text-xl font-bold bg-clip-text text-white">
-                                Portfolio
-                            </span>
-                        </div>
-                        <p className="text-sm max-w-sm leading-relaxed text-gray-400">
-                            Full Stack Engineer building end-to-end digital products — from animated React frontends to resilient Node.js backends and AI integrations.
-                        </p>
-
-                        {/* Socials */}
-                        <div className="flex items-center gap-3 mt-2">
-                            <a href="https://github.com/Outsideorbit29" aria-label="GitHub" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
-                                <Github className="w-4 h-4" />
-                            </a>
-                            <a href="https://www.linkedin.com/in/anish-kumar-gupta-6a9b50251" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
-                                <Linkedin className="w-4 h-4" />
-                            </a>
-                            <a href="https://x.com/Anish_029" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
-                                <Twitter className="w-4 h-4" />
-                            </a>
-                            <a href="https://instagram.com/k_anish_29" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
-                                <Instagram className="w-4 h-4" />
-                            </a>
-                            <a href="mailto:anish.grd2004@gmail.com" aria-label="Email" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all text-gray-400 hover:text-white">
-                                <Mail className="w-4 h-4" />
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Navigation */}
-                    <div className="md:col-span-6 lg:col-span-3 flex flex-col gap-6">
-                        <h2 className="text-xs font-bold text-white uppercase tracking-wider">Navigation</h2>
-                        <ul className="flex flex-col gap-4 text-sm">
-                            <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-                            <li><Link href="/projects" className="hover:text-white transition-colors">Projects</Link></li>
-                            <li><Link href="/skills" className="hover:text-white transition-colors">Skills</Link></li>
-                            <li><Link href="/experience" className="hover:text-white transition-colors">Experience</Link></li>
-                            <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-                            <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Contact details */}
-                    <div className="md:col-span-6 lg:col-span-4 flex flex-col gap-6">
-                        <h2 className="text-xs font-bold text-white uppercase tracking-wider">Get in Touch</h2>
-                        <ul className="flex flex-col gap-4 text-sm">
-                            <li><a href="mailto:anish.grd2004@gmail.com" className="hover:text-white transition-colors">anish.grd2004@gmail.com</a></li>
-                            <li className="text-gray-400">Dhanbad, India</li>
-                            <li>
-                                <Link href="/contact" className="text-cyan-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-1 group font-medium overflow-hidden">
-                                    Send a message <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div className="mt-16 pt-8 border-t border-white/5 flex flex-col lg:flex-row justify-between items-center gap-4 text-xs text-gray-400">
-                    <p className="flex items-center gap-1">
-                        &copy; {new Date().getFullYear()} Portfolio. Built by Anish
-                    </p>
-                    <p>
-                        Designed &amp; Developed by Anish Kumar Gupta
+        <footer className="bg-sheet">
+            <TornEdge />
+            <div className="bg-paper">
+                <div className="max-w-[1100px] mx-auto px-4 md:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+                    <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                        {links.map((l) => {
+                            const external = l.href.startsWith("http");
+                            return (
+                                <li key={l.name}>
+                                    <a
+                                        href={l.href}
+                                        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                        className="hover:underline underline-offset-4"
+                                    >
+                                        {l.name} <span aria-hidden="true">↗</span>
+                                    </a>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                    <p className="text-ink-soft text-xs text-center">
+                        &copy; {new Date().getFullYear()} {person.name}. Designed and built by me with Next.js.
                     </p>
                 </div>
             </div>

@@ -1,76 +1,143 @@
 @import "tailwindcss";
 
+/* Warm "designer's desk" look: cream paper, white sheets, dark ink. One theme only. */
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #3b82f6;
-  --accent: #8b5cf6;
-}
-
-.dark {
-  --background: #050505;
-  --foreground: #e5e5e5;
-  --primary: #3b82f6;
-  --accent: #8b5cf6;
+  --paper: #f3eee3;
+  --paper-deep: #ebe4d4;
+  --sheet: #ffffff;
+  --ink: #2a2a2a;
+  --ink-soft: #5e5e5e;
+  --grid: rgba(120, 100, 60, 0.12);
+  --rule: #ece7dc;
+  --tag: #eef0f4;
+  --tag-ink: #4a5266;
+  --ribbon: #f8e6c2;
+  --ribbon-ink: #6a5220;
+  --clay: #a8764f;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-accent: var(--accent);
-  --font-sans: var(--font-rajdhani), sans-serif;
-  --font-heading: var(--font-orbitron), sans-serif;
-  --font-mono: var(--font-mono), monospace;
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-sheet: var(--sheet);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-rule: var(--rule);
+  --color-tag: var(--tag);
+  --color-tag-ink: var(--tag-ink);
+  --color-ribbon: var(--ribbon);
+  --color-ribbon-ink: var(--ribbon-ink);
+  --color-clay: var(--clay);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-script: var(--font-dancing), cursive;
 }
 
-/* In the base layer so Tailwind utilities on an element can override these. */
 @layer base {
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-    overflow-x: hidden;
-    letter-spacing: 0.02em;
+  html {
+    scroll-behavior: smooth;
   }
 
-  /* --font-orbitron is set on <body> by next/font, so it isn't available on :root. */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-orbitron), sans-serif;
-    letter-spacing: -0.02em;
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+    /* next/font sets these variables on <body>, so they aren't available on :root. */
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  ::selection {
+    background: var(--ribbon);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 }
 
-/* Glassmorphism utility */
-@layer utilities {
-  .glass {
-    @apply bg-black/5 dark:bg-white/5 backdrop-blur-md border border-black/10 dark:border-white/10 shadow-xl;
+@layer components {
+  /* Graph-paper background. */
+  .grid-paper {
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 64px 64px;
   }
 
-  .glass-card {
-    @apply bg-black/5 dark:bg-white/5 backdrop-blur-2xl border border-black/5 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 transition-all duration-500 hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-white/5;
+  .grid-paper-fine {
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 22px 22px;
   }
 
-  .text-glow {
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  /* Small uppercase serif label, e.g. "SELECTED PROJECTS". */
+  .kicker {
+    font-family: var(--font-instrument), Georgia, serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
   }
 
-  .dark .text-glow {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  /* Uppercase tag pill under a project. */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    background: var(--tag);
+    color: var(--tag-ink);
+    padding: 0.35rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
-  .glow-primary {
-    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));
+  /* Soft rounded button. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid var(--rule);
+    background: var(--sheet);
+    padding: 0.6rem 1.1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(60, 40, 10, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .glow-accent {
-    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(60, 40, 10, 0.1);
+  }
+
+  .btn-dark {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #fff;
+  }
+
+  /* White card on paper. */
+  .sheet {
+    background: var(--sheet);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(60, 40, 10, 0.04), 0 8px 24px rgba(60, 40, 10, 0.05);
   }
 }
 
 @keyframes reveal {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(14px);
   }
 
   to {
@@ -81,11 +148,31 @@
 
 /* A CSS animation, so content appears without waiting for JavaScript to load. */
 .reveal {
-  animation: reveal 0.6s ease-out both;
+  animation: reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Stop looping and entrance animations for people who ask for less motion. */
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-24px) rotate(var(--r, 0deg)) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(var(--r, 0deg));
+  }
+}
+
+/* Desk items settle onto the paper one after another. */
+.drop-in {
+  animation: drop-in 0.7s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   ::before,
   ::after {
@@ -93,24 +180,198 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
 
-@keyframes ripple {
-  0% {
-    width: 0px;
-    height: 0px;
-    opacity: 0.5;
-  }
+/* ---------- Motion ---------- */
 
-  100% {
-    width: 200px;
-    height: 200px;
-    opacity: 0;
-  }
+/* Polaroids that flip over in 3D. */
+.flip-card {
+  perspective: 900px;
 }
 
-.animate-ripple {
-  animation: ripple 0.5s linear;
+.flip-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.flip-card[data-flipped="true"] .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+/* Everything below only runs for people who haven't asked for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Each new page swings in like a turned notebook page. CSS, so it runs before JavaScript loads. */
+  @keyframes page-turn {
+    from {
+      opacity: 0;
+      transform: perspective(1600px) rotateY(-10deg) translateX(-24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .page-turn {
+    transform-origin: left center;
+    animation: page-turn 0.75s cubic-bezier(0.2, 0.9, 0.3, 1) both;
+  }
+
+  /*
+    Scroll-driven 3D: elements tilt up out of the page as they scroll into view, and back down if you scroll up.
+    Browsers without scroll-driven animations simply show everything, unanimated.
+  */
+  @supports (animation-timeline: view()) {
+    @keyframes rise-3d {
+      from {
+        opacity: 0;
+        transform: perspective(1100px) translateY(90px) rotateX(32deg) scale(0.92);
+      }
+
+      /* Fully opaque early, so text is readable while the 3D motion settles. */
+      45% {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes swing-left {
+      from {
+        opacity: 0;
+        transform: perspective(1100px) translateX(-80px) rotateY(28deg) rotateZ(-4deg);
+      }
+
+      /* Fully opaque early, so text is readable while the 3D motion settles. */
+      45% {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes swing-right {
+      from {
+        opacity: 0;
+        transform: perspective(1100px) translateX(80px) rotateY(-28deg) rotateZ(4deg);
+      }
+
+      /* Fully opaque early, so text is readable while the 3D motion settles. */
+      45% {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* Sticky notes get slapped onto the page. */
+    @keyframes stick {
+      from {
+        opacity: 0;
+        transform: perspective(800px) translateZ(220px) rotateZ(var(--from-r, -14deg)) scale(1.3);
+      }
+
+      /* Fully opaque early, so text is readable while the 3D motion settles. */
+      45% {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* Big headings unfold from flat. */
+    @keyframes unfold {
+      from {
+        opacity: 0;
+        transform: perspective(900px) rotateX(-75deg);
+      }
+
+      /* Fully opaque early, so text is readable while the 3D motion settles. */
+      45% {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .scroll-3d,
+    .scroll-left,
+    .scroll-right,
+    .scroll-stick,
+    .scroll-unfold {
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      /* Finishes a fixed distance after the element starts entering, so tall elements don't stay half-tilted. */
+      animation-range: entry 0% entry var(--end, 240px);
+    }
+
+    .scroll-3d {
+      animation-name: rise-3d;
+      transform-origin: 50% 100%;
+    }
+
+    .scroll-left {
+      animation-name: swing-left;
+      transform-origin: 0% 50%;
+    }
+
+    .scroll-right {
+      animation-name: swing-right;
+      transform-origin: 100% 50%;
+    }
+
+    .scroll-stick {
+      animation-name: stick;
+    }
+
+    .scroll-unfold {
+      animation-name: unfold;
+      transform-origin: 50% 0%;
+    }
+
+    /* Desk items drift apart and fade as you scroll past the desk. */
+    @keyframes scatter {
+      to {
+        transform: translate(var(--sx, 0), var(--sy, -120px)) rotate(var(--sr, 0deg)) scale(0.85);
+        opacity: 0;
+      }
+    }
+
+    .scatter {
+      animation: scatter linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 85vh;
+    }
+  }
 }
