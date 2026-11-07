@@ -9,6 +9,7 @@ import { SoundProvider } from "@/components/SoundProvider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { DEFAULT_TITLE, OG_IMAGE, SITE_URL, X_HANDLE } from "@/lib/metadata";
+import { person, socials } from "@/data/content";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -106,13 +107,8 @@ export default function RootLayout({
               alternateName: "Anish Kumar",
               url: SITE_URL,
               image: `${SITE_URL}/logo.png`,
-              sameAs: [
-                "https://github.com/Outsideorbit29",
-                "https://www.linkedin.com/in/anish-kumar-gupta-6a9b50251",
-                "https://x.com/Anish_029",
-                "https://instagram.com/k_anish_29"
-              ],
-              jobTitle: "Full Stack Software Engineer",
+              sameAs: socials.map((s) => s.href),
+              jobTitle: person.title,
               worksFor: {
                 "@type": "Organization",
                 "name": "Self-Employed"
