@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Old local clone of the site, not part of the repo (also excluded in tsconfig.json).
+    "portfolio/**",
   ]),
 ]);
 
