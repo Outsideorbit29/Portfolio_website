@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircle, Mail, MapPin, Phone, Send } from "lucide-react";
 import { Column, PageHeader, TornEdge } from "@/components/ui";
 import { person, socials } from "@/data/content";
@@ -13,21 +12,38 @@ export default function ContactContent() {
     const [formState, setFormState] = useState("idle"); // idle, submitting, success, error
     const formRef = useRef<HTMLFormElement>(null);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    // When the form appeared. The server ignores forms filled in faster than a person could type.
+    const startedAt = useRef(0);
+    useEffect(() => {
+        if (formState === "idle") startedAt.current = Date.now();
+    }, [formState]);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formRef.current) return;
+        const form = formRef.current;
+        if (!form) return;
         setFormState("submitting");
 
-        emailjs
-            .sendForm("service_2s31y3j", "template_hrv8bxw", formRef.current, "Z02mX_1sQOWwpSwl4")
-            .then(() => {
-                setFormState("success");
-                if (formRef.current) formRef.current.reset();
-            })
-            .catch((error) => {
-                console.error("Email failed to send:", error);
-                setFormState("error");
+        const data = new FormData(form);
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: data.get("user_name"),
+                    email: data.get("user_email"),
+                    message: data.get("message"),
+                    website: data.get("website"),
+                    startedAt: startedAt.current,
+                }),
             });
+            if (!res.ok) throw new Error(`Status ${res.status}`);
+            form.reset();
+            setFormState("success");
+        } catch (error) {
+            console.error("Email failed to send:", error);
+            setFormState("error");
+        }
     };
 
     const details = [
@@ -107,17 +123,22 @@ export default function ContactContent() {
                                 ) : (
                                     <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-6">
                                         <h2 className="font-script text-3xl">Write to me</h2>
+                                        {/* Spam trap: hidden from people, but bots fill it in. */}
+                                        <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+                                            <label htmlFor="contact-website">Leave this empty</label>
+                                            <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                                        </div>
                                         <div className="flex flex-col gap-2">
                                             <label htmlFor="contact-name" className="text-sm font-medium">Your name</label>
-                                            <input id="contact-name" name="user_name" type="text" autoComplete="name" required className={inputClass} placeholder="Your name" />
+                                            <input id="contact-name" name="user_name" type="text" autoComplete="name" required maxLength={100} className={inputClass} placeholder="Your name" />
                                         </div>
                                         <div className="flex flex-col gap-2">
                                             <label htmlFor="contact-email" className="text-sm font-medium">Your email</label>
-                                            <input id="contact-email" name="user_email" type="email" autoComplete="email" required className={inputClass} placeholder="you@example.com" />
+                                            <input id="contact-email" name="user_email" type="email" autoComplete="email" required maxLength={254} className={inputClass} placeholder="you@example.com" />
                                         </div>
                                         <div className="flex flex-col gap-2">
                                             <label htmlFor="contact-message" className="text-sm font-medium">Your message</label>
-                                            <textarea id="contact-message" name="message" required rows={5} className={`${inputClass} resize-none`} placeholder="How can I help?" />
+                                            <textarea id="contact-message" name="message" required maxLength={5000} rows={5} className={`${inputClass} resize-none`} placeholder="How can I help?" />
                                         </div>
 
                                         {formState === "error" && (
