@@ -8,7 +8,7 @@ import { projectSlug, projects, type Project } from "@/data/content";
 export default function ProjectsContent() {
     return (
         <div className="w-full">
-            <PageHeader script="work" title="Things I've built" italic="Five projects, from trading tools to classroom AI" />
+            <PageHeader script="work" title="Things I've built" italic="Six projects, from a voice assistant to classroom AI" />
 
             <div className="bg-sheet">
                 <TornEdge flip />

@@ -41,6 +41,22 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: "01",
+        title: "Alex",
+        description: "Personal AI voice assistant for Windows. It opens apps, files and sites when you ask in English, Hindi or a mix, builds a ranked daily brief from Gmail and Calendar, and reads Chrome tabs and WhatsApp Web through its own extension.",
+        year: "2026",
+        tech: ["Python", "FastAPI", "faster-whisper", "Claude API", "Chrome Extension"],
+        image: "/projects/alex.png",
+        links: {
+            github: "https://github.com/Outsideorbit29/alex-voice-assistant",
+        },
+        details: {
+            role: "Full Stack Developer",
+            context: "Runs on your own PC, so you can control the computer and catch up on mail, meetings and chats by voice.",
+            outcome: "Understands a spoken command in about 0.6 seconds on the GPU, backed by 512 Python and 108 extension tests.",
+        },
+    },
+    {
+        id: "02",
         title: "EdgeBook",
         description: "Trading journal for Delta Exchange that rebuilds every trade from your account history and shows what each habit costs you, with AI reviews and a Telegram bot for journaling.",
         year: "2026",
@@ -56,7 +72,7 @@ export const projects: Project[] = [
         },
     },
     {
-        id: "02",
+        id: "03",
         title: "BullAI",
         description: "Generates equity research report PDFs from company financial documents. Upload a PDF, CSV or TXT file and AI extracts the key data into a report with tables, charts and written analysis.",
         year: "2026",
@@ -73,7 +89,7 @@ export const projects: Project[] = [
         },
     },
     {
-        id: "03",
+        id: "04",
         title: "CartShare",
         description: "Collaborative shopping cart for dorm rooms, office teams and travel groups. Create a room, share its code, and add items to one cart with an activity log and printable receipt.",
         year: "2026",
@@ -90,7 +106,7 @@ export const projects: Project[] = [
         },
     },
     {
-        id: "04",
+        id: "05",
         title: "Trading Hand",
         description: "AI-powered algorithmic trading platform for real-time multi-asset portfolio tracking, with an ML-based trade journal that surfaces profitable patterns and recurring mistakes.",
         year: "2024",
@@ -103,7 +119,7 @@ export const projects: Project[] = [
         },
     },
     {
-        id: "05",
+        id: "06",
         title: "Dhruv Tara",
         description: "AI-powered EdTech platform with lecture transcription, NLP-based summarization, structured note generation and context-aware AI Q&A.",
         year: "2024",
