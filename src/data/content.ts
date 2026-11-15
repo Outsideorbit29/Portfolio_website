@@ -52,7 +52,6 @@ export const projects: Project[] = [
         links: {
             demo: "https://gb-wind-forecast-desk.vercel.app",
             github: "https://github.com/Outsideorbit29/kkrtj_ffty",
-            video: "https://youtu.be/oyHrMCQTUdc",
         },
         details: {
             role: "Full Stack Developer",
