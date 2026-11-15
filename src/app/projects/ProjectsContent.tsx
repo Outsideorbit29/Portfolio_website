@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, CirclePlay, ExternalLink, Github } from "lucide-react";
 import { Column, PageHeader, SectionHeader, TornEdge } from "@/components/ui";
 import { TINTS } from "@/components/ProjectCard";
 import { projectSlug, projects, type Project } from "@/data/content";
@@ -8,7 +8,7 @@ import { projectSlug, projects, type Project } from "@/data/content";
 export default function ProjectsContent() {
     return (
         <div className="w-full">
-            <PageHeader script="work" title="Things I've built" italic="Six projects, from a voice assistant to classroom AI" />
+            <PageHeader script="work" title="Things I've built" italic="Seven projects, from wind forecasting to classroom AI" />
 
             <div className="bg-sheet">
                 <TornEdge flip />
@@ -65,6 +65,18 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                         <dt className="font-serif italic text-base text-ink-soft">Where it is now</dt>
                         <dd className="mt-0.5 font-medium">{project.details.outcome}</dd>
                     </div>
+                    {project.guide && (
+                        <div className="border-t border-rule pt-3">
+                            <dt className="font-serif italic text-base text-ink-soft">How to use it</dt>
+                            <dd className="mt-1">
+                                <ol className="list-decimal pl-5 flex flex-col gap-1.5">
+                                    {project.guide.map((step) => (
+                                        <li key={step}>{step}</li>
+                                    ))}
+                                </ol>
+                            </dd>
+                        </div>
+                    )}
                 </dl>
 
                 <ul className="flex flex-wrap gap-2" aria-label="Built with">
@@ -73,11 +85,16 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                     ))}
                 </ul>
 
-                {(project.links?.demo || project.links?.github) && (
+                {(project.links?.demo || project.links?.github || project.links?.video) && (
                     <div className="flex flex-wrap gap-3 pt-2">
                         {project.links.demo && (
                             <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
                                 <ExternalLink className="w-4 h-4" aria-hidden="true" /> Live demo
+                            </a>
+                        )}
+                        {project.links.video && (
+                            <a href={project.links.video} target="_blank" rel="noopener noreferrer" className="btn">
+                                <CirclePlay className="w-4 h-4" aria-hidden="true" /> Watch demo
                             </a>
                         )}
                         {project.links.github && (

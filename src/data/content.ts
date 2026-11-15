@@ -30,17 +30,44 @@ export interface Project {
     links?: {
         github?: string;
         demo?: string;
+        video?: string;
     };
     details: {
         role: string;
         context: string;
         outcome: string;
     };
+    // Optional short "how to use it" steps, shown on the Projects page.
+    guide?: string[];
 }
 
 export const projects: Project[] = [
     {
         id: "01",
+        title: "Wind Forecast Desk",
+        description: "Decision tool for a UK utility's day-ahead power buying team. It shows the latest Elexon wind forecast that was actually available at the auction cutoff, turns it into a bias-corrected plan with low-wind cover, and scores every forecast against metered wind output for January 2026.",
+        year: "2026",
+        tech: ["React", "TypeScript", "FastAPI", "Python", "Docker", "Vercel"],
+        image: "/projects/wind-forecast-desk.png",
+        links: {
+            demo: "https://gb-wind-forecast-desk.vercel.app",
+            github: "https://github.com/Outsideorbit29/kkrtj_ffty",
+            video: "https://youtu.be/oyHrMCQTUdc",
+        },
+        details: {
+            role: "Full Stack Developer",
+            context: "Buyers commit to tomorrow's power at 09:20 today, so they need to know how far to trust the wind forecast they had at that moment, not the one published later.",
+            outcome: "Bias correction cuts the hourly error by 29% (2.0 GW to 1.4 GW) and beats a naive baseline by 50%, backed by 88 Python and 24 frontend tests.",
+        },
+        guide: [
+            "Overview: pick a delivery range to see how far off the forecast was, which way it missed, and an hour-by-day error heatmap.",
+            "Day-ahead decision: choose a decision date and auction cutoff. Only forecast runs published before the cutoff are used, and you get a plan, a low-wind cover figure and a decision ticket.",
+            "Forecast accuracy: see how the error changes by hour of day and by how far ahead the forecast was made, and compare models.",
+            "Data explorer: filter every delivery hour to check the numbers behind any chart.",
+        ],
+    },
+    {
+        id: "02",
         title: "Alex",
         description: "Personal AI voice assistant for Windows. It opens apps, files and sites when you ask in English, Hindi or a mix, builds a ranked daily brief from Gmail and Calendar, and reads Chrome tabs and WhatsApp Web through its own extension.",
         year: "2026",
@@ -56,7 +83,7 @@ export const projects: Project[] = [
         },
     },
     {
-        id: "02",
+        id: "03",
         title: "EdgeBook",
         description: "Trading journal for Delta Exchange that rebuilds every trade from your account history and shows what each habit costs you, with AI reviews and a Telegram bot for journaling.",
         year: "2026",
@@ -72,7 +99,7 @@ export const projects: Project[] = [
         },
     },
     {
-        id: "03",
+        id: "04",
         title: "BullAI",
         description: "Generates equity research report PDFs from company financial documents. Upload a PDF, CSV or TXT file and AI extracts the key data into a report with tables, charts and written analysis.",
         year: "2026",
@@ -89,7 +116,7 @@ export const projects: Project[] = [
         },
     },
     {
-        id: "04",
+        id: "05",
         title: "CartShare",
         description: "Collaborative shopping cart for dorm rooms, office teams and travel groups. Create a room, share its code, and add items to one cart with an activity log and printable receipt.",
         year: "2026",
@@ -106,7 +133,7 @@ export const projects: Project[] = [
         },
     },
     {
-        id: "05",
+        id: "06",
         title: "Trading Hand",
         description: "AI-powered algorithmic trading platform for real-time multi-asset portfolio tracking, with an ML-based trade journal that surfaces profitable patterns and recurring mistakes.",
         year: "2024",
@@ -119,7 +146,7 @@ export const projects: Project[] = [
         },
     },
     {
-        id: "06",
+        id: "07",
         title: "Dhruv Tara",
         description: "AI-powered EdTech platform with lecture transcription, NLP-based summarization, structured note generation and context-aware AI Q&A.",
         year: "2024",
