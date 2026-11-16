@@ -1,75 +1,72 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CirclePlay, ExternalLink, Github } from "lucide-react";
-import { Column, PageHeader, SectionHeader, TornEdge } from "@/components/ui";
-import { TINTS } from "@/components/ProjectCard";
+import { ArrowRight, CirclePlay } from "lucide-react";
+import { OrbSpot } from "@/components/ParticleOrb";
+import { ProjectLinkCells, ProjectShot, projectColor } from "@/components/ProjectPanel";
+import { Frame, PageHeader } from "@/components/ui";
 import { projectSlug, projects, type Project } from "@/data/content";
 
 export default function ProjectsContent() {
     return (
         <div className="w-full">
-            <PageHeader script="work" title="Things I've built" italic="Seven projects, from wind forecasting to classroom AI" />
+            <PageHeader note="projects.length = 7" title="Things I've built" sub="Seven projects, from wind forecasting to classroom AI." look="wave" color="#ff7a45" />
 
-            <div className="bg-sheet">
-                <TornEdge flip />
-                <Column className="py-16 md:py-24 flex flex-col gap-20 md:gap-28">
-                    {projects.map((project, i) => (
-                        <ProjectRow key={project.id} project={project} index={i} />
-                    ))}
-                </Column>
+            {projects.map((project, i) => (
+                <ProjectBlock key={project.id} project={project} index={i} />
+            ))}
 
-                <Column className="pb-24 md:pb-32 flex flex-col items-center text-center">
-                    <SectionHeader center kicker="Next" title="Want to build something together?" italic="I'm always happy to talk about a new idea." />
-                    <Link href="/contact" className="btn btn-dark mt-8">
+            <Frame className="pt-[calc(var(--cell)*2)]">
+                <div className="cells">
+                    <div className="box col-span-6 md:col-span-8 xl:col-span-10 row-span-2 p-6 flex flex-col justify-center">
+                        <h2 className="display text-[1.9rem] md:text-[2.2rem]">Want to build something together?</h2>
+                        <p className="mt-2 text-fg-soft">I&apos;m always happy to talk about a new idea.</p>
+                    </div>
+                    <OrbSpot look="calm" color={projectColor(0)} className="box hidden xl:block xl:col-span-3 row-span-2" />
+                    <Link href="/contact" className="box cell-btn col-span-6 md:col-span-4 xl:col-span-3 row-span-2">
                         Get in touch <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </Link>
-                </Column>
-            </div>
+                </div>
+            </Frame>
         </div>
     );
 }
 
-function ProjectRow({ project, index }: { project: Project; index: number }) {
-    const isScreenshot = project.image.startsWith("/");
-    const reverse = index % 2 === 1;
+function ProjectBlock({ project, index }: { project: Project; index: number }) {
+    const slug = projectSlug(project);
 
     return (
-        <section id={projectSlug(project)} aria-labelledby={`${projectSlug(project)}-title`} className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            <div className={`lg:col-span-7 ${reverse ? "lg:order-2 scroll-right" : "scroll-left"}`}>
-                <div className="relative aspect-[16/11] rounded-2xl overflow-hidden" style={{ background: TINTS[index % TINTS.length] }}>
-                    {isScreenshot ? (
-                        <div className="absolute left-[8%] right-[8%] top-[10%] bottom-[-6%] rounded-lg overflow-hidden shadow-[0_14px_30px_rgba(40,30,10,0.16)]">
-                            <Image src={project.image} alt={`Screenshot of ${project.title}`} fill sizes="(max-width: 1024px) 90vw, 600px" className="object-cover object-top" />
-                        </div>
-                    ) : (
-                        <Image src={project.image} alt="" fill sizes="(max-width: 1024px) 100vw, 640px" className="object-cover" />
-                    )}
+        <Frame as="section" id={slug} aria-labelledby={`${slug}-title`} className="pt-[calc(var(--cell)*2)] scroll-mt-[var(--cell)]">
+            <div className="cells">
+                <div className="col-span-6 md:col-span-12 xl:col-span-16 flex flex-col justify-end pb-2">
+                    <p className="mono-note">
+                        {project.id} · {project.year} · {project.details.role}
+                    </p>
+                    <h2 id={`${slug}-title`} className="draw display text-[1.9rem] md:text-[2.5rem]">
+                        {project.title}
+                    </h2>
                 </div>
-            </div>
 
-            <div className={`lg:col-span-5 flex flex-col gap-4 scroll-3d ${reverse ? "lg:order-1" : ""}`}>
-                <p className="kicker">
-                    {project.id} · {project.year} · {project.details.role}
-                </p>
-                <h2 id={`${projectSlug(project)}-title`} className="text-3xl md:text-4xl font-semibold tracking-[-0.02em]">
-                    {project.title}
-                </h2>
-                <p className="text-ink-soft leading-relaxed">{project.description}</p>
+                <div className="rise box col-span-6 row-span-4 md:col-span-12 md:row-span-6 xl:col-span-9 xl:row-span-6">
+                    <ProjectShot project={project} priority={index === 0} sizes="(max-width: 1280px) 100vw, 675px" />
+                </div>
 
-                <dl className="sheet p-5 flex flex-col gap-3 text-sm">
+                <dl className="rise box col-span-6 md:col-span-12 xl:col-span-7 xl:row-span-6 p-5 md:p-6 flex flex-col gap-4">
                     <div>
-                        <dt className="font-serif italic text-base text-ink-soft">Why it exists</dt>
-                        <dd className="mt-0.5">{project.details.context}</dd>
+                        <dt className="mono-note">what it is</dt>
+                        <dd className="mt-1 leading-relaxed">{project.description}</dd>
                     </div>
-                    <div className="border-t border-rule pt-3">
-                        <dt className="font-serif italic text-base text-ink-soft">Where it is now</dt>
-                        <dd className="mt-0.5 font-medium">{project.details.outcome}</dd>
+                    <div className="border-t border-cell pt-3">
+                        <dt className="mono-note">why it exists</dt>
+                        <dd className="mt-1 text-sm leading-relaxed text-fg-soft">{project.details.context}</dd>
+                    </div>
+                    <div className="border-t border-cell pt-3">
+                        <dt className="mono-note">where it is now</dt>
+                        <dd className="mt-1 text-sm leading-relaxed">{project.details.outcome}</dd>
                     </div>
                     {project.guide && (
-                        <div className="border-t border-rule pt-3">
-                            <dt className="font-serif italic text-base text-ink-soft">How to use it</dt>
+                        <div className="border-t border-cell pt-3">
+                            <dt className="mono-note">how to use it</dt>
                             <dd className="mt-1">
-                                <ol className="list-decimal pl-5 flex flex-col gap-1.5">
+                                <ol className="list-decimal pl-5 flex flex-col gap-1.5 text-sm text-fg-soft">
                                     {project.guide.map((step) => (
                                         <li key={step}>{step}</li>
                                     ))}
@@ -79,32 +76,19 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                     )}
                 </dl>
 
-                <ul className="flex flex-wrap gap-2" aria-label="Built with">
-                    {project.tech.map((t) => (
-                        <li key={t} className="tag">{t}</li>
-                    ))}
-                </ul>
-
-                {(project.links?.demo || project.links?.github || project.links?.video) && (
-                    <div className="flex flex-wrap gap-3 pt-2">
-                        {project.links.demo && (
-                            <a href={project.links.demo} target="_blank" rel="noopener noreferrer" className="btn btn-dark">
-                                <ExternalLink className="w-4 h-4" aria-hidden="true" /> Live demo
-                            </a>
-                        )}
-                        {project.links.video && (
-                            <a href={project.links.video} target="_blank" rel="noopener noreferrer" className="btn">
-                                <CirclePlay className="w-4 h-4" aria-hidden="true" /> Watch demo
-                            </a>
-                        )}
-                        {project.links.github && (
-                            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="btn">
-                                <Github className="w-4 h-4" aria-hidden="true" /> View code
-                            </a>
-                        )}
-                    </div>
-                )}
-            </div>
-        </section>
+                <div className="box col-span-6 md:col-span-6 xl:col-span-9 p-3 flex items-center">
+                    <ul className="flex flex-wrap gap-1.5" aria-label="Built with">
+                        {project.tech.map((t) => (
+                            <li key={t} className="tag">{t}</li>
+                        ))}
+                    </ul>
+                </div>
+                <ProjectLinkCells project={project} className="col-span-3" />
+                {project.links?.video && (
+                    <a href={project.links.video} target="_blank" rel="noopener noreferrer" className="box cell-btn col-span-3 text-sm">
+                        <CirclePlay className="w-4 h-4" aria-hidden="true" /> Watch demo
+                    </a>
+                )}            </div>
+        </Frame>
     );
 }

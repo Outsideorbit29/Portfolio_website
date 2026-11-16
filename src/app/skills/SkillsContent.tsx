@@ -1,44 +1,74 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Ribbon } from "@/components/Ribbon";
-import { Column, PageHeader, TornEdge } from "@/components/ui";
+import { OrbSpot } from "@/components/ParticleOrb";
+import { Frame, PageHeader } from "@/components/ui";
 import { skillGroups } from "@/data/content";
+
+// Each group's name as a small word and a highlighted word, e.g. "front/" + "end".
+const WORDS: Record<string, [string, string]> = {
+    Languages: ["typed/", "languages"],
+    Frontend: ["front/", "end"],
+    Backend: ["back/", "end"],
+    "AI / ML": ["ai/", "ml"],
+};
+
+const marqueeWords = ["React", "Next.js", "TypeScript", "Node.js", "FastAPI", "Python", "LangChain", "PostgreSQL"];
 
 export default function SkillsContent() {
     return (
         <div className="w-full">
-            <PageHeader script="skills" title="What I work with" italic="The tools I reach for, from interface to API" />
+            <PageHeader note="cat skills.json" title="What I work with" sub="The tools I reach for, from interface to API." look="lumpy" color="#f2c14e" />
 
-            <div className="bg-sheet">
-                <TornEdge flip />
-                <Column className="py-16 md:py-24">
-                    <div className="grid-paper-fine rounded-2xl border border-rule p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        {skillGroups.map((group, i) => (
-                            <section key={group.category} aria-labelledby={`skills-${group.category}`} className="sheet p-6 md:p-8 scroll-3d" style={{ "--end": `${240 + (i % 2) * 60}px` } as React.CSSProperties}>
-                                <h2 id={`skills-${group.category}`} className="text-2xl font-semibold tracking-[-0.01em]">
-                                    {group.category}
+            {skillGroups.map((group, gi) => {
+                const [small, big] = WORDS[group.category] ?? [`${group.category}/`, ""];
+                return (
+                    <Frame key={group.category} as="section" aria-labelledby={`skills-${gi}`} className="pt-[calc(var(--cell)*2)]">
+                        <div className="cells rise">
+                            <div className="box col-span-6 md:col-span-12 xl:col-span-4 xl:row-span-4 p-5 flex flex-col justify-between gap-4">
+                                <span className="mono-note">0{gi + 1}.</span>
+                                <h2 id={`skills-${gi}`} className="text-4xl md:text-5xl font-light lowercase leading-[1.1]">
+                                    <span className="sr-only">{group.category}</span>
+                                    <span aria-hidden="true">
+                                        {small}
+                                        <br />
+                                        <span className="inline-block bg-fg text-bg px-2 mt-1">{big}</span>
+                                    </span>
                                 </h2>
-                                <ul className="mt-5 flex flex-col divide-y divide-rule">
-                                    {group.items.map((skill) => (
-                                        <li key={skill.name} className="py-3 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                                            <h3 className="font-medium">{skill.name}</h3>
-                                            <p className="font-serif italic text-ink-soft">{skill.spec}</p>
+                            </div>
+                            <ul className="contents">
+                                {group.items.map((skill) => (
+                                    <li key={skill.name} className="box col-span-6 md:col-span-12 xl:col-span-12 px-5 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                                        <h3 className="text-lg">{skill.name}</h3>
+                                        <p className="mono-note sm:text-right">{skill.spec}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </Frame>
+                );
+            })}
+
+            <Frame className="pt-[calc(var(--cell)*2)]">
+                <div className="cells">
+                    <div aria-hidden="true" className="box col-span-6 md:col-span-8 xl:col-span-10 row-span-2 overflow-hidden flex items-center">
+                        <div className="marquee flex w-max">
+                            {[0, 1].map((copy) => (
+                                <ul key={copy} className="flex">
+                                    {marqueeWords.map((w) => (
+                                        <li key={w} className="px-6 font-mono text-sm text-fg-soft whitespace-nowrap">
+                                            {w}
                                         </li>
                                     ))}
                                 </ul>
-                            </section>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </Column>
-
-                <Ribbon words={["React", "Next.js", "TypeScript", "Node.js", "FastAPI", "Python", "LangChain", "PostgreSQL"]} />
-
-                <Column className="py-20 md:py-28 flex justify-center">
-                    <Link href="/projects" className="inline-flex items-center gap-2 font-medium underline underline-offset-4">
+                    <OrbSpot look="calm" color="#f2c14e" className="box hidden xl:block xl:col-span-3 row-span-2" />
+                    <Link href="/projects" className="box cell-btn col-span-6 md:col-span-4 xl:col-span-3 row-span-2">
                         See them in my projects <ArrowRight className="w-4 h-4" aria-hidden="true" />
                     </Link>
-                </Column>
-            </div>
+                </div>
+            </Frame>
         </div>
     );
 }

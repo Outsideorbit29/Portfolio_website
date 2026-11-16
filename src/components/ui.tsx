@@ -1,94 +1,73 @@
 import type { ReactNode } from "react";
+import { OrbSpot, type OrbLook } from "./ParticleOrb";
 
-// A ragged line across 1200 units, made once with a fixed seed so server and browser match.
-const TORN_PATH = (() => {
-    let seed = 7;
-    const rand = () => {
-        seed = (seed * 9301 + 49297) % 233280;
-        return seed / 233280;
-    };
-    let d = "M0 24 V12";
-    for (let x = 0; x < 1200; ) {
-        x = Math.min(1200, x + 14 + rand() * 22);
-        d += ` L${x.toFixed(1)} ${(6 + rand() * 12).toFixed(1)}`;
-    }
-    return d + " V24 Z";
-})();
-
-// Ragged "torn paper" edge between a paper band and a white sheet.
-// `color` is the colour of the band the edge belongs to; `flip` puts it on the bottom.
-export function TornEdge({ color = "var(--paper)", flip = false }: { color?: string; flip?: boolean }) {
+// The content column, a whole number of grid cells wide.
+export function Frame({ children, className = "", as: Tag = "div", ...rest }: { children: ReactNode; className?: string; as?: "div" | "section"; id?: string; "aria-labelledby"?: string }) {
     return (
-        <svg
-            aria-hidden="true"
-            viewBox="0 0 1200 24"
-            preserveAspectRatio="none"
-            className={`block w-full h-4 md:h-6 ${flip ? "rotate-180" : ""}`}
-            style={{ color }}
-        >
-            <path fill="currentColor" d={TORN_PATH} />
-        </svg>
+        <Tag className={`frame ${className}`} {...rest}>
+            {children}
+        </Tag>
     );
 }
 
-// A paper band with torn edges top and bottom.
-export function PaperBand({ children, className = "" }: { children: ReactNode; className?: string }) {
-    return (
-        <section className={`relative bg-sheet ${className}`}>
-            <TornEdge />
-            <div className="bg-paper">{children}</div>
-            <TornEdge flip />
-        </section>
-    );
-}
-
-// Section heading: serif uppercase label, bold title, optional italic serif line.
+// Section heading row: big thin title with a short line under it, and an optional button box on the right.
 export function SectionHeader({
-    kicker,
-    title,
-    italic,
     id,
-    center = false,
+    title,
+    sub,
+    action,
     as: Tag = "h2",
 }: {
-    kicker?: string;
-    title: ReactNode;
-    italic?: string;
     id?: string;
-    center?: boolean;
+    title: ReactNode;
+    sub?: ReactNode;
+    action?: ReactNode;
     as?: "h1" | "h2";
 }) {
     return (
-        <div className={`flex flex-col gap-2 ${center ? "items-center text-center" : ""}`}>
-            {kicker && <p className="kicker">{kicker}</p>}
-            <Tag id={id} className="scroll-unfold text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
-                {title}
-            </Tag>
-            {italic && <p className="font-serif italic text-xl md:text-2xl text-ink-soft">{italic}</p>}
+        <div className="cells">
+            <div className="col-span-6 md:col-span-8 xl:col-span-12 flex flex-col justify-end pb-2">
+                <Tag id={id} className="draw display text-[1.9rem] md:text-[2.5rem]">
+                    {title}
+                </Tag>
+                {sub && <p className="mt-1 text-sm text-fg-soft">{sub}</p>}
+            </div>
+            {action && <div className="col-span-6 md:col-span-4 flex md:justify-end">{action}</div>}
         </div>
     );
 }
 
-// Page top for inner pages: grid paper with the page name in handwriting.
-export function PageHeader({ script, title, italic }: { script: string; title: string; italic?: string }) {
+// Top of an inner page: the page name large, a short line under it, and a spot for the sphere on wide screens.
+export function PageHeader({ title, sub, note, look = "blob", color }: { title: string; sub?: string; note: string; look?: OrbLook; color?: string }) {
     return (
-        <div className="grid-paper pt-28 md:pt-36 pb-14 md:pb-20 px-4">
-            <div className="max-w-[1100px] mx-auto flex flex-col items-center text-center gap-3">
-                <p className="reveal font-script text-3xl md:text-4xl text-clay" aria-hidden="true">{script}</p>
-                <h1 style={{ animationDelay: "0.05s" }} className="reveal text-4xl md:text-6xl font-semibold tracking-[-0.03em] leading-[1.05] max-w-3xl">
-                    {title}
-                </h1>
-                {italic && (
-                    <p style={{ animationDelay: "0.1s" }} className="reveal font-serif italic text-xl md:text-2xl text-ink-soft max-w-2xl">
-                        {italic}
-                    </p>
-                )}
+        <div className="frame pt-[calc(var(--cell)*2)]">
+            <div className="cells">
+                <div className="col-span-6 md:col-span-9 xl:col-span-12 md:row-span-3 flex flex-col justify-end pb-4 xl:pb-0">
+                    <p className="reveal mono-note">{note}</p>
+                    <h1 style={{ animationDelay: "0.05s" }} className="reveal display mt-2 text-[2.6rem] md:text-[4rem] xl:text-[5rem]">
+                        {title}
+                    </h1>
+                    {sub && (
+                        <p style={{ animationDelay: "0.1s" }} className="reveal mt-3 text-fg-soft md:text-lg max-w-2xl">
+                            {sub}
+                        </p>
+                    )}
+                </div>
+                <OrbSpot look={look} color={color} className="hidden md:block md:col-span-3 xl:col-span-4 md:row-span-3 box" />
             </div>
         </div>
     );
 }
 
-// Centred content column.
-export function Column({ children, className = "" }: { children: ReactNode; className?: string }) {
-    return <div className={`max-w-[1100px] mx-auto px-4 md:px-8 ${className}`}>{children}</div>;
+// Width of a button box, in grid cells.
+export const W2 = "w-[calc(var(--cell)*2)]";
+export const W3 = "w-[calc(var(--cell)*3)]";
+
+// "01. SOMETHING" label.
+export function NumberLabel({ n, children }: { n: string; children: ReactNode }) {
+    return (
+        <p className="label">
+            <span className="text-fg-mute font-normal">{n}.</span> {children}
+        </p>
+    );
 }

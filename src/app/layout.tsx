@@ -1,32 +1,26 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, Dancing_Script } from "next/font/google";
+import { Montserrat, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-import { MotionProvider } from "@/components/MotionProvider";
 import { SoundProvider } from "@/components/SoundProvider";
+import { ParticleOrb } from "@/components/ParticleOrb";
+import { ScrollRuler } from "@/components/ScrollRuler";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { DEFAULT_TITLE, OG_IMAGE, SITE_URL, X_HANDLE } from "@/lib/metadata";
 import { person, socials } from "@/data/content";
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-montserrat",
+  weight: ["300", "400", "500", "600"],
 });
 
-const instrumentSerif = Instrument_Serif({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-instrument",
+  variable: "--font-plex-mono",
   weight: "400",
-  style: ["normal", "italic"],
-});
-
-const dancingScript = Dancing_Script({
-  subsets: ["latin"],
-  variable: "--font-dancing",
-  weight: ["600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -95,7 +89,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body
-        className={`${inter.variable} ${instrumentSerif.variable} ${dancingScript.variable} antialiased bg-paper text-ink relative min-h-screen flex flex-col font-sans`}
+        className={`${montserrat.variable} ${plexMono.variable} antialiased bg-bg text-fg relative min-h-screen flex flex-col font-sans`}
       >
         <script
           type="application/ld+json"
@@ -127,20 +121,20 @@ export default function RootLayout({
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:bg-fg focus:px-4 focus:py-2 focus:text-bg"
         >
           Skip to content
         </a>
-        <MotionProvider>
-          <SoundProvider />
-          <Navbar />
-          <main id="main" className="flex-1 w-full relative flex flex-col overflow-x-clip">
-            {children}
-            <Analytics />
-            <SpeedInsights />
-          </main>
-          <Footer />
-        </MotionProvider>
+        <SoundProvider />
+        <ParticleOrb />
+        <Navbar />
+        <main id="main" className="flex-1 w-full relative z-[1] flex flex-col overflow-x-clip">
+          {children}
+          <Analytics />
+          <SpeedInsights />
+        </main>
+        <Footer />
+        <ScrollRuler />
       </body>
     </html>
   );
