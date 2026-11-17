@@ -214,6 +214,66 @@
 /* Everything below only runs for people who haven't asked for less motion. */
 @media (prefers-reduced-motion: no-preference) {
 
+  /* Things on the desk shift with the mouse, each by its own depth (set by DeskHero). */
+  .desk-depth {
+    transform: translate3d(calc(var(--px, 0) * var(--depth, 0) * -1px), calc(var(--py, 0) * var(--depth, 0) * -1px), 0);
+    transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* Sticky notes sway a little, as if pinned at the top. */
+  @keyframes sway {
+    from {
+      transform: rotate(-1.4deg);
+    }
+
+    to {
+      transform: rotate(1.4deg);
+    }
+  }
+
+  .sway {
+    transform-origin: 50% 0;
+    animation: sway 3.2s ease-in-out infinite alternate;
+  }
+
+  /* Pencil underline under headings: hidden until it draws itself in (Doodle sets data-drawn). */
+  .doodle path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+
+  .doodle[data-drawn] path {
+    animation: doodle-draw 0.9s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+  }
+
+  @keyframes doodle-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* A ring that keeps pulsing out of the "demo online" dot. */
+  @keyframes live-ping {
+    from {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+
+    to {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+
+  .live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: inherit;
+    animation: live-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
   /* Each new page swings in like a turned notebook page. CSS, so it runs before JavaScript loads. */
   @keyframes page-turn {
     from {

@@ -3,10 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useRef, useState, type CSSProperties, type ReactNode, type RefObject } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode, type RefObject } from "react";
 import { playSound } from "@/lib/sound";
 import { projectSlug, projects } from "@/data/content";
 import { PencilTrail } from "./PencilTrail";
+import { GridTrace } from "./GridTrace";
+import { useDemoStatus } from "@/lib/demoStatus";
 
 type Pos = { x: string; y: string };
 type Scatter = { x: string; y: string; r: string };
@@ -25,6 +27,7 @@ function DeskItem({
     delay = 0,
     className = "",
     board,
+    depth = 10,
 }: {
     children: ReactNode;
     m: Pos;
@@ -34,12 +37,15 @@ function DeskItem({
     delay?: number;
     className?: string;
     board: RefObject<HTMLDivElement | null>;
+    // How far it shifts as the mouse moves over the desk, in pixels. Bigger feels closer.
+    depth?: number;
 }) {
     return (
         <div
             className={`absolute scatter ${POS_CLASS} ${className}`}
             style={{ ...posStyle(m, d), "--sx": s.x, "--sy": s.y, "--sr": s.r } as CSSProperties}
         >
+            <div className="desk-depth" style={{ "--depth": depth } as CSSProperties}>
             <motion.div
                 data-desk-item
                 drag
@@ -58,6 +64,7 @@ function DeskItem({
                     {children}
                 </div>
             </motion.div>
+            </div>
         </div>
     );
 }
@@ -107,18 +114,79 @@ function Polaroid({ index }: { index: number }) {
     );
 }
 
-function Sticky({ color, children }: { color: string; children: ReactNode }) {
+function Sticky({ color, children, sway = 0 }: { color: string; children: ReactNode; sway?: number }) {
     return (
         <div
-            className="w-[92px] h-[92px] md:w-[108px] md:h-[108px] p-3 font-script text-lg md:text-xl leading-tight text-ink shadow-[0_6px_14px_rgba(60,40,10,0.14)] flex items-center justify-center text-center"
-            style={{ background: color }}
+            style={{ background: color, animationDelay: `${-sway}s` }}
+            className="sway w-[92px] h-[92px] md:w-[108px] md:h-[108px] p-3 font-script text-lg md:text-xl leading-tight text-ink shadow-[0_6px_14px_rgba(60,40,10,0.14)] flex items-center justify-center text-center"
         >
             {children}
         </div>
     );
 }
 
+type Line = { text: string; kind: "cmd" | "dim" | "ok" | "warn" | "bad" };
+
+const STATIC_LINES: Line[] = [
+    { text: "npm run build", kind: "cmd" },
+    { text: "Compiled successfully", kind: "dim" },
+    { text: "git push", kind: "cmd" },
+    { text: "✓ deployed", kind: "ok" },
+];
+
+const LINE_CLASS: Record<Line["kind"], string> = { cmd: "", dim: "text-[#9a9a9a]", ok: "text-[#8be28b]", warn: "text-[#e8c766]", bad: "text-[#ff8a80]" };
+
+// Short name for a project in the terminal, e.g. "wind" for Wind Forecast Desk.
+const shortName = (slug: string) => projects.find((p) => projectSlug(p) === slug)?.title.split(" ")[0].toLowerCase() ?? slug;
+
+// A terminal on the desk that checks the live demos for real and types out the results, over and over.
 function Terminal() {
+    const status = useDemoStatus();
+    const [lines, setLines] = useState<Line[]>(STATIC_LINES);
+    const [typing, setTyping] = useState("");
+
+    useEffect(() => {
+        if (!status?.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        let timer = 0;
+        let i = 0;
+        let shown: Line[] = [];
+        const wait = (ms: number, next: () => void) => {
+            timer = window.setTimeout(next, ms);
+        };
+        const nextCheck = () => {
+            const s = status[i % status.length];
+            i++;
+            // Make room: the new check takes two lines, the screen holds four.
+            shown = shown.slice(-2);
+            setLines(shown);
+            const cmd = `ping ${shortName(s.slug)}`;
+            let n = 0;
+            const type = () => {
+                n++;
+                setTyping(cmd.slice(0, n));
+                if (n < cmd.length) return wait(55, type);
+                wait(450, () => {
+                    const result: Line =
+                        s.state === "up"
+                            ? { text: `✓ online · ${s.ms}ms`, kind: "ok" }
+                            : s.state === "asleep"
+                              ? { text: "z asleep (free hosting)", kind: "warn" }
+                              : { text: "✗ offline", kind: "bad" };
+                    // Keep the last two checks on screen.
+                    shown = [...shown, { text: cmd, kind: "cmd" as const }, result].slice(-4);
+                    setTyping("");
+                    setLines(shown);
+                    wait(1800, nextCheck);
+                });
+            };
+            wait(300, type);
+        };
+        wait(1200, nextCheck);
+        return () => window.clearTimeout(timer);
+    }, [status]);
+
+    const up = status?.filter((s) => s.state === "up").length ?? 0;
+
     return (
         <div className="w-[190px] md:w-[230px] rounded-lg bg-[#1f1f22] shadow-[0_10px_24px_rgba(20,20,20,0.22)] overflow-hidden font-mono text-[11px] md:text-xs leading-relaxed">
             <div className="flex gap-1.5 px-3 py-2 bg-[#2b2b2f]">
@@ -126,11 +194,30 @@ function Terminal() {
                 <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
                 <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
             </div>
-            <div className="px-3 py-2.5 text-[#d6d6d6]">
-                <p><span className="text-[#8be28b]">~</span> npm run build</p>
-                <p className="text-[#9a9a9a]">Compiled successfully</p>
-                <p><span className="text-[#8be28b]">~</span> git push</p>
-                <p className="text-[#8be28b]">✓ deployed<span aria-hidden="true" className="inline-block w-1.5 h-3 ml-1 align-middle bg-[#d6d6d6] motion-safe:animate-pulse" /></p>
+            {status?.length ? (
+                <p className="sr-only">
+                    Live check: {up} of {status.length} project demos online right now.
+                </p>
+            ) : null}
+            <div className="px-3 py-2.5 text-[#d6d6d6]" aria-hidden={status?.length ? true : undefined}>
+                <div className="h-[6.5em] overflow-hidden">
+                {lines.map((l, k) => (
+                    <p key={k} className={`whitespace-nowrap overflow-hidden ${LINE_CLASS[l.kind]}`}>
+                        {l.kind === "cmd" && <span className="text-[#8be28b]">~ </span>}
+                        {l.text}
+                        {!typing && k === lines.length - 1 && (
+                            <span aria-hidden="true" className="inline-block w-1.5 h-3 ml-1 align-middle bg-[#d6d6d6] motion-safe:animate-pulse" />
+                        )}
+                    </p>
+                ))}
+                {typing && (
+                    <p className="whitespace-nowrap overflow-hidden">
+                        <span className="text-[#8be28b]">~ </span>
+                        {typing}
+                        <span aria-hidden="true" className="inline-block w-1.5 h-3 ml-0.5 align-middle bg-[#d6d6d6]" />
+                    </p>
+                )}
+                </div>
             </div>
         </div>
     );
@@ -156,11 +243,13 @@ function Word({ children, m, d, s, delay }: { children: ReactNode; m: Pos; d: Po
             className={`absolute scatter ${POS_CLASS}`}
             style={{ ...posStyle(m, d), "--sx": s.x, "--sy": s.y, "--sr": s.r } as CSSProperties}
         >
+            <span className="desk-depth block" style={{ "--depth": 4 } as CSSProperties}>
             <span
                 className="reveal block font-semibold uppercase tracking-wide text-sm md:text-xl leading-tight text-ink whitespace-nowrap"
                 style={{ animationDelay: `${delay}s` }}
             >
                 {children}
+            </span>
             </span>
         </span>
     );
@@ -170,9 +259,27 @@ function Word({ children, m, d, s, delay }: { children: ReactNode; m: Pos; d: Po
 export function DeskHero() {
     const board = useRef<HTMLDivElement>(null);
 
+    // Tell the desk where the mouse is (-1 to 1 each way), so things on it shift by their depth.
+    const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+        if (e.pointerType === "touch") return;
+        const r = e.currentTarget.getBoundingClientRect();
+        e.currentTarget.style.setProperty("--px", (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+        e.currentTarget.style.setProperty("--py", (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+    };
+    const onPointerLeave = (e: React.PointerEvent<HTMLDivElement>) => {
+        e.currentTarget.style.setProperty("--px", "0");
+        e.currentTarget.style.setProperty("--py", "0");
+    };
+
     return (
         <div className="relative max-w-[1100px] mx-auto">
-            <div ref={board} className="grid-paper relative h-[520px] md:h-[560px] border-y md:border border-[rgba(120,100,60,0.18)] overflow-hidden">
+            <div
+                ref={board}
+                onPointerMove={onPointerMove}
+                onPointerLeave={onPointerLeave}
+                className="grid-paper relative h-[520px] md:h-[560px] border-y md:border border-[rgba(120,100,60,0.18)] overflow-hidden"
+            >
+                <GridTrace size={64} />
                 <PencilTrail />
 
                 {/* The statement, in pieces between the objects. */}
@@ -184,29 +291,29 @@ export function DeskHero() {
                     <Word m={{ x: "6%", y: "62%" }} d={{ x: "62%", y: "76%" }} s={{ x: "140px", y: "-20px", r: "8deg" }} delay={0.6}>to the API.</Word>
                 </p>
 
-                <DeskItem board={board} rotate={-6} delay={0.1} m={{ x: "4%", y: "4%" }} d={{ x: "6%", y: "8%" }} s={{ x: "-260px", y: "-200px", r: "-30deg" }}>
+                <DeskItem board={board} rotate={-6} delay={0.1} m={{ x: "4%", y: "4%" }} d={{ x: "6%", y: "8%" }} s={{ x: "-260px", y: "-200px", r: "-30deg" }} depth={16}>
                     <Polaroid index={0} />
                 </DeskItem>
-                <DeskItem board={board} rotate={5} delay={0.25} m={{ x: "62%", y: "21%" }} d={{ x: "70%", y: "6%" }} s={{ x: "280px", y: "-220px", r: "35deg" }}>
+                <DeskItem board={board} rotate={5} delay={0.25} m={{ x: "62%", y: "21%" }} d={{ x: "70%", y: "6%" }} s={{ x: "280px", y: "-220px", r: "35deg" }} depth={12}>
                     <Polaroid index={2} />
                 </DeskItem>
-                <DeskItem board={board} rotate={-3} delay={0.4} className="hidden md:block" m={{ x: "0", y: "0" }} d={{ x: "45%", y: "38%" }} s={{ x: "0px", y: "-320px", r: "-20deg" }}>
+                <DeskItem board={board} rotate={-3} delay={0.4} className="hidden md:block" m={{ x: "0", y: "0" }} d={{ x: "45%", y: "38%" }} s={{ x: "0px", y: "-320px", r: "-20deg" }} depth={20}>
                     <Polaroid index={1} />
                 </DeskItem>
                 <DeskItem board={board} rotate={4} delay={0.3} m={{ x: "6%", y: "73%" }} d={{ x: "8%", y: "68%" }} s={{ x: "-300px", y: "40px", r: "-45deg" }}>
-                    <Sticky color="#fde68a">ship it ✓</Sticky>
+                    <Sticky color="#fde68a" sway={0}>ship it ✓</Sticky>
                 </DeskItem>
                 <DeskItem board={board} rotate={-5} delay={0.45} className="hidden md:block" m={{ x: "0", y: "0" }} d={{ x: "86%", y: "40%" }} s={{ x: "300px", y: "-40px", r: "40deg" }}>
-                    <Sticky color="#fbcfe8">fix the bug, then coffee</Sticky>
+                    <Sticky color="#fbcfe8" sway={1.7}>fix the bug, then coffee</Sticky>
                 </DeskItem>
-                <DeskItem board={board} rotate={-2} delay={0.5} m={{ x: "44%", y: "58%" }} d={{ x: "76%", y: "62%" }} s={{ x: "260px", y: "60px", r: "18deg" }}>
+                <DeskItem board={board} rotate={-2} delay={0.5} m={{ x: "44%", y: "58%" }} d={{ x: "76%", y: "62%" }} s={{ x: "260px", y: "60px", r: "18deg" }} depth={8}>
                     <Terminal />
                 </DeskItem>
-                <DeskItem board={board} rotate={0} delay={0.35} m={{ x: "40%", y: "29%" }} d={{ x: "26%", y: "30%" }} s={{ x: "-200px", y: "-260px", r: "-60deg" }}>
+                <DeskItem board={board} rotate={0} delay={0.35} m={{ x: "40%", y: "29%" }} d={{ x: "26%", y: "30%" }} s={{ x: "-200px", y: "-260px", r: "-60deg" }} depth={14}>
                     <Mug />
                 </DeskItem>
                 <DeskItem board={board} rotate={3} delay={0.55} className="hidden md:block" m={{ x: "0", y: "0" }} d={{ x: "33%", y: "72%" }} s={{ x: "-120px", y: "80px", r: "-25deg" }}>
-                    <Sticky color="#bfdbfe">TODO: write tests</Sticky>
+                    <Sticky color="#bfdbfe" sway={3.1}>TODO: write tests</Sticky>
                 </DeskItem>
 
                 <p className="absolute bottom-3 left-4 font-script text-base text-ink-soft" aria-hidden="true">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CirclePlay, ExternalLink, Github } from "lucide-react";
 import { Column, PageHeader, SectionHeader, TornEdge } from "@/components/ui";
 import { TINTS } from "@/components/ProjectCard";
+import { LiveStatus } from "@/components/LiveStatus";
 import { projectSlug, projects, type Project } from "@/data/content";
 
 export default function ProjectsContent() {
@@ -102,6 +103,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                                 <Github className="w-4 h-4" aria-hidden="true" /> View code
                             </a>
                         )}
+                        <LiveStatus project={project} />
                     </div>
                 )}
             </div>

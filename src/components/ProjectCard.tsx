@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { projectSlug, type Project } from "@/data/content";
 import { Tilt } from "./Tilt";
+import { LiveStatus } from "./LiveStatus";
 
 // Soft background tints for the image panels, one per project in order.
 export const TINTS = ["#f4ece0", "#eceefa", "#f6e9f1", "#e8f2ec", "#f1efe6"];
@@ -42,6 +43,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             <p className="mt-2 text-sm text-ink-soft leading-relaxed max-w-md">
                 {project.details.context} <strong className="font-semibold text-ink">{project.details.outcome}</strong>
             </p>
+            <LiveStatus project={project} className="mt-3" />
             <ul className="mt-4 flex flex-wrap gap-2" aria-label="Built with">
                 {project.tech.slice(0, 3).map((t) => (
                     <li key={t} className="tag">{t}</li>

@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { Doodle } from "./Doodle";
+import { GridTrace } from "./GridTrace";
 
 // A ragged line across 1200 units, made once with a fixed seed so server and browser match.
 const TORN_PATH = (() => {
@@ -64,6 +66,7 @@ export function SectionHeader({
             <Tag id={id} className="scroll-unfold text-3xl md:text-4xl font-semibold tracking-[-0.02em] leading-tight">
                 {title}
             </Tag>
+            <Doodle className="-mt-1" />
             {italic && <p className="font-serif italic text-xl md:text-2xl text-ink-soft">{italic}</p>}
         </div>
     );
@@ -72,8 +75,9 @@ export function SectionHeader({
 // Page top for inner pages: grid paper with the page name in handwriting.
 export function PageHeader({ script, title, italic }: { script: string; title: string; italic?: string }) {
     return (
-        <div className="grid-paper pt-28 md:pt-36 pb-14 md:pb-20 px-4">
-            <div className="max-w-[1100px] mx-auto flex flex-col items-center text-center gap-3">
+        <div className="grid-paper relative pt-28 md:pt-36 pb-14 md:pb-20 px-4">
+            <GridTrace size={64} />
+            <div className="relative max-w-[1100px] mx-auto flex flex-col items-center text-center gap-3">
                 <p className="reveal font-script text-3xl md:text-4xl text-clay" aria-hidden="true">{script}</p>
                 <h1 style={{ animationDelay: "0.05s" }} className="reveal text-4xl md:text-6xl font-semibold tracking-[-0.03em] leading-[1.05] max-w-3xl">
                     {title}
