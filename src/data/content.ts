@@ -83,18 +83,18 @@ export const projects: Project[] = [
     },
     {
         id: "03",
-        title: "EdgeBook",
-        description: "Trading journal for Delta Exchange that rebuilds every trade from your account history and shows what each habit costs you, with AI reviews and a Telegram bot for journaling.",
-        year: "2026",
+        title: "Hardwon",
+        description: "AI trading journal that syncs with your broker account, so there is no manual trade logging. It reviews every trade, spots recurring mistakes and habits across sessions, and suggests what to fix.",
+        year: "2025",
         tech: ["Next.js", "TypeScript", "Turso", "Clerk", "AI SDK"],
         image: "/projects/edgebook.png",
         links: {
-            demo: "https://delta-journal-three.vercel.app",
+            demo: "https://hardwon.in",
         },
         details: {
-            role: "Full Stack Developer",
-            context: "Helps traders find the behaviours that lose them money, such as moving stops or trading on a losing streak.",
-            outcome: "Live with a public demo account and an open waitlist.",
+            role: "Founder & Full Stack Developer",
+            context: "Helps traders find the behaviours that lose them money, such as overtrading, revenge trades and broken rules.",
+            outcome: "Grew from a personal tool into a multi-user platform now rolling out to the public.",
         },
     },
     {
@@ -164,6 +164,16 @@ export const projectSlug = (p: Project) => p.title.toLowerCase().replace(/\s+/g,
 
 export const experience = [
     {
+        id: "hardwon",
+        role: "Founder & Full Stack Developer",
+        company: "Hardwon - AI Trading Journal & Performance Analytics",
+        shortCompany: "Hardwon",
+        date: "2025 - Present",
+        description: "Built an AI trading journal that syncs with the trader's broker account, reviews every trade, and flags session-level habits like overtrading, revenge trades and rule breaks. Took it from a personal tool to a multi-user platform, owning product, frontend, backend and deployment.",
+        tech: ["Next.js", "TypeScript", "Turso", "Clerk", "AI SDK"],
+        type: "Experience",
+    },
+    {
         id: "trading-hand",
         role: "Full Stack Developer",
         company: "Trading Hand - AI-Powered Algorithmic Trading Platform",
@@ -171,16 +181,6 @@ export const experience = [
         date: "Jun 2024 - Present",
         description: "Built a trading analytics platform for real-time multi-asset portfolio tracking, with an ML-based journal that surfaces profitable patterns and recurring mistakes, cutting trade analysis time by 65%.",
         tech: ["React.js", "Node.js", "Express.js", "MongoDB", "MetaTrader5 API"],
-        type: "Experience",
-    },
-    {
-        id: "dhruv-tara",
-        role: "Full Stack Developer",
-        company: "Dhruv Tara - AI-Powered EdTech Platform",
-        shortCompany: "Dhruv Tara",
-        date: "Jan 2024 - May 2024",
-        description: "Launched an EdTech platform with lecture transcription, NLP-based summarization, note generation and AI Q&A for 200+ students. Built a modular FastAPI backend that lowered average request latency by 50%.",
-        tech: ["React.js", "Python", "FastAPI", "LangChain", "PostgreSQL"],
         type: "Experience",
     },
     {
@@ -241,18 +241,20 @@ export const skillGroups = [
     {
         category: "AI / ML",
         items: [
-            { name: "TensorFlow / Scikit-learn", spec: "Deep Learning Frameworks" },
-            { name: "LangChain / RAG", spec: "LLM Orchestration Systems" },
-            { name: "NLP / Generative AI", spec: "Foundation Models & Prompt Engineering" },
-            { name: "DataViz / Pandas", spec: "Statistical Synthesis" },
+            { name: "LangChain / LangGraph", spec: "Agent Orchestration" },
+            { name: "CrewAI / AutoGen / MCP", spec: "Multi-Agent Systems & Tool Calling" },
+            { name: "RAG / pgvector", spec: "Retrieval & Vector Databases" },
+            { name: "Claude API / Hugging Face", spec: "LLMs & Prompt Engineering" },
+            { name: "TensorFlow / Scikit-learn", spec: "Machine Learning Frameworks" },
+            { name: "n8n / Zapier / Make", spec: "Workflow Automation" },
         ],
     },
 ];
 
 // Where each core skill was used, shown on the About page.
 export const coreSkills = [
-    { name: "React / Next.js", usedIn: "EdgeBook, Trading Hand, Dhruv Tara" },
-    { name: "TypeScript / JavaScript", usedIn: "EdgeBook, CartShare, this site" },
+    { name: "React / Next.js", usedIn: "Hardwon, Trading Hand, Dhruv Tara" },
+    { name: "TypeScript / JavaScript", usedIn: "Hardwon, CartShare, this site" },
     { name: "Node.js / Express", usedIn: "Trading Hand, EY Techathon" },
     { name: "Python / FastAPI", usedIn: "BullAI, Dhruv Tara" },
     { name: "AI / Machine Learning", usedIn: "BullAI, Dhruv Tara, Stock Overflow" },
