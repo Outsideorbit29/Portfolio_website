@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 const TIMEOUT_MS = 6000;
 
-export type DemoState = "up" | "asleep" | "down";
+type DemoState = "up" | "asleep" | "down";
 export interface DemoStatus {
     slug: string;
     state: DemoState;
@@ -42,7 +42,7 @@ export async function GET() {
             .map(async (p) => ({ slug: projectSlug(p), ...(await check(p.links!.demo!)) })),
     );
     return Response.json(
-        { checkedAt: new Date().toISOString(), results },
+        { results },
         { headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" } },
     );
 }

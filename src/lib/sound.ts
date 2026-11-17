@@ -1,7 +1,7 @@
 // Small interface sounds, made in the browser with the Web Audio API (no audio files to download).
 // Browsers only allow sound after the visitor has clicked or tapped, so nothing plays before that.
 
-export type SoundName = "tap" | "pop" | "paper" | "drop" | "flip" | "page";
+type SoundName = "tap" | "pop" | "paper" | "drop" | "flip" | "page";
 
 const STORAGE_KEY = "sound";
 let ctx: AudioContext | null = null;

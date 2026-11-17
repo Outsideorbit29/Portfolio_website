@@ -8,7 +8,7 @@ import { MotionProvider } from "@/components/MotionProvider";
 import { SoundProvider } from "@/components/SoundProvider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { DEFAULT_TITLE, OG_IMAGE, SITE_URL, X_HANDLE } from "@/lib/metadata";
+import { DEFAULT_TITLE, OG_IMAGE, SITE_NAME, SITE_URL, X_HANDLE } from "@/lib/metadata";
 import { person, socials } from "@/data/content";
 
 const inter = Inter({
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: DEFAULT_TITLE,
-    template: "%s | Anish Kumar Gupta",
+    template: `%s | ${SITE_NAME}`,
   },
   description:
     "Official portfolio of Anish Kumar Gupta. Full Stack Software Engineer specialized in building high-performance web applications, AI/ML architectures, and scalable digital ecosystems.",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     "Building Futuristic Web Apps",
     "Portfolio anishkumar.online",
   ],
-  authors: [{ name: "Anish Kumar Gupta", url: SITE_URL }],
-  creator: "Anish Kumar Gupta",
-  publisher: "Anish Kumar Gupta",
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   formatDetection: {
     email: false,
     address: false,
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     url: "/",
     title: DEFAULT_TITLE,
     description: "Architecting the future of scalable web systems and cognitive computing. Explore the latest work of Anish Kumar Gupta.",
-    siteName: "Anish Kumar Gupta Portfolio",
+    siteName: `${SITE_NAME} Portfolio`,
     images: [OG_IMAGE],
   },
   twitter: {
@@ -103,7 +103,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Anish Kumar Gupta",
+              name: SITE_NAME,
               alternateName: "Anish Kumar",
               url: SITE_URL,
               image: `${SITE_URL}/logo.png`,

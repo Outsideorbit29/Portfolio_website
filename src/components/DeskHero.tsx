@@ -13,8 +13,9 @@ import { useDemoStatus } from "@/lib/demoStatus";
 type Pos = { x: string; y: string };
 type Scatter = { x: string; y: string; r: string };
 
-// Phone position first, desktop position from the md breakpoint up.
-const posStyle = (m: Pos, d: Pos) => ({ "--mx": m.x, "--my": m.y, "--dx": d.x, "--dy": d.y }) as CSSProperties;
+// Phone position first, desktop position from the md breakpoint up, then where it drifts to on scroll.
+const posStyle = (m: Pos, d: Pos, s: Scatter) =>
+    ({ "--mx": m.x, "--my": m.y, "--dx": d.x, "--dy": d.y, "--sx": s.x, "--sy": s.y, "--sr": s.r }) as CSSProperties;
 const POS_CLASS = "left-[var(--mx)] top-[var(--my)] md:left-[var(--dx)] md:top-[var(--dy)]";
 
 // One thing lying on the desk. It can be dragged around, and drifts away as the page scrolls.
@@ -43,7 +44,7 @@ function DeskItem({
     return (
         <div
             className={`absolute scatter ${POS_CLASS} ${className}`}
-            style={{ ...posStyle(m, d), "--sx": s.x, "--sy": s.y, "--sr": s.r } as CSSProperties}
+            style={posStyle(m, d, s)}
         >
             <div className="desk-depth" style={{ "--depth": depth } as CSSProperties}>
             <motion.div
@@ -241,7 +242,7 @@ function Word({ children, m, d, s, delay }: { children: ReactNode; m: Pos; d: Po
     return (
         <span
             className={`absolute scatter ${POS_CLASS}`}
-            style={{ ...posStyle(m, d), "--sx": s.x, "--sy": s.y, "--sr": s.r } as CSSProperties}
+            style={posStyle(m, d, s)}
         >
             <span className="desk-depth block" style={{ "--depth": 4 } as CSSProperties}>
             <span
@@ -309,7 +310,7 @@ export function DeskHero() {
                 <DeskItem board={board} rotate={-2} delay={0.5} m={{ x: "44%", y: "58%" }} d={{ x: "76%", y: "62%" }} s={{ x: "260px", y: "60px", r: "18deg" }} depth={8}>
                     <Terminal />
                 </DeskItem>
-                <DeskItem board={board} rotate={0} delay={0.35} m={{ x: "40%", y: "29%" }} d={{ x: "26%", y: "30%" }} s={{ x: "-200px", y: "-260px", r: "-60deg" }} depth={14}>
+                <DeskItem board={board} delay={0.35} m={{ x: "40%", y: "29%" }} d={{ x: "26%", y: "30%" }} s={{ x: "-200px", y: "-260px", r: "-60deg" }} depth={14}>
                     <Mug />
                 </DeskItem>
                 <DeskItem board={board} rotate={3} delay={0.55} className="hidden md:block" m={{ x: "0", y: "0" }} d={{ x: "33%", y: "72%" }} s={{ x: "-120px", y: "80px", r: "-25deg" }}>
