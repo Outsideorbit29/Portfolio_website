@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SoundProvider } from "@/components/SoundProvider";
 import { ParticleOrb } from "@/components/ParticleOrb";
+import { GridGlow } from "@/components/GridGlow";
 import { ScrollRuler } from "@/components/ScrollRuler";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -126,6 +127,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <SoundProvider />
+        <GridGlow />
         <ParticleOrb />
         <Navbar />
         <main id="main" className="flex-1 w-full relative z-[1] flex flex-col overflow-x-clip">

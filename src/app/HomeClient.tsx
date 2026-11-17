@@ -5,6 +5,7 @@ import { ContactBlock } from "@/components/ContactBlock";
 import { ExperienceStrip } from "@/components/ExperienceStrip";
 import { OrbSpot } from "@/components/ParticleOrb";
 import { ProjectViewer } from "@/components/ProjectViewer";
+import { Scramble } from "@/components/Scramble";
 import { Toolbox, type Stat } from "@/components/Toolbox";
 import { Frame, NumberLabel, SectionHeader, W3 } from "@/components/ui";
 import { person, projects } from "@/data/content";
@@ -36,8 +37,8 @@ export default function HomeContent() {
           </div>
 
           <h1 style={{ animationDelay: "0.1s" }} className="reveal col-span-6 md:col-span-12 xl:col-start-2 xl:col-span-4 xl:row-start-3 xl:row-span-2 flex flex-col justify-center py-4 xl:py-0 display text-[2.3rem] md:text-[3rem] xl:text-[2.6rem]">
-            <span>Anish</span>{" "}
-            <span className="text-fg-soft">Kumar Gupta</span>
+            <span><Scramble text="Anish" delay={250} /></span>{" "}
+            <span className="text-fg-soft"><Scramble text="Kumar Gupta" delay={350} /></span>
           </h1>
 
           <OrbSpot look="blob" className="relative col-span-6 row-span-6 md:col-start-4 xl:col-start-6 xl:row-start-1">
@@ -50,8 +51,8 @@ export default function HomeContent() {
           </OrbSpot>
 
           <p style={{ animationDelay: "0.15s" }} className="reveal col-span-6 md:col-span-12 xl:col-start-12 xl:col-span-4 xl:row-start-3 xl:row-span-2 flex flex-col justify-center items-end text-right py-4 xl:py-0 display text-[2.3rem] md:text-[3rem] xl:text-[2.6rem]">
-            <span>Full Stack</span>{" "}
-            <span className="text-fg-soft">Engineer</span>
+            <span><Scramble text="Full Stack" delay={300} /></span>{" "}
+            <span className="text-fg-soft"><Scramble text="Engineer" delay={400} /></span>
           </p>
 
           <div style={{ animationDelay: "0.2s" }} className="reveal col-span-6 xl:col-start-1 xl:col-span-5 xl:row-start-6 flex items-end pb-3 xl:pl-[var(--cell)]">

@@ -6,6 +6,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { projectSlug, projects } from "@/data/content";
 import { playSound } from "@/lib/sound";
 import { OrbSpot } from "./ParticleOrb";
+import { Scramble } from "./Scramble";
+import { LiveStatus } from "./LiveStatus";
 import { ProjectLinkCells, ProjectShot, projectColor } from "./ProjectPanel";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -47,6 +49,7 @@ export function ProjectViewer() {
                     <p className="mono-note">
                         {project.year} · {project.details.role}
                     </p>
+                    <LiveStatus project={project} />
                     <p className="text-[0.95rem] leading-relaxed">{project.details.context}</p>
                     <p className="text-sm leading-relaxed text-fg-soft">{project.details.outcome}</p>
                 </div>
@@ -67,7 +70,7 @@ export function ProjectViewer() {
             <ProjectLinkCells project={project} iconOnly className="col-span-3 md:col-span-1 order-4 md:order-none md:row-start-6 xl:row-start-7" />
             <h3 className="box order-2 md:order-none col-span-4 md:col-span-6 xl:col-span-10 md:row-start-6 xl:row-start-7 flex items-center justify-center text-center px-2">
                 <Link href={`/projects#${projectSlug(project)}`} className="hover:text-accent transition-colors text-lg md:text-2xl font-light lowercase" aria-live="polite">
-                    {project.title}
+                    <Scramble text={project.title} />
                 </Link>
             </h3>
             <p className="box hidden md:flex md:col-span-2 md:row-start-6 xl:row-start-7 items-center justify-center mono-note tabular-nums">

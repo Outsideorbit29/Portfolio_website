@@ -3,6 +3,8 @@ import { ArrowRight, CirclePlay } from "lucide-react";
 import { OrbSpot } from "@/components/ParticleOrb";
 import { ProjectLinkCells, ProjectShot, projectColor } from "@/components/ProjectPanel";
 import { Frame, PageHeader } from "@/components/ui";
+import { Scramble } from "@/components/Scramble";
+import { LiveStatus } from "@/components/LiveStatus";
 import { projectSlug, projects, type Project } from "@/data/content";
 
 export default function ProjectsContent() {
@@ -40,8 +42,9 @@ function ProjectBlock({ project, index }: { project: Project; index: number }) {
                     <p className="mono-note">
                         {project.id} · {project.year} · {project.details.role}
                     </p>
+                    <LiveStatus project={project} className="mt-1" />
                     <h2 id={`${slug}-title`} className="draw display text-[1.9rem] md:text-[2.5rem]">
-                        {project.title}
+                        <Scramble text={project.title} />
                     </h2>
                 </div>
 

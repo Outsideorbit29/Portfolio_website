@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { OrbSpot, type OrbLook } from "./ParticleOrb";
+import { Scramble } from "./Scramble";
 
 // The content column, a whole number of grid cells wide.
 export function Frame({ children, className = "", as: Tag = "div", ...rest }: { children: ReactNode; className?: string; as?: "div" | "section"; id?: string; "aria-labelledby"?: string }) {
@@ -28,7 +29,7 @@ export function SectionHeader({
         <div className="cells">
             <div className="col-span-6 md:col-span-8 xl:col-span-12 flex flex-col justify-end pb-2">
                 <Tag id={id} className="draw display text-[1.9rem] md:text-[2.5rem]">
-                    {title}
+                    {typeof title === "string" ? <Scramble text={title} /> : title}
                 </Tag>
                 {sub && <p className="mt-1 text-sm text-fg-soft">{sub}</p>}
             </div>
@@ -45,7 +46,7 @@ export function PageHeader({ title, sub, note, look = "blob", color }: { title: 
                 <div className="col-span-6 md:col-span-9 xl:col-span-12 md:row-span-3 flex flex-col justify-end pb-4 xl:pb-0">
                     <p className="reveal mono-note">{note}</p>
                     <h1 style={{ animationDelay: "0.05s" }} className="reveal display mt-2 text-[2.6rem] md:text-[4rem] xl:text-[5rem]">
-                        {title}
+                        <Scramble text={title} delay={150} />
                     </h1>
                     {sub && (
                         <p style={{ animationDelay: "0.1s" }} className="reveal mt-3 text-fg-soft md:text-lg max-w-2xl">

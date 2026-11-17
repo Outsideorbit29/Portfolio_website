@@ -275,6 +275,28 @@
     animation: marquee 40s linear infinite;
   }
 
+  /* A ring that keeps pulsing out of the "demo online" dot. */
+  @keyframes live-ping {
+    from {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+
+    to {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+
+  .live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: inherit;
+    animation: live-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
   /*
     Scroll-driven: boxes rise in as they scroll into view, and the ruler at the bottom
     follows the scroll. Browsers without scroll-driven animations simply show everything.

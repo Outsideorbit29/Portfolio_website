@@ -6,6 +6,8 @@ import { useEffect, useRef } from "react";
   A sphere of dots drawn with plain WebGL (no library). It is one fixed canvas behind the page.
   Empty boxes mark themselves with <OrbSpot>; the sphere flies to whichever spot is nearest the
   middle of the screen and takes on that spot's shape and colour. With no spot on screen it fades out.
+  It also reacts to you: dots scatter away from the cursor (or a finger) and drift back, and a click
+  or tap near it makes it pulse. Both are off for anyone who asked for less motion.
 */
 
 export type OrbLook = "blob" | "lumpy" | "cloud" | "calm" | "wave";
@@ -30,8 +32,8 @@ export function OrbSpot({ look = "blob", color = "#ededed", className = "", chil
 const VERT = `
 attribute vec3 aPos;
 attribute vec3 aJit;
-uniform float uTime, uRot, uNoise, uFreq, uFuzz, uRadius, uSize;
-uniform vec2 uCenter, uRes;
+uniform float uTime, uRot, uNoise, uFreq, uFuzz, uRadius, uSize, uPush, uPushR, uPulse;
+uniform vec2 uCenter, uRes, uMouse;
 varying float vDepth;
 void main() {
   vec3 p = aPos;
@@ -39,6 +41,7 @@ void main() {
   float n = sin(p.x * uFreq + t * 0.8) * sin(p.y * uFreq * 1.17 + t * 0.63) * sin(p.z * uFreq * 0.91 + t * 0.71);
   n += 0.5 * sin(p.x * uFreq * 2.1 - t * 0.5) * sin(p.z * uFreq * 2.3 + t * 0.4);
   p *= 1.0 + uNoise * n;
+  p *= 1.0 + uPulse * (0.16 + 0.35 * n);
   p += aJit * uFuzz;
   float c = cos(uRot), s = sin(uRot);
   p = vec3(c * p.x + s * p.z, p.y, -s * p.x + c * p.z);
@@ -46,6 +49,9 @@ void main() {
   p = vec3(p.x, ct * p.y - st * p.z, st * p.y + ct * p.z);
   float persp = 1.0 / (1.0 - p.z * 0.25);
   vec2 screen = uCenter + p.xy * uRadius * persp;
+  vec2 away = screen - uMouse;
+  float dist = length(away) + 0.001;
+  screen += away / dist * uPush * exp(-(dist * dist) / (uPushR * uPushR));
   vec2 clip = screen / uRes * 2.0 - 1.0;
   gl_Position = vec4(clip.x, -clip.y, 0.0, 1.0);
   gl_PointSize = uSize * persp;
@@ -126,6 +132,7 @@ export function ParticleOrb() {
             const U = {
                 time: u("uTime"), rot: u("uRot"), noise: u("uNoise"), freq: u("uFreq"), fuzz: u("uFuzz"),
                 radius: u("uRadius"), size: u("uSize"), center: u("uCenter"), res: u("uRes"), color: u("uColor"), alpha: u("uAlpha"),
+                mouse: u("uMouse"), push: u("uPush"), pushR: u("uPushR"), pulse: u("uPulse"),
             };
 
             gl.enable(gl.BLEND);
@@ -150,6 +157,32 @@ export function ParticleOrb() {
             let last = performance.now();
             let raf = 0;
             let first = true;
+
+            // Pointer position, how strongly the dots move out of its way, and the click pulse.
+            const pointer = { x: -9999, y: -9999, speed: 0, at: 0 };
+            let push = 0;
+            let pulse = 0;
+            const onPointer = (e: PointerEvent) => {
+                const t = performance.now();
+                const gap = Math.max(t - pointer.at, 8);
+                const moved = Math.hypot(e.clientX - pointer.x, e.clientY - pointer.y);
+                pointer.speed = pointer.at && moved < 500 ? Math.min(moved / gap, 3) : 0;
+                pointer.x = e.clientX;
+                pointer.y = e.clientY;
+                pointer.at = t;
+            };
+            const onLeave = () => {
+                pointer.x = -9999;
+                pointer.y = -9999;
+            };
+            // A finger leaves the screen, so let the dots settle back.
+            const onUp = (e: PointerEvent) => {
+                if (e.pointerType !== "mouse") onLeave();
+            };
+            const onDown = (e: PointerEvent) => {
+                onPointer(e);
+                if (Math.hypot(e.clientX - cur.x, e.clientY - cur.y) < cur.r * 1.4 && cur.alpha > 0.3) pulse = 1;
+            };
 
             const frame = (now: number) => {
                 const dt = Math.min((now - last) / 1000, 0.05);
@@ -198,6 +231,12 @@ export function ParticleOrb() {
                 if (!reduced) {
                     time += dt;
                     rot += dt * cur.spin;
+                    // Stronger push while the pointer is near and moving, easing back to calm when it stops.
+                    const near = Math.hypot(pointer.x - cur.x, pointer.y - cur.y) < cur.r * 1.8;
+                    const target = near ? 0.5 + pointer.speed * 0.5 : 0;
+                    push += (target - push) * (1 - Math.exp(-dt * (target > push ? 10 : 2.5)));
+                    pointer.speed *= Math.exp(-dt * 4);
+                    pulse *= Math.exp(-dt * 3.2);
                 }
 
                 gl.clear(gl.COLOR_BUFFER_BIT);
@@ -213,6 +252,10 @@ export function ParticleOrb() {
                     gl.uniform2f(U.res, canvas.width, canvas.height);
                     gl.uniform3f(U.color, cur.color[0], cur.color[1], cur.color[2]);
                     gl.uniform1f(U.alpha, cur.alpha);
+                    gl.uniform2f(U.mouse, pointer.x * dpr, pointer.y * dpr);
+                    gl.uniform1f(U.push, push * cur.r * 0.45 * dpr);
+                    gl.uniform1f(U.pushR, Math.max(cur.r * 0.5, 40) * dpr);
+                    gl.uniform1f(U.pulse, pulse);
                     gl.drawArrays(gl.POINTS, 0, count);
                 }
 
@@ -230,6 +273,14 @@ export function ParticleOrb() {
             };
             window.addEventListener("resize", onResize);
             if (reduced) window.addEventListener("scroll", redraw, { passive: true });
+            else {
+                window.addEventListener("pointermove", onPointer, { passive: true });
+                window.addEventListener("pointerdown", onDown, { passive: true });
+                window.addEventListener("pointerup", onUp, { passive: true });
+                window.addEventListener("pointercancel", onUp, { passive: true });
+                document.documentElement.addEventListener("pointerleave", onLeave);
+                window.addEventListener("blur", onLeave);
+            }
             raf = requestAnimationFrame(frame);
             canvas.style.opacity = "1";
 
@@ -237,6 +288,12 @@ export function ParticleOrb() {
                 cancelAnimationFrame(raf);
                 window.removeEventListener("resize", onResize);
                 window.removeEventListener("scroll", redraw);
+                window.removeEventListener("pointermove", onPointer);
+                window.removeEventListener("pointerdown", onDown);
+                window.removeEventListener("pointerup", onUp);
+                window.removeEventListener("pointercancel", onUp);
+                document.documentElement.removeEventListener("pointerleave", onLeave);
+                window.removeEventListener("blur", onLeave);
             };
         };
 
